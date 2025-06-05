@@ -1,0 +1,15 @@
+[2025-05-14T05:07:36.695+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.setup_s3_bucket manual__2025-05-14T05:07:34.806358+00:00 [queued]>
+[2025-05-14T05:07:36.699+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.setup_s3_bucket manual__2025-05-14T05:07:34.806358+00:00 [queued]>
+[2025-05-14T05:07:36.699+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-05-14T05:07:36.709+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): setup_s3_bucket> on 2025-05-14 05:07:34.806358+00:00
+[2025-05-14T05:07:36.714+0000] {standard_task_runner.py:60} INFO - Started process 161 to run task
+[2025-05-14T05:07:36.717+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_data_ingestion', 'setup_s3_bucket', 'manual__2025-05-14T05:07:34.806358+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl_dag.py', '--cfg-path', '/tmp/tmp7zxac0vk']
+[2025-05-14T05:07:36.720+0000] {standard_task_runner.py:88} INFO - Job 76: Subtask setup_s3_bucket
+[2025-05-14T05:07:36.765+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_data_ingestion.setup_s3_bucket manual__2025-05-14T05:07:34.806358+00:00 [running]> on host 7e6174e9cd01
+[2025-05-14T05:07:36.815+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ecommerce_data_ingestion' AIRFLOW_CTX_TASK_ID='setup_s3_bucket' AIRFLOW_CTX_EXECUTION_DATE='2025-05-14T05:07:34.806358+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-14T05:07:34.806358+00:00'
+[2025-05-14T05:07:36.832+0000] {credentials.py:1147} INFO - Found credentials in environment variables.
+[2025-05-14T05:07:37.931+0000] {ingestion_script.py:432} INFO - Bucket rj-ecommerce-data-lake already exists
+[2025-05-14T05:07:37.934+0000] {python.py:201} INFO - Done. Returned value was: S3 bucket rj-ecommerce-data-lake ready for ingestion
+[2025-05-14T05:07:37.957+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ecommerce_data_ingestion, task_id=setup_s3_bucket, execution_date=20250514T050734, start_date=20250514T050736, end_date=20250514T050737
+[2025-05-14T05:07:38.008+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-05-14T05:07:38.051+0000] {taskinstance.py:3280} INFO - 13 downstream tasks scheduled from follow-on schedule check

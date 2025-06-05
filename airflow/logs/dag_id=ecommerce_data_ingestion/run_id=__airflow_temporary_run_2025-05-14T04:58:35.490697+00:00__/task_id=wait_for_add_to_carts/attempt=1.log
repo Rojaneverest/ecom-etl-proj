@@ -1,0 +1,13 @@
+[2025-05-14T04:59:19.516+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.wait_for_add_to_carts __airflow_temporary_run_2025-05-14T04:58:35.490697+00:00__ [queued]>
+[2025-05-14T04:59:19.831+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.wait_for_add_to_carts __airflow_temporary_run_2025-05-14T04:58:35.490697+00:00__ [queued]>
+[2025-05-14T04:59:19.934+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-05-14T04:59:21.270+0000] {taskinstance.py:2191} INFO - Executing <Task(FileSensor): wait_for_add_to_carts> on 2025-05-14 00:00:00+00:00
+[2025-05-14T04:59:21.317+0000] {standard_task_runner.py:60} INFO - Started process 473 to run task
+[2025-05-14T04:59:21.360+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_data_ingestion', 'wait_for_add_to_carts', '__***_temporary_run_2025-05-14T04:58:35.490697+00:00__', '--job-id', '52', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl_dag.py', '--cfg-path', '/tmp/tmpjtd81nqh']
+[2025-05-14T04:59:21.367+0000] {standard_task_runner.py:88} INFO - Job 52: Subtask wait_for_add_to_carts
+[2025-05-14T04:59:22.324+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_data_ingestion.wait_for_add_to_carts __airflow_temporary_run_2025-05-14T04:58:35.490697+00:00__ [running]> on host 0a774477c13b
+[2025-05-14T04:59:22.834+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ecommerce_data_ingestion' AIRFLOW_CTX_TASK_ID='wait_for_add_to_carts' AIRFLOW_CTX_EXECUTION_DATE='2025-05-14T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='__***_temporary_run_2025-05-14T04:58:35.490697+00:00__'
+[2025-05-14T04:59:22.983+0000] {taskinstance.py:2360} INFO - Skipping due to soft_fail is set to True.
+[2025-05-14T04:59:23.088+0000] {taskinstance.py:1138} INFO - Marking task as SKIPPED. dag_id=ecommerce_data_ingestion, task_id=wait_for_add_to_carts, execution_date=20250514T000000, start_date=20250514T045919, end_date=20250514T045923
+[2025-05-14T04:59:23.300+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-05-14T04:59:23.739+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

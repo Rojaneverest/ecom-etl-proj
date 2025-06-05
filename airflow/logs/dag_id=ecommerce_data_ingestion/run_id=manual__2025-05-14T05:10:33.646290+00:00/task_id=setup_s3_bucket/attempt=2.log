@@ -1,0 +1,2 @@
+[2025-05-14T05:15:35.688+0000] {taskinstance.py:1946} INFO - Dependencies not met for <TaskInstance: ecommerce_data_ingestion.setup_s3_bucket manual__2025-05-14T05:10:33.646290+00:00 [skipped]>, dependency 'Task Instance State' FAILED: Task is in the 'skipped' state.
+[2025-05-14T05:15:35.737+0000] {local_task_job_runner.py:160} INFO - Task is not able to be run

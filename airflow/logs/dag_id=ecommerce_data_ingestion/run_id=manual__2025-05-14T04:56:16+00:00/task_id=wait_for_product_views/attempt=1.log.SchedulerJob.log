@@ -1,0 +1,1 @@
+[2025-05-14T04:57:40.034+0000] {scheduler_job_runner.py:781} ERROR - Executor reports task instance <TaskInstance: ecommerce_data_ingestion.wait_for_product_views manual__2025-05-14T04:56:16+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

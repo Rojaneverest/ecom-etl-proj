@@ -1,0 +1,18 @@
+[2025-05-14T05:15:33.281+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.wait_for_product_wishlists manual__2025-05-14T05:13:11.949842+00:00 [queued]>
+[2025-05-14T05:15:33.441+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ecommerce_data_ingestion.wait_for_product_wishlists manual__2025-05-14T05:13:11.949842+00:00 [queued]>
+[2025-05-14T05:15:33.457+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2025-05-14T05:15:33.831+0000] {taskinstance.py:2191} INFO - Executing <Task(FileSensor): wait_for_product_wishlists> on 2025-05-14 05:13:11.949842+00:00
+[2025-05-14T05:15:33.932+0000] {standard_task_runner.py:60} INFO - Started process 266 to run task
+[2025-05-14T05:15:33.975+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ecommerce_data_ingestion', 'wait_for_product_wishlists', 'manual__2025-05-14T05:13:11.949842+00:00', '--job-id', '127', '--raw', '--subdir', 'DAGS_FOLDER/ecommerce_etl_dag.py', '--cfg-path', '/tmp/tmpn2yhssuj']
+[2025-05-14T05:15:34.040+0000] {standard_task_runner.py:88} INFO - Job 127: Subtask wait_for_product_wishlists
+[2025-05-14T05:15:34.607+0000] {task_command.py:423} INFO - Running <TaskInstance: ecommerce_data_ingestion.wait_for_product_wishlists manual__2025-05-14T05:13:11.949842+00:00 [running]> on host 1e43c0d7b523
+[2025-05-14T05:15:36.426+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ecommerce_data_ingestion' AIRFLOW_CTX_TASK_ID='wait_for_product_wishlists' AIRFLOW_CTX_EXECUTION_DATE='2025-05-14T05:13:11.949842+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-05-14T05:13:11.949842+00:00'
+[2025-05-14T05:15:36.480+0000] {base.py:83} INFO - Using connection ID 'fs_default' for task execution.
+[2025-05-14T05:15:36.482+0000] {filesystem.py:66} INFO - Poking for file /opt/***/data/extracted_data/product_wishlists.csv
+[2025-05-14T05:20:36.629+0000] {base.py:83} INFO - Using connection ID 'fs_default' for task execution.
+[2025-05-14T05:20:36.640+0000] {filesystem.py:66} INFO - Poking for file /opt/***/data/extracted_data/product_wishlists.csv
+[2025-05-14T05:22:56.446+0000] {local_task_job_runner.py:302} WARNING - State of this instance has been externally set to removed. Terminating instance.
+[2025-05-14T05:22:56.482+0000] {process_utils.py:131} INFO - Sending 15 to group 266. PIDs of all processes in the group: [266]
+[2025-05-14T05:22:56.483+0000] {process_utils.py:86} INFO - Sending the signal 15 to group 266
+[2025-05-14T05:22:56.486+0000] {taskinstance.py:2450} ERROR - Received SIGTERM. Terminating subprocesses.
+[2025-05-14T05:22:56.629+0000] {process_utils.py:79} INFO - Process psutil.Process(pid=266, status='terminated', exitcode=0, started='05:15:33') (266) terminated with exit code 0
