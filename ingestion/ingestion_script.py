@@ -44,11 +44,20 @@ file_handler.setFormatter(
 )
 logger.addHandler(file_handler)
 
-# AWS Configuration - Replace with your own or use environment variables
-AWS_REGION = os.environ.get("AWS_REGION", "us-east-1")
-S3_BUCKET = os.environ.get("S3_BUCKET", "your-e-commerce-data-lake")
+# AWS Configuration - Use environment variables for security
+AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
+S3_BUCKET = os.getenv("S3_BUCKET", "rj-ecom-etl")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+
 RAW_DATA_PREFIX = "raw/"
 QUARANTINE_PREFIX = "quarantine/"
+
+# Log configuration (without exposing sensitive data)
+logger.info(f"AWS_REGION: {AWS_REGION}")
+logger.info(f"S3_BUCKET: {S3_BUCKET}")
+logger.info(f"AWS_ACCESS_KEY_ID: {'***' if AWS_ACCESS_KEY_ID else 'Not set'}")
+logger.info(f"AWS_SECRET_ACCESS_KEY: {'***' if AWS_SECRET_ACCESS_KEY else 'Not set'}")
 
 # Data schema definitions based on the database diagram
 SCHEMAS = {
@@ -193,31 +202,73 @@ TIMESTAMP_FORMATS = ["%Y-%m-%d %H:%M:%S", "%Y-%m-%d", "%Y/%m/%d %H:%M:%S", "%Y/%
 
 
 def create_s3_client():
-    """Create and return an S3 client."""
+    """Create and return an S3 client with proper credential handling."""
     try:
-        return boto3.client("s3", region_name=AWS_REGION)
+        # First, try using environment variables or hardcoded credentials
+        if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
+            logger.info("Using provided AWS credentials")
+            return boto3.client(
+                "s3",
+                region_name=AWS_REGION,
+                aws_access_key_id=AWS_ACCESS_KEY_ID,
+                aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
+            )
+        else:
+            # Fall back to default credential chain (AWS CLI, IAM roles, etc.)
+            logger.info("Using default AWS credential chain")
+            return boto3.client("s3", region_name=AWS_REGION)
     except Exception as e:
         logger.error(f"Failed to create S3 client: {e}")
         sys.exit(1)
 
 
+def test_s3_connection(s3_client):
+    """Test S3 connection by listing buckets."""
+    try:
+        response = s3_client.list_buckets()
+        logger.info("Successfully connected to AWS S3")
+        logger.info(
+            f"Available buckets: {[bucket['Name'] for bucket in response['Buckets']]}"
+        )
+        return True
+    except ClientError as e:
+        error_code = e.response["Error"]["Code"]
+        if error_code == "AccessDenied":
+            logger.error(
+                "Access denied. Please check your AWS credentials and permissions."
+            )
+        elif error_code == "InvalidAccessKeyId":
+            logger.error("Invalid access key ID. Please check your AWS credentials.")
+        elif error_code == "SignatureDoesNotMatch":
+            logger.error(
+                "Invalid secret access key. Please check your AWS credentials."
+            )
+        else:
+            logger.error(f"AWS S3 connection error: {e}")
+        return False
+    except Exception as e:
+        logger.error(f"Unexpected error testing S3 connection: {e}")
+        return False
+
+
 def validate_timestamp(timestamp_str):
-    """Validate if a string is a valid timestamp."""
-    if (
-        not timestamp_str
-        or timestamp_str.lower() == "null"
-        or timestamp_str.strip() == ""
-    ):
-        return True  # Allow empty timestamps
+    """
+    Validates a timestamp string and normalizes it.
+    - Returns a datetime object if the format is valid.
+    - Returns None for empty or null-like strings.
+    - Raises ValueError for invalid, non-empty formats.
+    """
+    if not timestamp_str or timestamp_str.strip().lower() in ["", "null"]:
+        return None  # Normalize empty/null strings to None
 
     for fmt in TIMESTAMP_FORMATS:
         try:
-            datetime.strptime(timestamp_str, fmt)
-            return True
-        except ValueError:
+            # Return the datetime object upon successful parsing
+            return datetime.strptime(timestamp_str, fmt)
+        except (ValueError, TypeError):
             continue
 
-    return False
+    raise ValueError(f"Invalid timestamp format: {timestamp_str}") 
 
 
 def normalize_string(value):
@@ -239,15 +290,6 @@ def validate_record(record, dataset_name):
         return False, f"Unknown dataset: {dataset_name}"
 
     schema = SCHEMAS[dataset_name]
-
-    # Cast zip_code_prefix to string for geolocation dataset
-    if (
-        dataset_name == "olist_geolocation_dataset"
-        and "geolocation_zip_code_prefix" in record
-    ):
-        record["geolocation_zip_code_prefix"] = str(
-            record["geolocation_zip_code_prefix"]
-        )
 
     # Normalize city names
     if "geolocation_city" in record:
@@ -277,8 +319,14 @@ def validate_record(record, dataset_name):
                 or field.endswith("_date")
                 or field.endswith("_at")
             ):
-                if not validate_timestamp(str(value)):
-                    return False, f"Invalid timestamp format for {field}: {value}"
+                try:
+                    # Use the new function to get a normalized value
+                    normalized_value = validate_timestamp(str(value))
+                    # Update the record with the normalized value (datetime object or None)
+                    record[field] = normalized_value
+                except ValueError as e:
+                    # The function will raise an error for invalid formats
+                    return False, str(e)
 
             # Validate other types
             elif expected_type == int:
@@ -333,21 +381,45 @@ def safe_convert_numeric(df, field, expected_type):
         if field not in df.columns:
             return
 
+        logger.debug(f"Converting field {field} to {expected_type.__name__}")
+        
+        # Make a copy to avoid modifying the original
+        original_values = df[field].copy()
+        
         # Replace empty strings and whitespace-only strings with NaN first
-        df[field] = df[field].replace(r"^\s*$", pd.NA, regex=True)
+        df[field] = df[field].astype(str).replace(r"^\s*$", "", regex=True)
+        df[field] = df[field].replace("", pd.NA)
+        
+        # Additional check: if this looks like a timestamp field, skip it
+        # This is a safety net even though we filter before calling this function
+        if (field.endswith("_timestamp") or field.endswith("_date") or field.endswith("_at")):
+            logger.warning(f"Field {field} looks like a timestamp but was passed to numeric conversion. Skipping.")
+            df[field] = original_values  # Restore original values
+            return
+        
+        # Check if any values look like timestamps (contain colons or dashes in date format)
+        sample_values = df[field].dropna().astype(str).head(10)
+        for val in sample_values:
+            if ":" in val or (len(val) >= 8 and val.count("-") >= 2):
+                logger.warning(f"Field {field} contains timestamp-like values (e.g., '{val}'). Skipping numeric conversion.")
+                df[field] = original_values  # Restore original values
+                return
 
         if expected_type == int:
             # Convert to numeric, coercing errors to NaN
-            df[field] = pd.to_numeric(df[field], errors="coerce")
+            df[field] = pd.to_numeric(df[field], errors="coerce", downcast="integer")
         elif expected_type == float:
             # Convert to numeric, coercing errors to NaN
-            df[field] = pd.to_numeric(df[field], errors="coerce")
+            df[field] = pd.to_numeric(df[field], errors="coerce", downcast="float")
+            
+        logger.debug(f"Successfully converted {field} to {expected_type.__name__}")
 
     except Exception as e:
-        logger.warning(
-            f"Error converting column {field} to {expected_type.__name__}: {e}"
-        )
-        # Leave the column as-is if conversion fails
+        logger.error(f"Error converting column {field} to {expected_type.__name__}: {e}")
+        logger.error(f"Sample values: {df[field].head(5).tolist() if field in df.columns else 'Column not found'}")
+        # Restore original values on error
+        if 'original_values' in locals():
+            df[field] = original_values
 
 
 def process_csv_file(file_path, s3_client):
@@ -369,32 +441,48 @@ def process_csv_file(file_path, s3_client):
         return False
 
     try:
-        # Read CSV with pandas for better handling of different formats
-        # Use keep_default_na=False to prevent pandas from converting strings to NaN
+        # Read CSV with more explicit handling
         df = pd.read_csv(
-            file_path, low_memory=False, keep_default_na=False, na_values=[]
+            file_path, 
+            low_memory=False, 
+            keep_default_na=False, 
+            na_values=[],
+            dtype=str  # Read everything as string first
         )
+        
+        logger.info(f"Read {len(df)} rows from {file_name}")
+        logger.debug(f"Columns in {file_name}: {list(df.columns)}")
+        
         schema = SCHEMAS[dataset_name]
 
-        # Safely convert numeric columns
+        # Apply safe_convert_numeric only to non-timestamp fields
         for field, expected_type in schema["field_types"].items():
             if field in df.columns and expected_type in [int, float]:
-                safe_convert_numeric(df, field, expected_type)
+                # Double-check: is this a timestamp field?
+                is_timestamp_field = (
+                    field.endswith("_timestamp") or 
+                    field.endswith("_date") or 
+                    field.endswith("_at")
+                )
+                
+                if not is_timestamp_field:
+                    logger.debug(f"Applying numeric conversion to {field} (type: {expected_type.__name__})")
+                    safe_convert_numeric(df, field, expected_type)
+                else:
+                    logger.debug(f"Skipping numeric conversion for timestamp field: {field}")
 
-        # Convert DataFrame to records, handling None/NaN values properly
+        # Convert DataFrame to records
         records = []
         for _, row in df.iterrows():
             record = {}
             for col in df.columns:
                 value = row[col]
-                # Keep NaN/None as None, don't convert to empty string for numeric fields
-                if pd.isna(value):
+                if pd.isna(value) or value == "":
                     record[col] = None
                 else:
                     record[col] = value
             records.append(record)
 
-        # Validate each record
         valid_records = []
         invalid_records = []
 
@@ -405,32 +493,30 @@ def process_csv_file(file_path, s3_client):
             else:
                 record["_error"] = error_message
                 invalid_records.append(record)
-                logger.warning(
-                    f"Invalid record in {file_name}, row {i+2}: {error_message}"
-                )
+                if i < 5:  # Only log first 5 invalid records to avoid spam
+                    logger.warning(f"Invalid record in {file_name}, row {i+2}: {error_message}")
 
-        # Handle geolocation dataset differently
+        logger.info(f"Validation complete: {len(valid_records)} valid, {len(invalid_records)} invalid")
+
         if dataset_name == "olist_geolocation_dataset":
             unique_records = valid_records
-            duplicate_records = []  # No deduplication for geolocation
+            duplicate_records = []
         else:
-            # Check for duplicates among valid records
             key_fields = schema["required_fields"]
-            unique_records, duplicate_records = check_duplicates(
-                valid_records, key_fields
-            )
+            unique_records, duplicate_records = check_duplicates(valid_records, key_fields)
 
             if duplicate_records:
-                logger.warning(
-                    f"Found {len(duplicate_records)} duplicate records in {file_name}"
-                )
+                logger.warning(f"Found {len(duplicate_records)} duplicate records in {file_name}")
                 for record in duplicate_records:
                     record["_error"] = "Duplicate record"
                     invalid_records.append(record)
 
-        # Create DataFrames from record lists
+        if not unique_records:
+            logger.warning(f"No valid unique records found in {file_name} after processing.")
+            return False
+
+        # Convert valid records to DataFrame before uploading
         valid_df = pd.DataFrame(unique_records)
-        invalid_df = pd.DataFrame(invalid_records) if invalid_records else None
 
         # Upload valid records to S3
         if not valid_df.empty:
@@ -441,18 +527,15 @@ def process_csv_file(file_path, s3_client):
             s3_key = f"{RAW_DATA_PREFIX}{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/{file_name.replace('.csv', '.parquet')}"
 
             s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=buffer.getvalue())
-            logger.info(
-                f"Uploaded {len(unique_records)} valid records to s3://{S3_BUCKET}/{s3_key}"
-            )
+            logger.info(f"Uploaded {len(unique_records)} valid records to s3://{S3_BUCKET}/{s3_key}")
 
         # Quarantine invalid records
-        if invalid_df is not None and not invalid_df.empty:
+        if invalid_records:
+            invalid_df = pd.DataFrame(invalid_records)
             csv_buffer = invalid_df.to_csv(index=False)
             s3_key = f"{QUARANTINE_PREFIX}{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/{file_name}"
             s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=csv_buffer)
-            logger.info(
-                f"Quarantined {len(invalid_records)} invalid records to s3://{S3_BUCKET}/{s3_key}"
-            )
+            logger.info(f"Quarantined {len(invalid_records)} invalid records to s3://{S3_BUCKET}/{s3_key}")
 
         # Generate and upload report
         report = {
@@ -462,38 +545,54 @@ def process_csv_file(file_path, s3_client):
             "valid_records": len(unique_records),
             "invalid_records": len(invalid_records),
             "duplicate_records": (
-                len(duplicate_records)
-                if dataset_name != "olist_geolocation_dataset"
-                else 0
+                len(duplicate_records) if dataset_name != "olist_geolocation_dataset" else 0
             ),
             "timestamp": datetime.now().isoformat(),
         }
 
         s3_key = f"reports/ingestion_reports/{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/report.json"
-        s3_client.put_object(
-            Bucket=S3_BUCKET, Key=s3_key, Body=json.dumps(report, indent=2)
-        )
+        s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=json.dumps(report, indent=2))
 
         return True
 
     except Exception as e:
-        logger.error(f"Error processing {file_name}: {e}")
+        logger.error(f"Error processing {file_name}: {str(e)}")
+        import traceback
+        logger.error(f"Full traceback: {traceback.format_exc()}")
         return False
-
 
 def ensure_s3_bucket_exists(s3_client):
     """Ensure the S3 bucket exists, create it if it doesn't."""
     try:
         s3_client.head_bucket(Bucket=S3_BUCKET)
         logger.info(f"Bucket {S3_BUCKET} already exists")
+        return True
     except ClientError as e:
         error_code = e.response["Error"]["Code"]
         if error_code == "404":
-            logger.info(f"Creating bucket {S3_BUCKET}")
-            s3_client.create_bucket(Bucket=S3_BUCKET)
+            try:
+                logger.info(f"Creating bucket {S3_BUCKET}")
+                # For us-east-1, don't specify LocationConstraint
+                if AWS_REGION == "us-east-1":
+                    s3_client.create_bucket(Bucket=S3_BUCKET)
+                else:
+                    s3_client.create_bucket(
+                        Bucket=S3_BUCKET,
+                        CreateBucketConfiguration={"LocationConstraint": AWS_REGION},
+                    )
+                logger.info(f"Successfully created bucket {S3_BUCKET}")
+                return True
+            except ClientError as create_error:
+                logger.error(f"Error creating bucket: {create_error}")
+                return False
+        elif error_code == "403":
+            logger.error(
+                f"Access denied to bucket {S3_BUCKET}. Please check your AWS credentials and permissions."
+            )
+            return False
         else:
             logger.error(f"Error checking bucket: {e}")
-            sys.exit(1)
+            return False
 
 
 def main():
@@ -509,8 +608,17 @@ def main():
     # Create S3 client
     s3_client = create_s3_client()
 
+    # Test S3 connection first
+    if not test_s3_connection(s3_client):
+        logger.error(
+            "Failed to connect to AWS S3. Please check your credentials and try again."
+        )
+        sys.exit(1)
+
     # Ensure S3 bucket exists
-    ensure_s3_bucket_exists(s3_client)
+    if not ensure_s3_bucket_exists(s3_client):
+        logger.error("Failed to ensure S3 bucket exists. Exiting.")
+        sys.exit(1)
 
     # Process all CSV files in the directory
     csv_files = [f for f in os.listdir(data_dir) if f.endswith(".csv")]

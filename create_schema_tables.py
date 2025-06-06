@@ -113,6 +113,11 @@ def create_tables_raw_sql(database_url):
         PRIMARY KEY (review_id),
         FOREIGN KEY (order_id) REFERENCES orders (order_id)
     );
+    CREATE TABLE product_category_translation(
+    product_category_name VARCHAR NOT NULL,
+    product_category_name_english VARCHAR NOT NULL,
+    PRIMARY KEY (product_category_name)
+    )
     """
 
     with engine.connect() as connection:
