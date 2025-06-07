@@ -17,8 +17,8 @@ SNOWFLAKE_ROLE = os.getenv("SNOWFLAKE_ROLE")
 
 # Source and Target Database/Schema
 SOURCE_DB = os.getenv("SNOWFLAKE_SOURCE_DB")
-TARGET_DB = os.getenv("SNOWFLAKE_TARGET_DB")
-TARGET_SCHEMA = os.getenv("SNOWFLAKE_TARGET_SCHEMA")
+STG_DB = os.getenv("SNOWFLAKE_STAGING_DB")
+STG_SCHEMA = os.getenv("SNOWFLAKE_STAGING_SCHEMA")
 
 
 # --- Logging Configuration ---
@@ -39,7 +39,7 @@ def get_stg_schema_ddl():
     return {
         # Tables with no dependencies
         "geolocation": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_GEOLOCATION (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION (
                 GEOLOCATION_ID NUMBER AUTOINCREMENT START 1 INCREMENT 1 PRIMARY KEY,
                 GEOLOCATION_ZIP_CODE_PREFIX INTEGER NOT NULL,
                 GEOLOCATION_LAT FLOAT NOT NULL,
@@ -50,11 +50,9 @@ def get_stg_schema_ddl():
             );
         """,
         "products": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_PRODUCTS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_PRODUCTS (
                 PRODUCT_ID VARCHAR NOT NULL PRIMARY KEY,
                 PRODUCT_CATEGORY_NAME VARCHAR,
-                PRODUCT_NAME_LENGHT INTEGER,
-                PRODUCT_DESCRIPTION_LENGHT INTEGER,
                 PRODUCT_PHOTOS_QTY INTEGER,
                 PRODUCT_WEIGHT_G FLOAT,
                 PRODUCT_LENGTH_CM FLOAT,
@@ -63,35 +61,35 @@ def get_stg_schema_ddl():
             );
         """,
         "product_category_translation": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_PRODUCT_CATEGORY_TRANSLATION (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_PRODUCT_CATEGORY_TRANSLATION (
                 PRODUCT_CATEGORY_NAME VARCHAR NOT NULL PRIMARY KEY,
                 PRODUCT_CATEGORY_NAME_ENGLISH VARCHAR NOT NULL
             );
         """,
         # Tables with dependencies
         "customers": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_CUSTOMERS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_CUSTOMERS (
                 CUSTOMER_ID VARCHAR NOT NULL PRIMARY KEY,
                 CUSTOMER_UNIQUE_ID VARCHAR,
                 CUSTOMER_ZIP_CODE_PREFIX INT,
                 CUSTOMER_CITY VARCHAR,
                 CUSTOMER_STATE VARCHAR,
                 GEOLOCATION_ID INTEGER,
-                FOREIGN KEY (GEOLOCATION_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_GEOLOCATION(GEOLOCATION_ID)
+                FOREIGN KEY (GEOLOCATION_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION(GEOLOCATION_ID)
             );
         """,
         "sellers": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_SELLERS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_SELLERS (
                 SELLER_ID VARCHAR NOT NULL PRIMARY KEY,
                 SELLER_ZIP_CODE_PREFIX INT,
                 SELLER_CITY VARCHAR,
                 SELLER_STATE VARCHAR,
                 GEOLOCATION_ID INTEGER,
-                FOREIGN KEY (GEOLOCATION_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_GEOLOCATION(GEOLOCATION_ID)
+                FOREIGN KEY (GEOLOCATION_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION(GEOLOCATION_ID)
             );
         """,
         "orders": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDERS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_ORDERS (
                 ORDER_ID VARCHAR NOT NULL PRIMARY KEY,
                 CUSTOMER_ID VARCHAR,
                 ORDER_STATUS VARCHAR,
@@ -100,11 +98,11 @@ def get_stg_schema_ddl():
                 ORDER_DELIVERED_CARRIER_DATE TIMESTAMP_NTZ,
                 ORDER_DELIVERED_CUSTOMER_DATE TIMESTAMP_NTZ,
                 ORDER_ESTIMATED_DELIVERY_DATE TIMESTAMP_NTZ,
-                FOREIGN KEY (CUSTOMER_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_CUSTOMERS(CUSTOMER_ID)
+                FOREIGN KEY (CUSTOMER_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_CUSTOMERS(CUSTOMER_ID)
             );
         """,
         "order_items": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_ITEMS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_ORDER_ITEMS (
                 ORDER_ID VARCHAR NOT NULL,
                 ORDER_ITEM_ID INTEGER NOT NULL,
                 PRODUCT_ID VARCHAR,
@@ -113,24 +111,24 @@ def get_stg_schema_ddl():
                 PRICE FLOAT,
                 FREIGHT_VALUE FLOAT,
                 PRIMARY KEY (ORDER_ID, ORDER_ITEM_ID),
-                FOREIGN KEY (ORDER_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDERS(ORDER_ID),
-                FOREIGN KEY (PRODUCT_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_PRODUCTS(PRODUCT_ID),
-                FOREIGN KEY (SELLER_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_SELLERS(SELLER_ID)
+                FOREIGN KEY (ORDER_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_ORDERS(ORDER_ID),
+                FOREIGN KEY (PRODUCT_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_PRODUCTS(PRODUCT_ID),
+                FOREIGN KEY (SELLER_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_SELLERS(SELLER_ID)
             );
         """,
         "order_payments": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_PAYMENTS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_ORDER_PAYMENTS (
                 ORDER_ID VARCHAR NOT NULL,
                 PAYMENT_SEQUENTIAL INTEGER NOT NULL,
                 PAYMENT_TYPE VARCHAR,
                 PAYMENT_INSTALLMENTS INTEGER,
                 PAYMENT_VALUE FLOAT,
                 PRIMARY KEY (ORDER_ID, PAYMENT_SEQUENTIAL),
-                FOREIGN KEY (ORDER_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDERS(ORDER_ID)
+                FOREIGN KEY (ORDER_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_ORDERS(ORDER_ID)
             );
         """,
         "order_reviews": f"""
-            CREATE OR REPLACE TABLE {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_REVIEWS (
+            CREATE OR REPLACE TABLE {STG_DB}.{STG_SCHEMA}.STG_ORDER_REVIEWS (
                 REVIEW_ID VARCHAR NOT NULL PRIMARY KEY,
                 ORDER_ID VARCHAR,
                 REVIEW_SCORE INTEGER,
@@ -138,7 +136,7 @@ def get_stg_schema_ddl():
                 REVIEW_COMMENT_MESSAGE VARCHAR,
                 REVIEW_CREATION_DATE TIMESTAMP_NTZ,
                 REVIEW_ANSWER_TIMESTAMP TIMESTAMP_NTZ,
-                FOREIGN KEY (ORDER_ID) REFERENCES {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDERS(ORDER_ID)
+                FOREIGN KEY (ORDER_ID) REFERENCES {STG_DB}.{STG_SCHEMA}.STG_ORDERS(ORDER_ID)
             );
         """
     }
@@ -155,16 +153,16 @@ def execute_query(conn, query):
 
 def create_stg_database_and_schema(conn):
     """Creates the target database and schema if they don't exist."""
-    logger.info(f"Ensuring database '{TARGET_DB}' and schema '{TARGET_SCHEMA}' exist...")
-    execute_query(conn, f"CREATE DATABASE IF NOT EXISTS {TARGET_DB};")
-    execute_query(conn, f"CREATE SCHEMA IF NOT EXISTS {TARGET_DB}.{TARGET_SCHEMA};")
+    logger.info(f"Ensuring database '{STG_DB}' and schema '{STG_SCHEMA}' exist...")
+    execute_query(conn, f"CREATE DATABASE IF NOT EXISTS {STG_DB};")
+    execute_query(conn, f"CREATE SCHEMA IF NOT EXISTS {STG_DB}.{STG_SCHEMA};")
 
 def create_stg_tables(conn):
     """Creates the tables in the target staging database."""
     ddl_statements = get_stg_schema_ddl()
     # Define creation order to respect foreign key dependencies
     creation_order = [
-        "geolocation", "products", "product_category_translation",
+        "geolocation", "product_category_translation", "products", # Moved product_category_translation before products
         "customers", "sellers", "orders", "order_items",
         "order_payments", "order_reviews"
     ]
@@ -181,7 +179,7 @@ def transform_and_load_data(conn):
     # Geolocation: Clean city names and deduplicate
     logger.info("Transforming and loading GEOLOCATION...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_GEOLOCATION (GEOLOCATION_ZIP_CODE_PREFIX, GEOLOCATION_LAT, GEOLOCATION_LNG, GEOLOCATION_CITY, GEOLOCATION_STATE)
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION (GEOLOCATION_ZIP_CODE_PREFIX, GEOLOCATION_LAT, GEOLOCATION_LNG, GEOLOCATION_CITY, GEOLOCATION_STATE)
         SELECT
             GEOLOCATION_ZIP_CODE_PREFIX,
             GEOLOCATION_LAT,
@@ -192,81 +190,111 @@ def transform_and_load_data(conn):
         QUALIFY ROW_NUMBER() OVER(PARTITION BY GEOLOCATION_ZIP_CODE_PREFIX, GEOLOCATION_LAT, GEOLOCATION_LNG ORDER BY GEOLOCATION_STATE) = 1;
     """)
 
-    # Products and Translation (direct load with type casting)
-    logger.info("Transforming and loading PRODUCTS...")
-    execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_PRODUCTS
-        SELECT
-            PRODUCT_ID,
-            PRODUCT_CATEGORY_NAME,
-            PRODUCT_NAME_LENGHT,
-            PRODUCT_DESCRIPTION_LENGHT,
-            PRODUCT_PHOTOS_QTY,
-            PRODUCT_WEIGHT_G,
-            PRODUCT_LENGTH_CM,
-            PRODUCT_HEIGHT_CM,
-            PRODUCT_WIDTH_CM -- REMOVED: No cast needed as it's already FLOAT
-        FROM {SOURCE_DB}.PUBLIC.ODS_PRODUCTS;
-    """)
-
     logger.info("Transforming and loading PRODUCT_CATEGORY_TRANSLATION...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_PRODUCT_CATEGORY_TRANSLATION
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_PRODUCT_CATEGORY_TRANSLATION
         SELECT PRODUCT_CATEGORY_NAME, PRODUCT_CATEGORY_NAME_ENGLISH
         FROM {SOURCE_DB}.PUBLIC.ODS_PRODUCT_CATEGORY_TRANSLATION
         QUALIFY ROW_NUMBER() OVER(PARTITION BY PRODUCT_CATEGORY_NAME ORDER BY PRODUCT_CATEGORY_NAME_ENGLISH) = 1;
+    """)
+
+    # Products Transformation with translation
+    logger.info("Transforming and loading PRODUCTS with null handling and category translation...")
+    execute_query(conn, f"""
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_PRODUCTS
+        WITH product_means AS (
+            SELECT
+                AVG(PRODUCT_WEIGHT_G) AS avg_weight,
+                AVG(PRODUCT_LENGTH_CM) AS avg_length,
+                AVG(PRODUCT_HEIGHT_CM) AS avg_height,
+                AVG(PRODUCT_WIDTH_CM) AS avg_width
+            FROM {SOURCE_DB}.PUBLIC.ODS_PRODUCTS
+        )
+        SELECT
+            p.PRODUCT_ID,
+            COALESCE(t.PRODUCT_CATEGORY_NAME_ENGLISH, p.PRODUCT_CATEGORY_NAME, 'others') AS PRODUCT_CATEGORY_NAME,
+            NVL(p.PRODUCT_PHOTOS_QTY, 0) AS PRODUCT_PHOTOS_QTY,
+            NVL(p.PRODUCT_WEIGHT_G, pm.avg_weight) AS PRODUCT_WEIGHT_G,
+            NVL(p.PRODUCT_LENGTH_CM, pm.avg_length) AS PRODUCT_LENGTH_CM,
+            NVL(p.PRODUCT_HEIGHT_CM, pm.avg_height) AS PRODUCT_HEIGHT_CM,
+            NVL(p.PRODUCT_WIDTH_CM, pm.avg_width) AS PRODUCT_WIDTH_CM
+        FROM {SOURCE_DB}.PUBLIC.ODS_PRODUCTS p
+        LEFT JOIN {STG_DB}.{STG_SCHEMA}.STG_PRODUCT_CATEGORY_TRANSLATION t
+            ON p.PRODUCT_CATEGORY_NAME = t.PRODUCT_CATEGORY_NAME
+        CROSS JOIN product_means pm;
     """)
 
     # Create a temporary, deterministic mapping from zip code to geolocation_id
     geolocation_map_sql = f"""
         CREATE OR REPLACE TEMPORARY TABLE geolocation_map AS
         SELECT GEOLOCATION_ZIP_CODE_PREFIX, GEOLOCATION_ID
-        FROM {TARGET_DB}.{TARGET_SCHEMA}.STG_GEOLOCATION
+        FROM {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION
         QUALIFY ROW_NUMBER() OVER(PARTITION BY GEOLOCATION_ZIP_CODE_PREFIX ORDER BY GEOLOCATION_LAT ASC) = 1;
     """
     logger.info("Creating temporary geolocation map...")
     execute_query(conn, geolocation_map_sql)
 
-    # Customers and Sellers (join with geolocation map)
-    logger.info("Transforming and loading CUSTOMERS...")
+    # Add a fallback geolocation record for missing zip codes
+    logger.info("Creating fallback geolocation record...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_CUSTOMERS
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION (GEOLOCATION_ZIP_CODE_PREFIX, GEOLOCATION_LAT, GEOLOCATION_LNG, GEOLOCATION_CITY, GEOLOCATION_STATE)
+        SELECT -1, 0.0, 0.0, 'Unknown Location', 'Unknown'
+        WHERE NOT EXISTS (
+            SELECT 1 FROM {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION 
+            WHERE GEOLOCATION_ZIP_CODE_PREFIX = -1
+        );
+    """)
+
+    # Update geolocation map to include fallback
+    execute_query(conn, f"""
+        INSERT INTO geolocation_map
+        SELECT -1, GEOLOCATION_ID
+        FROM {STG_DB}.{STG_SCHEMA}.STG_GEOLOCATION
+        WHERE GEOLOCATION_ZIP_CODE_PREFIX = -1;
+    """)
+
+    # Customers and Sellers (join with geolocation map, handle NULL geolocation_id)
+    logger.info("Transforming and loading CUSTOMERS with NULL handling...")
+    execute_query(conn, f"""
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_CUSTOMERS
         SELECT
             c.CUSTOMER_ID,
             c.CUSTOMER_UNIQUE_ID,
             c.CUSTOMER_ZIP_CODE_PREFIX,
             c.CUSTOMER_CITY,
             c.CUSTOMER_STATE,
-            g.GEOLOCATION_ID
+            COALESCE(g.GEOLOCATION_ID, fallback.GEOLOCATION_ID) AS GEOLOCATION_ID
         FROM {SOURCE_DB}.PUBLIC.ODS_CUSTOMERS c
-        LEFT JOIN geolocation_map g ON c.CUSTOMER_ZIP_CODE_PREFIX = g.GEOLOCATION_ZIP_CODE_PREFIX;
+        LEFT JOIN geolocation_map g ON c.CUSTOMER_ZIP_CODE_PREFIX = g.GEOLOCATION_ZIP_CODE_PREFIX
+        CROSS JOIN (SELECT GEOLOCATION_ID FROM geolocation_map WHERE GEOLOCATION_ZIP_CODE_PREFIX = -1) fallback;
     """)
     
-    logger.info("Transforming and loading SELLERS...")
+    logger.info("Transforming and loading SELLERS with NULL handling...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_SELLERS
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_SELLERS
         SELECT
             s.SELLER_ID,
             s.SELLER_ZIP_CODE_PREFIX,
             s.SELLER_CITY,
             s.SELLER_STATE,
-            g.GEOLOCATION_ID
+            COALESCE(g.GEOLOCATION_ID, fallback.GEOLOCATION_ID) AS GEOLOCATION_ID
         FROM {SOURCE_DB}.PUBLIC.ODS_SELLERS s
-        LEFT JOIN geolocation_map g ON s.SELLER_ZIP_CODE_PREFIX = g.GEOLOCATION_ZIP_CODE_PREFIX;
+        LEFT JOIN geolocation_map g ON s.SELLER_ZIP_CODE_PREFIX = g.GEOLOCATION_ZIP_CODE_PREFIX
+        CROSS JOIN (SELECT GEOLOCATION_ID FROM geolocation_map WHERE GEOLOCATION_ZIP_CODE_PREFIX = -1) fallback;
     """)
 
-    # Orders (direct load with type casting)
-    logger.info("Transforming and loading ORDERS...")
+    # Orders (handle NULL timestamp values)
+    logger.info("Transforming and loading ORDERS with NULL timestamp handling...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDERS
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDERS
         SELECT
             ORDER_ID,
             CUSTOMER_ID,
             ORDER_STATUS,
             ORDER_PURCHASE_TIMESTAMP,
-            ORDER_APPROVED_AT,
-            ORDER_DELIVERED_CARRIER_DATE,
-            ORDER_DELIVERED_CUSTOMER_DATE,
+            COALESCE(ORDER_APPROVED_AT, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_APPROVED_AT,
+            COALESCE(ORDER_DELIVERED_CARRIER_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_DELIVERED_CARRIER_DATE,
+            COALESCE(ORDER_DELIVERED_CUSTOMER_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_DELIVERED_CUSTOMER_DATE,
             ORDER_ESTIMATED_DELIVERY_DATE
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDERS;
     """)
@@ -274,7 +302,7 @@ def transform_and_load_data(conn):
     # Dependent tables
     logger.info("Transforming and loading ORDER_ITEMS...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_ITEMS
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDER_ITEMS
         SELECT
             ORDER_ID,
             ORDER_ITEM_ID,
@@ -288,7 +316,7 @@ def transform_and_load_data(conn):
 
     logger.info("Transforming and loading ORDER_PAYMENTS...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_PAYMENTS
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDER_PAYMENTS
         SELECT
             ORDER_ID,
             PAYMENT_SEQUENTIAL,
@@ -298,26 +326,19 @@ def transform_and_load_data(conn):
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_PAYMENTS;
     """)
 
-    # Order Reviews: Clean null-like text and deduplicate
-    logger.info("Transforming and loading ORDER_REVIEWS...")
+    # Order Reviews: Handle nulls for comments
+    logger.info("Transforming and loading ORDER_REVIEWS with null handling for comments...")
     execute_query(conn, f"""
-        INSERT INTO {TARGET_DB}.{TARGET_SCHEMA}.STG_ORDER_REVIEWS
-        WITH cleaned_source AS (
-            SELECT
-                *,
-                CASE WHEN TRIM(LOWER(REVIEW_COMMENT_TITLE)) IN ('nan', 'none', 'null', '', '[null]', '[none]', 'na', '<na>') THEN NULL ELSE REVIEW_COMMENT_TITLE END as CLEANED_TITLE,
-                CASE WHEN TRIM(LOWER(REVIEW_COMMENT_MESSAGE)) IN ('nan', 'none', 'null', '', '[null]', '[none]', 'na', '<na>') THEN NULL ELSE REVIEW_COMMENT_MESSAGE END as CLEANED_MESSAGE
-            FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_REVIEWS
-        )
+        INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDER_REVIEWS
         SELECT
             REVIEW_ID,
             ORDER_ID,
             REVIEW_SCORE,
-            CLEANED_TITLE,
-            CLEANED_MESSAGE,
+            NVL(REVIEW_COMMENT_TITLE, 'None') AS REVIEW_COMMENT_TITLE,
+            NVL(REVIEW_COMMENT_MESSAGE, 'None') AS REVIEW_COMMENT_MESSAGE,
             REVIEW_CREATION_DATE,
             REVIEW_ANSWER_TIMESTAMP
-        FROM cleaned_source
+        FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_REVIEWS
         QUALIFY ROW_NUMBER() OVER(PARTITION BY REVIEW_ID ORDER BY REVIEW_CREATION_DATE DESC) = 1;
     """)
 
@@ -343,11 +364,9 @@ def main():
         # --- 2. Create Target Database, Schema, and Tables ---
         create_stg_database_and_schema(conn)
 
-        # --- ADD THESE LINES HERE ---
         # Set the current database and schema for the session
-        execute_query(conn, f"USE DATABASE {TARGET_DB};")
-        execute_query(conn, f"USE SCHEMA {TARGET_SCHEMA};")
-        # --- END ADDITION ---
+        execute_query(conn, f"USE DATABASE {STG_DB};")
+        execute_query(conn, f"USE SCHEMA {STG_SCHEMA};")
 
         create_stg_tables(conn)
 
