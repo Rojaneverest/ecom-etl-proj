@@ -2,8 +2,8 @@
 """
 E-commerce Data Ingestion Script
 --------------------------------
-This script ingests CSV files containing e-commerce data from a local directory
-and uploads them to an AWS S3 bucket, performing basic validation checks.
+This script ingests CSV files containing e-commerce data from an AWS S3 bucket
+and uploads them to another AWS S3 bucket after performing basic validation checks.
 """
 
 import os
@@ -23,9 +23,11 @@ import pstats
 import unicodedata  # For removing accents
 
 
-# Define the path to the data directory (no need to pass as argument)
+# Define the path to the data directory (no longer used for initial data)
 # DATA_DIR = "/Users/rojan/Desktop/cp-project/e-commerce-analytics/data/extracted_data"
-DATA_DIR = "/opt/airflow/data/extracted_data"
+# DATA_DIR = "/opt/airflow/data/extracted_data" # No longer reading from local path for initial data
+DATA_DIR = None # Set to None as we'll be reading from S3
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
@@ -46,7 +48,8 @@ logger.addHandler(file_handler)
 
 # AWS Configuration - Use environment variables for security
 AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
-S3_BUCKET = os.getenv("S3_BUCKET", "rj-ecom-etl")
+S3_BUCKET = os.getenv("S3_BUCKET", "rj-ecom-etl") # Destination bucket for processed data
+SOURCE_S3_BUCKET = os.getenv("SOURCE_S3_BUCKET", "raw-csv-ecom-rj") # Source bucket for initial raw CSVs
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 
@@ -55,7 +58,8 @@ QUARANTINE_PREFIX = "quarantine/"
 
 # Log configuration (without exposing sensitive data)
 logger.info(f"AWS_REGION: {AWS_REGION}")
-logger.info(f"S3_BUCKET: {S3_BUCKET}")
+logger.info(f"S3_BUCKET (destination): {S3_BUCKET}")
+logger.info(f"SOURCE_S3_BUCKET (initial data): {SOURCE_S3_BUCKET}")
 logger.info(f"AWS_ACCESS_KEY_ID: {'***' if AWS_ACCESS_KEY_ID else 'Not set'}")
 logger.info(f"AWS_SECRET_ACCESS_KEY: {'***' if AWS_SECRET_ACCESS_KEY else 'Not set'}")
 
@@ -84,7 +88,7 @@ SCHEMAS = {
             "customer_state": str,
         },
     },
-    "olist_order_customer_dataset": {
+    "olist_order_customer_dataset": { # Assuming this is a duplicate or specific join table if needed
         "required_fields": ["customer_id", "customer_unique_id"],
         "field_types": {
             "customer_id": str,
@@ -422,28 +426,28 @@ def safe_convert_numeric(df, field, expected_type):
             df[field] = original_values
 
 
-def process_csv_file(file_path, s3_client):
+def process_csv_file(file_name, csv_content_bytes, s3_client):
     """
-    Process a CSV file:
+    Process a CSV file from S3:
     1. Validate schema
     2. Handle geolocation dataset separately
     3. Check for duplicates for other datasets
     4. Upload valid records to S3
     5. Quarantine invalid records
     """
-    file_name = os.path.basename(file_path)
     dataset_name = os.path.splitext(file_name)[0]
 
-    logger.info(f"Processing {file_name}...")
+    logger.info(f"Processing {file_name} from S3...")
 
     if dataset_name not in SCHEMAS:
         logger.error(f"Unknown dataset: {dataset_name}, skipping file")
         return False
 
     try:
-        # Read CSV with more explicit handling
+        # Read CSV from BytesIO object
+        csv_buffer = BytesIO(csv_content_bytes)
         df = pd.read_csv(
-            file_path, 
+            csv_buffer, 
             low_memory=False, 
             keep_default_na=False, 
             na_values=[],
@@ -561,49 +565,42 @@ def process_csv_file(file_path, s3_client):
         logger.error(f"Full traceback: {traceback.format_exc()}")
         return False
 
-def ensure_s3_bucket_exists(s3_client):
+def ensure_s3_bucket_exists(s3_client, bucket_name):
     """Ensure the S3 bucket exists, create it if it doesn't."""
     try:
-        s3_client.head_bucket(Bucket=S3_BUCKET)
-        logger.info(f"Bucket {S3_BUCKET} already exists")
+        s3_client.head_bucket(Bucket=bucket_name)
+        logger.info(f"Bucket {bucket_name} already exists")
         return True
     except ClientError as e:
         error_code = e.response["Error"]["Code"]
         if error_code == "404":
             try:
-                logger.info(f"Creating bucket {S3_BUCKET}")
+                logger.info(f"Creating bucket {bucket_name}")
                 # For us-east-1, don't specify LocationConstraint
                 if AWS_REGION == "us-east-1":
-                    s3_client.create_bucket(Bucket=S3_BUCKET)
+                    s3_client.create_bucket(Bucket=bucket_name)
                 else:
                     s3_client.create_bucket(
-                        Bucket=S3_BUCKET,
+                        Bucket=bucket_name,
                         CreateBucketConfiguration={"LocationConstraint": AWS_REGION},
                     )
-                logger.info(f"Successfully created bucket {S3_BUCKET}")
+                logger.info(f"Successfully created bucket {bucket_name}")
                 return True
             except ClientError as create_error:
-                logger.error(f"Error creating bucket: {create_error}")
+                logger.error(f"Error creating bucket {bucket_name}: {create_error}")
                 return False
         elif error_code == "403":
             logger.error(
-                f"Access denied to bucket {S3_BUCKET}. Please check your AWS credentials and permissions."
+                f"Access denied to bucket {bucket_name}. Please check your AWS credentials and permissions."
             )
             return False
         else:
-            logger.error(f"Error checking bucket: {e}")
+            logger.error(f"Error checking bucket {bucket_name}: {e}")
             return False
 
 
 def main():
     """Main function to run the data ingestion process."""
-
-    # Use the predefined data directory path
-    data_dir = DATA_DIR
-
-    if not os.path.isdir(data_dir):
-        logger.error(f"Directory does not exist: {data_dir}")
-        sys.exit(1)
 
     # Create S3 client
     s3_client = create_s3_client()
@@ -615,28 +612,54 @@ def main():
         )
         sys.exit(1)
 
-    # Ensure S3 bucket exists
-    if not ensure_s3_bucket_exists(s3_client):
-        logger.error("Failed to ensure S3 bucket exists. Exiting.")
+    # Ensure destination S3 bucket exists
+    if not ensure_s3_bucket_exists(s3_client, S3_BUCKET):
+        logger.error(f"Failed to ensure destination S3 bucket {S3_BUCKET} exists. Exiting.")
         sys.exit(1)
 
-    # Process all CSV files in the directory
-    csv_files = [f for f in os.listdir(data_dir) if f.endswith(".csv")]
+    # Ensure source S3 bucket exists (optional, but good for error checking)
+    if not ensure_s3_bucket_exists(s3_client, SOURCE_S3_BUCKET):
+        logger.error(f"Failed to ensure source S3 bucket {SOURCE_S3_BUCKET} exists. Exiting.")
+        sys.exit(1)
 
-    if not csv_files:
-        logger.warning(f"No CSV files found in {data_dir}")
+    # List CSV files in the source S3 bucket
+    s3_csv_files = []
+    try:
+        response = s3_client.list_objects_v2(Bucket=SOURCE_S3_BUCKET)
+        if 'Contents' in response:
+            for obj in response['Contents']:
+                if obj['Key'].endswith(".csv"):
+                    s3_csv_files.append(obj['Key'])
+    except ClientError as e:
+        logger.error(f"Error listing objects in source S3 bucket {SOURCE_S3_BUCKET}: {e}")
+        sys.exit(1)
+
+
+    if not s3_csv_files:
+        logger.warning(f"No CSV files found in S3 bucket: {SOURCE_S3_BUCKET}")
         sys.exit(0)
 
-    logger.info(f"Found {len(csv_files)} CSV files to process")
+    logger.info(f"Found {len(s3_csv_files)} CSV files in {SOURCE_S3_BUCKET} to process")
 
     success_count = 0
-    for file_name in csv_files:
-        file_path = os.path.join(data_dir, file_name)
-        if process_csv_file(file_path, s3_client):
-            success_count += 1
+    for s3_key in s3_csv_files:
+        file_name = os.path.basename(s3_key)
+        try:
+            obj = s3_client.get_object(Bucket=SOURCE_S3_BUCKET, Key=s3_key)
+            csv_content_bytes = obj['Body'].read()
+            if process_csv_file(file_name, csv_content_bytes, s3_client):
+                success_count += 1
+            # Optionally, delete the original CSV from the source bucket after successful processing
+            # s3_client.delete_object(Bucket=SOURCE_S3_BUCKET, Key=s3_key)
+            # logger.info(f"Deleted {s3_key} from {SOURCE_S3_BUCKET} after successful processing.")
+        except ClientError as e:
+            logger.error(f"Error getting object {s3_key} from S3 bucket {SOURCE_S3_BUCKET}: {e}")
+        except Exception as e:
+            logger.error(f"Unexpected error processing S3 object {s3_key}: {e}")
+
 
     logger.info(
-        f"Data ingestion completed. Processed {success_count} out of {len(csv_files)} files successfully."
+        f"Data ingestion completed. Processed {success_count} out of {len(s3_csv_files)} files successfully."
     )
 
 
