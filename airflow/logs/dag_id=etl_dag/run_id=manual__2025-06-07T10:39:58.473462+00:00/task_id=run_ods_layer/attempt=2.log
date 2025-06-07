@@ -1,0 +1,354 @@
+[2025-06-07T10:43:51.064+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.run_ods_layer manual__2025-06-07T10:39:58.473462+00:00 [queued]>
+[2025-06-07T10:43:51.068+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.run_ods_layer manual__2025-06-07T10:39:58.473462+00:00 [queued]>
+[2025-06-07T10:43:51.069+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2025-06-07T10:43:51.075+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_ods_layer> on 2025-06-07 10:39:58.473462+00:00
+[2025-06-07T10:43:51.081+0000] {standard_task_runner.py:60} INFO - Started process 71 to run task
+[2025-06-07T10:43:51.086+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'run_ods_layer', 'manual__2025-06-07T10:39:58.473462+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpuflqeamj']
+[2025-06-07T10:43:51.088+0000] {standard_task_runner.py:88} INFO - Job 6: Subtask run_ods_layer
+[2025-06-07T10:43:51.131+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_dag.run_ods_layer manual__2025-06-07T10:39:58.473462+00:00 [running]> on host ab0825485965
+[2025-06-07T10:43:51.181+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='run_ods_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-07T10:39:58.473462+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-07T10:39:58.473462+00:00'
+[2025-06-07T10:43:51.183+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-07T10:43:51.184+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python ods_layer.py']
+[2025-06-07T10:43:51.197+0000] {subprocess.py:86} INFO - Output:
+[2025-06-07T10:43:52.898+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:52,896 - ods_snowflake_copy_script - INFO - --- Starting Optimized ODS Ingestion Script for Snowflake (COPY INTO) ---
+[2025-06-07T10:43:53.310+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:53,310 - snowflake.connector.connection - INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-6.10.14-linuxkit-aarch64-with-glibc2.34
+[2025-06-07T10:43:53.315+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:53,310 - snowflake.connector.connection - INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-06-07T10:43:57.732+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:57,729 - ods_snowflake_copy_script - INFO - Successfully connected to Snowflake.
+[2025-06-07T10:43:57.740+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:57,730 - ods_snowflake_copy_script - INFO - Creating ECOM_ODS database if it doesn't exist...
+[2025-06-07T10:43:57.741+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:57,730 - snowflake.connector.cursor - INFO - query: [CREATE DATABASE IF NOT EXISTS ECOM_ODS]
+[2025-06-07T10:43:58.079+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,078 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:43:58.080+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,079 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:43:58.081+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,080 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:43:58.413+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,413 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:43:58.414+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,413 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:43:58.414+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,413 - ods_snowflake_copy_script - INFO - Creating PUBLIC schema if it doesn't exist...
+[2025-06-07T10:43:58.414+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,413 - snowflake.connector.cursor - INFO - query: [CREATE SCHEMA IF NOT EXISTS PUBLIC]
+[2025-06-07T10:43:58.735+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,735 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:43:58.736+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,735 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:43:58.736+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:58,735 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:43:59.054+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,054 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:43:59.055+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,054 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:43:59.055+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,054 - ods_snowflake_copy_script - INFO - Database and schema setup completed successfully.
+[2025-06-07T10:43:59.055+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,054 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:43:59.987+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,985 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:43:59.995+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,986 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:43:59.995+0000] {subprocess.py:93} INFO - 2025-06-07 10:43:59,987 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:00.941+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:00,941 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:00.941+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:00,941 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:00.941+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:00,941 - ods_snowflake_copy_script - INFO - Creating external stage 'S3_RAW_DATA_STAGE'...
+[2025-06-07T10:44:00.942+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:00,941 - snowflake.connector.cursor - INFO - query: [DROP STAGE IF EXISTS S3_RAW_DATA_STAGE]
+[2025-06-07T10:44:01.608+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:01,608 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:01.609+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:01,608 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:01.609+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:01,608 - snowflake.connector.cursor - INFO - query: [CREATE STAGE S3_RAW_DATA_STAGE URL = 's3://rj-ecom-etl/' CREDENTIALS = ( AWS_KEY...]
+[2025-06-07T10:44:02.079+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:02,078 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:02.081+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:02,078 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:02.081+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:02,079 - ods_snowflake_copy_script - INFO - Successfully created external stage 'S3_RAW_DATA_STAGE'
+[2025-06-07T10:44:02.082+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:02,079 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:03.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,359 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:03.376+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,361 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:03.377+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,362 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:03.671+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,670 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:03.672+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,670 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:03.672+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,670 - ods_snowflake_copy_script - INFO - Creating ODS tables...
+[2025-06-07T10:44:03.672+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,670 - ods_snowflake_copy_script - INFO - Creating table ODS_GEOLOCATION...
+[2025-06-07T10:44:03.672+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:03,670 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_GEOLOCATION ( geolocation_zip_code_prefix INTEGER...]
+[2025-06-07T10:44:04.296+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,295 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:04.297+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,295 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:04.297+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,295 - ods_snowflake_copy_script - INFO - Successfully created table ODS_GEOLOCATION
+[2025-06-07T10:44:04.297+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,295 - ods_snowflake_copy_script - INFO - Creating table ODS_CUSTOMERS...
+[2025-06-07T10:44:04.297+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,295 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_CUSTOMERS ( customer_id VARCHAR, customer_unique_...]
+[2025-06-07T10:44:04.720+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,719 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:04.720+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,719 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:04.720+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,719 - ods_snowflake_copy_script - INFO - Successfully created table ODS_CUSTOMERS
+[2025-06-07T10:44:04.721+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,719 - ods_snowflake_copy_script - INFO - Creating table ODS_SELLERS...
+[2025-06-07T10:44:04.721+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:04,719 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_SELLERS ( seller_id VARCHAR, seller_zip_code_pref...]
+[2025-06-07T10:44:05.238+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,238 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:05.241+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,239 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:05.242+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,239 - ods_snowflake_copy_script - INFO - Successfully created table ODS_SELLERS
+[2025-06-07T10:44:05.242+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,239 - ods_snowflake_copy_script - INFO - Creating table ODS_ORDERS...
+[2025-06-07T10:44:05.242+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,239 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_ORDERS ( order_id VARCHAR, customer_id VARCHAR, o...]
+[2025-06-07T10:44:05.823+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,823 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:05.826+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,823 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:05.828+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,823 - ods_snowflake_copy_script - INFO - Successfully created table ODS_ORDERS
+[2025-06-07T10:44:05.828+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,823 - ods_snowflake_copy_script - INFO - Creating table ODS_PRODUCTS...
+[2025-06-07T10:44:05.828+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:05,823 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_PRODUCTS ( product_id VARCHAR, product_category_n...]
+[2025-06-07T10:44:06.662+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:06,659 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:06.666+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:06,660 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:06.666+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:06,660 - ods_snowflake_copy_script - INFO - Successfully created table ODS_PRODUCTS
+[2025-06-07T10:44:06.667+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:06,660 - ods_snowflake_copy_script - INFO - Creating table ODS_ORDER_ITEMS...
+[2025-06-07T10:44:06.667+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:06,661 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_ORDER_ITEMS ( order_id VARCHAR, order_item_id INT...]
+[2025-06-07T10:44:07.324+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:07,323 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:07.327+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:07,323 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:07.327+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:07,324 - ods_snowflake_copy_script - INFO - Successfully created table ODS_ORDER_ITEMS
+[2025-06-07T10:44:07.327+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:07,324 - ods_snowflake_copy_script - INFO - Creating table ODS_ORDER_PAYMENTS...
+[2025-06-07T10:44:07.328+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:07,324 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_ORDER_PAYMENTS ( order_id VARCHAR, payment_sequen...]
+[2025-06-07T10:44:08.659+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:08,659 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:08.661+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:08,659 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:08.662+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:08,659 - ods_snowflake_copy_script - INFO - Successfully created table ODS_ORDER_PAYMENTS
+[2025-06-07T10:44:08.663+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:08,659 - ods_snowflake_copy_script - INFO - Creating table ODS_ORDER_REVIEWS...
+[2025-06-07T10:44:08.663+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:08,659 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_ORDER_REVIEWS ( review_id VARCHAR, order_id VARCH...]
+[2025-06-07T10:44:09.070+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:09,069 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:09.072+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:09,069 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:09.072+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:09,069 - ods_snowflake_copy_script - INFO - Successfully created table ODS_ORDER_REVIEWS
+[2025-06-07T10:44:09.072+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:09,069 - ods_snowflake_copy_script - INFO - Creating table ODS_PRODUCT_CATEGORY_TRANSLATION...
+[2025-06-07T10:44:09.072+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:09,070 - snowflake.connector.cursor - INFO - query: [CREATE TABLE IF NOT EXISTS ODS_PRODUCT_CATEGORY_TRANSLATION ( product_category_n...]
+[2025-06-07T10:44:10.524+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:10,520 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:10.543+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:10,522 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:10.544+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:10,522 - ods_snowflake_copy_script - INFO - Successfully created table ODS_PRODUCT_CATEGORY_TRANSLATION
+[2025-06-07T10:44:10.544+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:10,522 - ods_snowflake_copy_script - INFO - All ODS tables created successfully.
+[2025-06-07T10:44:10.544+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:10,522 - ods_snowflake_copy_script - INFO - Listing latest Parquet files from s3://rj-ecom-etl/raw/...
+[2025-06-07T10:44:17.357+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,355 - ods_snowflake_copy_script - INFO - Found 9 datasets to load into the ODS.
+[2025-06-07T10:44:17.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,356 - ods_snowflake_copy_script - INFO - Processing: olist_customers_dataset -> ODS_CUSTOMERS
+[2025-06-07T10:44:17.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,356 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_CUSTOMERS' from s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-06/olist_customers_dataset.parquet...
+[2025-06-07T10:44:17.366+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,357 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:17.671+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,671 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:17.673+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,673 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:17.673+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,673 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:17.977+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,977 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:17.979+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,977 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:17.979+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,978 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_CUSTOMERS' before loading.
+[2025-06-07T10:44:17.980+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:17,978 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_CUSTOMERS"]
+[2025-06-07T10:44:18.359+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:18,359 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:18.360+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:18,359 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:18.361+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:18,359 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_CUSTOMERS'...
+[2025-06-07T10:44:18.361+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:18,360 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_CUSTOMERS" FROM '@S3_RAW_DATA_STAGE/raw/olist_customers_dataset/2...]
+[2025-06-07T10:44:21.906+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:21,903 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:21.923+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:21,906 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:21.923+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:21,909 - ods_snowflake_copy_script - INFO - Successfully loaded 99441 rows into 'ODS_CUSTOMERS' from 1 file(s).
+[2025-06-07T10:44:21.923+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:21,912 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:22.236+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,236 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:22.236+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,236 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:22.236+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,236 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:22.725+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,725 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:22.727+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,726 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:22.727+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:22,726 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_CUSTOMERS"]
+[2025-06-07T10:44:23.095+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,094 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:23.097+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,097 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:23.102+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,102 - ods_snowflake_copy_script - INFO - Table 'ODS_CUSTOMERS' contains 99441 rows after load.
+[2025-06-07T10:44:23.102+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,102 - ods_snowflake_copy_script - INFO - Processing: olist_geolocation_dataset -> ODS_GEOLOCATION
+[2025-06-07T10:44:23.102+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,102 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_GEOLOCATION' from s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-06/olist_geolocation_dataset.parquet...
+[2025-06-07T10:44:23.102+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,102 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:23.407+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,405 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:23.408+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,405 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:23.408+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,405 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:23.710+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,709 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:23.711+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,710 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:23.711+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,710 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_GEOLOCATION' before loading.
+[2025-06-07T10:44:23.712+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:23,710 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_GEOLOCATION"]
+[2025-06-07T10:44:24.103+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:24,101 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:24.106+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:24,103 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:24.106+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:24,103 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_GEOLOCATION'...
+[2025-06-07T10:44:24.107+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:24,103 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_GEOLOCATION" FROM '@S3_RAW_DATA_STAGE/raw/olist_geolocation_datas...]
+[2025-06-07T10:44:32.233+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,232 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:32.243+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,233 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:32.243+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,235 - ods_snowflake_copy_script - INFO - Successfully loaded 1000163 rows into 'ODS_GEOLOCATION' from 1 file(s).
+[2025-06-07T10:44:32.243+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,236 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:32.546+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,546 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:32.547+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,546 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:32.547+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,546 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:32.845+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,845 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:32.845+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,845 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:32.845+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:32,845 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_GEOLOCATION"]
+[2025-06-07T10:44:33.227+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,226 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:33.227+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,227 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:33.228+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,228 - ods_snowflake_copy_script - INFO - Table 'ODS_GEOLOCATION' contains 1000163 rows after load.
+[2025-06-07T10:44:33.228+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,228 - ods_snowflake_copy_script - INFO - Processing: olist_order_items_dataset -> ODS_ORDER_ITEMS
+[2025-06-07T10:44:33.229+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,228 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_ORDER_ITEMS' from s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-06/olist_order_items_dataset.parquet...
+[2025-06-07T10:44:33.229+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,228 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:33.534+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,534 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:33.535+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,534 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:33.536+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:33,534 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:34.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:34,364 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:34.366+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:34,365 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:34.367+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:34,365 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_ORDER_ITEMS' before loading.
+[2025-06-07T10:44:34.367+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:34,365 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_ORDER_ITEMS"]
+[2025-06-07T10:44:37.361+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:37,358 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:37.364+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:37,360 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:37.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:37,361 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_ORDER_ITEMS'...
+[2025-06-07T10:44:37.365+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:37,361 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_ORDER_ITEMS" FROM '@S3_RAW_DATA_STAGE/raw/olist_order_items_datas...]
+[2025-06-07T10:44:40.261+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:40,261 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:40.263+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:40,261 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:40.263+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:40,262 - ods_snowflake_copy_script - INFO - Successfully loaded 112650 rows into 'ODS_ORDER_ITEMS' from 1 file(s).
+[2025-06-07T10:44:40.264+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:40,263 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:41.375+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:41,375 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:41.377+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:41,375 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:41.377+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:41,375 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:42.636+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:42,635 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:42.639+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:42,636 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:42.640+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:42,636 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_ORDER_ITEMS"]
+[2025-06-07T10:44:44.062+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,062 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:44.062+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,062 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:44.064+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,063 - ods_snowflake_copy_script - INFO - Table 'ODS_ORDER_ITEMS' contains 112650 rows after load.
+[2025-06-07T10:44:44.064+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,064 - ods_snowflake_copy_script - INFO - Processing: olist_order_payments_dataset -> ODS_ORDER_PAYMENTS
+[2025-06-07T10:44:44.064+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,064 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_ORDER_PAYMENTS' from s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-06/olist_order_payments_dataset.parquet...
+[2025-06-07T10:44:44.064+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,064 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:44.582+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,582 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:44.584+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,582 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:44.584+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:44,583 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:45.286+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:45,286 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:45.287+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:45,286 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:45.288+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:45,286 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_ORDER_PAYMENTS' before loading.
+[2025-06-07T10:44:45.288+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:45,287 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_ORDER_PAYMENTS"]
+[2025-06-07T10:44:46.168+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:46,168 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:46.169+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:46,168 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:46.169+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:46,168 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_ORDER_PAYMENTS'...
+[2025-06-07T10:44:46.170+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:46,168 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_ORDER_PAYMENTS" FROM '@S3_RAW_DATA_STAGE/raw/olist_order_payments...]
+[2025-06-07T10:44:48.179+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:48,179 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:48.181+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:48,180 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:48.182+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:48,180 - ods_snowflake_copy_script - INFO - Successfully loaded 103886 rows into 'ODS_ORDER_PAYMENTS' from 1 file(s).
+[2025-06-07T10:44:48.182+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:48,181 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:49.702+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:49,701 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:49.705+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:49,702 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:49.706+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:49,703 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:51.616+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:51,615 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:51.618+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:51,616 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:51.618+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:51,616 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_ORDER_PAYMENTS"]
+[2025-06-07T10:44:52.008+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,007 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:52.010+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,008 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:52.011+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,010 - ods_snowflake_copy_script - INFO - Table 'ODS_ORDER_PAYMENTS' contains 103886 rows after load.
+[2025-06-07T10:44:52.011+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,010 - ods_snowflake_copy_script - INFO - Processing: olist_order_reviews_dataset -> ODS_ORDER_REVIEWS
+[2025-06-07T10:44:52.011+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,010 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_ORDER_REVIEWS' from s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-06/olist_order_reviews_dataset.parquet...
+[2025-06-07T10:44:52.011+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,010 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:52.316+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,316 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:52.317+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,316 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:52.317+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:52,316 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:55.020+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,012 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:55.027+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,015 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:55.027+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,018 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_ORDER_REVIEWS' before loading.
+[2025-06-07T10:44:55.028+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,019 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_ORDER_REVIEWS"]
+[2025-06-07T10:44:55.395+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,395 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:55.396+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,395 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:55.396+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,396 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_ORDER_REVIEWS'...
+[2025-06-07T10:44:55.397+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:55,396 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_ORDER_REVIEWS" FROM '@S3_RAW_DATA_STAGE/raw/olist_order_reviews_d...]
+[2025-06-07T10:44:57.715+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:57,714 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:57.716+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:57,715 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:57.717+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:57,715 - ods_snowflake_copy_script - INFO - Successfully loaded 99224 rows into 'ODS_ORDER_REVIEWS' from 1 file(s).
+[2025-06-07T10:44:57.717+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:57,716 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:44:58.196+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,195 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:58.197+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,196 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:58.198+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,196 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:44:58.665+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,664 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:58.667+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,665 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:58.667+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:58,665 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_ORDER_REVIEWS"]
+[2025-06-07T10:44:59.084+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,083 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:44:59.085+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,084 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:44:59.086+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,085 - ods_snowflake_copy_script - INFO - Table 'ODS_ORDER_REVIEWS' contains 99224 rows after load.
+[2025-06-07T10:44:59.087+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,085 - ods_snowflake_copy_script - INFO - Processing: olist_orders_dataset -> ODS_ORDERS
+[2025-06-07T10:44:59.087+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,085 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_ORDERS' from s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-06/olist_orders_dataset.parquet...
+[2025-06-07T10:44:59.088+0000] {subprocess.py:93} INFO - 2025-06-07 10:44:59,086 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:00.578+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,577 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:00.579+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,578 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:00.579+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,578 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:00.892+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,892 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:00.893+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,892 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:00.894+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,892 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_ORDERS' before loading.
+[2025-06-07T10:45:00.894+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:00,892 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_ORDERS"]
+[2025-06-07T10:45:01.274+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:01,274 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:01.274+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:01,274 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:01.275+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:01,274 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_ORDERS'...
+[2025-06-07T10:45:01.275+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:01,274 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_ORDERS" FROM '@S3_RAW_DATA_STAGE/raw/olist_orders_dataset/2025-06...]
+[2025-06-07T10:45:04.148+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,147 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:04.155+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,148 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:04.155+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,148 - ods_snowflake_copy_script - INFO - Successfully loaded 99441 rows into 'ODS_ORDERS' from 1 file(s).
+[2025-06-07T10:45:04.156+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,149 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:04.456+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,456 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:04.456+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,456 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:04.457+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,456 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:04.771+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,771 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:04.772+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,771 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:04.772+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:04,772 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_ORDERS"]
+[2025-06-07T10:45:05.219+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,218 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:05.220+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,219 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:05.220+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,220 - ods_snowflake_copy_script - INFO - Table 'ODS_ORDERS' contains 99441 rows after load.
+[2025-06-07T10:45:05.221+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,220 - ods_snowflake_copy_script - INFO - Processing: olist_products_dataset -> ODS_PRODUCTS
+[2025-06-07T10:45:05.221+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,220 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_PRODUCTS' from s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-06/olist_products_dataset.parquet...
+[2025-06-07T10:45:05.222+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:05,220 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:06.018+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,017 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:06.019+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,017 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:06.020+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,017 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:06.324+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,322 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:06.324+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,322 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:06.324+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,323 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_PRODUCTS' before loading.
+[2025-06-07T10:45:06.324+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,323 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_PRODUCTS"]
+[2025-06-07T10:45:06.712+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,710 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:06.712+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,710 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:06.712+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,710 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_PRODUCTS'...
+[2025-06-07T10:45:06.712+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:06,710 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_PRODUCTS" FROM '@S3_RAW_DATA_STAGE/raw/olist_products_dataset/202...]
+[2025-06-07T10:45:08.222+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,218 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:08.230+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,222 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:08.230+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,224 - ods_snowflake_copy_script - INFO - Successfully loaded 32951 rows into 'ODS_PRODUCTS' from 1 file(s).
+[2025-06-07T10:45:08.231+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,224 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:08.540+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,539 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:08.543+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,539 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:08.544+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:08,540 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:09.739+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:09,738 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:09.743+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:09,738 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:09.743+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:09,739 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_PRODUCTS"]
+[2025-06-07T10:45:10.565+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,564 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:10.568+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,565 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:10.568+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,565 - ods_snowflake_copy_script - INFO - Table 'ODS_PRODUCTS' contains 32951 rows after load.
+[2025-06-07T10:45:10.568+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,565 - ods_snowflake_copy_script - INFO - Processing: olist_sellers_dataset -> ODS_SELLERS
+[2025-06-07T10:45:10.569+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,565 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_SELLERS' from s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-06/olist_sellers_dataset.parquet...
+[2025-06-07T10:45:10.569+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:10,565 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:12.022+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,021 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:12.027+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,021 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:12.027+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,022 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:12.328+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,327 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:12.330+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,328 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:12.330+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,328 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_SELLERS' before loading.
+[2025-06-07T10:45:12.331+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:12,328 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_SELLERS"]
+[2025-06-07T10:45:13.883+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:13,880 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:13.886+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:13,882 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:13.886+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:13,882 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_SELLERS'...
+[2025-06-07T10:45:13.887+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:13,884 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_SELLERS" FROM '@S3_RAW_DATA_STAGE/raw/olist_sellers_dataset/2025-...]
+[2025-06-07T10:45:14.871+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:14,870 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:14.872+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:14,871 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:14.873+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:14,871 - ods_snowflake_copy_script - INFO - Successfully loaded 3095 rows into 'ODS_SELLERS' from 1 file(s).
+[2025-06-07T10:45:14.873+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:14,872 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:15.181+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:15,180 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:15.182+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:15,181 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:15.183+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:15,181 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:16.575+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:16,575 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:16.576+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:16,575 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:16.576+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:16,575 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_SELLERS"]
+[2025-06-07T10:45:17.159+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,159 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:17.160+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,159 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:17.161+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,160 - ods_snowflake_copy_script - INFO - Table 'ODS_SELLERS' contains 3095 rows after load.
+[2025-06-07T10:45:17.161+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,160 - ods_snowflake_copy_script - INFO - Processing: product_category_name_translation -> ODS_PRODUCT_CATEGORY_TRANSLATION
+[2025-06-07T10:45:17.162+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,160 - ods_snowflake_copy_script - INFO - Starting COPY INTO for table 'ODS_PRODUCT_CATEGORY_TRANSLATION' from s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-06/product_category_name_translation.parquet...
+[2025-06-07T10:45:17.162+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,160 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:17.566+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,565 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:17.567+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,566 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:17.568+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:17,566 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:18.162+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:18,161 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:18.163+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:18,162 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:18.164+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:18,162 - ods_snowflake_copy_script - INFO - Truncating table 'ODS_PRODUCT_CATEGORY_TRANSLATION' before loading.
+[2025-06-07T10:45:18.164+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:18,162 - snowflake.connector.cursor - INFO - query: [TRUNCATE TABLE "ODS_PRODUCT_CATEGORY_TRANSLATION"]
+[2025-06-07T10:45:19.145+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:19,144 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:19.146+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:19,145 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:19.147+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:19,145 - ods_snowflake_copy_script - INFO - Executing COPY INTO command for 'ODS_PRODUCT_CATEGORY_TRANSLATION'...
+[2025-06-07T10:45:19.147+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:19,145 - snowflake.connector.cursor - INFO - query: [COPY INTO "ODS_PRODUCT_CATEGORY_TRANSLATION" FROM '@S3_RAW_DATA_STAGE/raw/produc...]
+[2025-06-07T10:45:20.309+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:20,309 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:20.310+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:20,309 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:20.310+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:20,309 - ods_snowflake_copy_script - INFO - Successfully loaded 71 rows into 'ODS_PRODUCT_CATEGORY_TRANSLATION' from 1 file(s).
+[2025-06-07T10:45:20.311+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:20,310 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-07T10:45:21.169+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:21,169 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:21.170+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:21,169 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:21.170+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:21,169 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-07T10:45:22.110+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:22,104 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:22.113+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:22,109 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:22.114+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:22,110 - snowflake.connector.cursor - INFO - query: [SELECT COUNT(*) FROM "ODS_PRODUCT_CATEGORY_TRANSLATION"]
+[2025-06-07T10:45:23.037+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,037 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T10:45:23.039+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,037 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T10:45:23.039+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,039 - ods_snowflake_copy_script - INFO - Table 'ODS_PRODUCT_CATEGORY_TRANSLATION' contains 71 rows after load.
+[2025-06-07T10:45:23.040+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,039 - ods_snowflake_copy_script - INFO - --- Load Summary ---
+[2025-06-07T10:45:23.041+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,039 - ods_snowflake_copy_script - INFO - Successful loads: 9/9
+[2025-06-07T10:45:23.042+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,039 - ods_snowflake_copy_script - INFO - Total rows loaded: 1550922
+[2025-06-07T10:45:23.042+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,039 - snowflake.connector.connection - INFO - closed
+[2025-06-07T10:45:23.583+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,583 - snowflake.connector.connection - INFO - No async queries seem to be running, deleting session
+[2025-06-07T10:45:23.883+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,882 - ods_snowflake_copy_script - INFO - Snowflake connection closed.
+[2025-06-07T10:45:23.883+0000] {subprocess.py:93} INFO - 2025-06-07 10:45:23,883 - ods_snowflake_copy_script - INFO - --- Optimized ODS Ingestion Script Finished ---
+[2025-06-07T10:45:24.085+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-07T10:45:24.118+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=run_ods_layer, execution_date=20250607T103958, start_date=20250607T104351, end_date=20250607T104524
+[2025-06-07T10:45:24.176+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-07T10:45:24.200+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

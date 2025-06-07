@@ -6696,3 +6696,326 @@ Trying to import the above resulted in these errors:
 2025-06-06 15:36:13,566 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
 2025-06-06 15:36:21,499 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-06/olist_products_dataset.parquet
 2025-06-06 15:36:22,078 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-07 10:39:19,036 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:39:19,037 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:39:19,037 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:39:19,037 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:39:50,186 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:39:50,186 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:39:50,187 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:39:50,187 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:40:22,093 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:40:22,093 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:40:22,094 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:40:22,094 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:40:53,523 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:40:53,524 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:40:53,524 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:40:53,524 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:41:25,084 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:41:25,085 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:41:25,085 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:41:25,085 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:41:56,331 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:41:56,331 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:41:56,331 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:41:56,332 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:42:26,939 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:42:26,940 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:42:26,940 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:42:26,940 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:43:26,838 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:43:26,843 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:43:26,845 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:43:26,846 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:43:59,058 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:43:59,058 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:43:59,058 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:43:59,058 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:44:30,084 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:44:30,085 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:44:30,085 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:44:30,085 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:45:01,538 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:45:01,539 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:45:01,539 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:45:01,539 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:45:32,987 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:45:32,988 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:45:32,988 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:45:32,988 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:46:04,356 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:46:04,357 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:46:04,358 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:46:04,358 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:46:35,924 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:46:35,926 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:46:35,926 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:46:35,926 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:47:07,241 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:47:07,242 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:47:07,242 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:47:07,243 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:47:38,661 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:47:38,663 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:47:38,663 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:47:38,663 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:48:10,121 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:48:10,122 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:48:10,122 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:48:10,122 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:48:41,552 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:48:41,553 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:48:41,553 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:48:41,553 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:49:12,223 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:49:12,224 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:49:12,224 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:49:12,224 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:49:43,723 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:49:43,723 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:49:43,724 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:49:43,724 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:50:15,351 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:50:15,352 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:50:15,352 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:50:15,352 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:50:46,894 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:50:46,908 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:50:46,932 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:50:46,938 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:18,334 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:18,334 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:18,334 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:18,335 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:36,776 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:36,779 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:36,779 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:36,779 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:36,903 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:36,904 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:36,904 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:36,904 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:37,905 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-07 10:51:37,919 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-07 10:51:40,700 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-07 10:51:40,701 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-07 10:51:42,469 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:42,474 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:42,474 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:42,475 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:43,939 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:43,963 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:43,967 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:43,970 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,077 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,079 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,093 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,099 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,099 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,103 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,108 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,109 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,342 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,367 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,374 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,375 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,389 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,405 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,409 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,410 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,420 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,432 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,436 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,438 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,439 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,437 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,447 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,449 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,535 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,548 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,550 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,550 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,834 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,840 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,841 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,841 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,877 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,897 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,903 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,907 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:48,917 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:48,932 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:48,939 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:48,944 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:49,196 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:49,209 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:49,212 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:49,215 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:49,831 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:49,843 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:49,845 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:49,846 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:50,537 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:50,545 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:50,547 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:50,550 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:51:50,736 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:51:50,738 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:51:50,739 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:51:50,741 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:52:00,917 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:52:01,434 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:52:01,441 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:52:01,453 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:52:22,676 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:52:22,716 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:52:22,718 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:52:22,725 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:52:25,139 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:52:25,140 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:52:25,140 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:52:25,140 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:52:35,465 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:52:35,468 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:52:35,469 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:52:35,470 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:53:06,834 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:53:06,835 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:53:06,835 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:53:06,835 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:53:21,352 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:53:21,353 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:53:21,353 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:53:21,354 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:53:53,624 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:53:53,625 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:53:53,625 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:53:53,625 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:53:57,161 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:53:57,161 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:53:57,161 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:53:57,161 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:53:57,171 - data_ingestion - ERROR - Directory does not exist: /Users/rojan/Desktop/cp-project/e-commerce-analytics/data/extracted_data
+2025-06-07 10:54:11,745 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:54:11,748 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:54:11,750 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:54:11,750 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:54:43,058 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:54:43,058 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:54:43,058 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:54:43,059 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:55:14,585 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:55:14,587 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:55:14,587 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:55:14,587 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:55:45,773 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:55:45,773 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:55:45,774 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:55:45,774 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:56:17,843 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:56:17,845 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:56:17,845 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:56:17,845 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:56:49,480 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:56:49,481 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:56:49,482 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:56:49,482 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:56:50,610 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:56:50,610 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:56:50,610 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:56:50,610 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:56:50,611 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-07 10:56:51,650 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-07 10:56:51,651 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-07 10:56:53,462 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-07 10:56:53,470 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-07 10:56:53,471 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-07 10:56:53,513 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-07 10:56:53,742 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-07 10:56:56,259 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-07/olist_sellers_dataset.parquet
+2025-06-07 10:56:56,857 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-07 10:56:56,867 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-07 10:56:56,871 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-07 10:56:57,495 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-07/product_category_name_translation.parquet
+2025-06-07 10:56:58,088 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-07 10:56:59,455 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-07 10:57:17,218 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-07 10:57:22,109 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:57:22,110 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:57:22,110 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:57:22,111 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:58:01,372 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:58:01,387 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:58:01,387 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:58:01,387 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:58:33,088 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:58:33,088 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:58:33,088 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:58:33,089 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:58:34,795 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-07/olist_orders_dataset.parquet
+2025-06-07 10:58:35,890 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-07 10:58:36,290 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-07 10:58:48,759 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-07 10:59:04,167 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:59:04,168 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:59:04,168 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:59:04,168 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:59:30,305 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-07/olist_order_items_dataset.parquet
+2025-06-07 10:59:31,153 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-07 10:59:31,282 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-07 10:59:35,856 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 10:59:35,856 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 10:59:35,857 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 10:59:35,857 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 10:59:39,483 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-07 10:59:47,033 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-07/olist_customers_dataset.parquet
+2025-06-07 10:59:47,980 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-07 10:59:50,139 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-07 11:00:07,538 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:00:07,541 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:00:07,541 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:00:07,541 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:00:39,042 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:00:39,042 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:00:39,042 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:00:39,043 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:01:10,076 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:01:10,077 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:01:10,077 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:01:10,077 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:01:17,970 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-07 11:01:24,617 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-07/olist_geolocation_dataset.parquet
+2025-06-07 11:01:26,284 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-07 11:01:26,398 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-07 11:01:34,978 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-07 11:01:40,968 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:01:40,968 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:01:40,969 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:01:40,969 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:01:41,844 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-07/olist_order_payments_dataset.parquet
+2025-06-07 11:01:42,578 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-07 11:01:42,827 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-07 11:01:54,183 - data_ingestion - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-07 11:02:02,517 - data_ingestion - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-07/olist_order_reviews_dataset.parquet
+2025-06-07 11:02:03,903 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-07 11:02:03,952 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-07 11:02:07,635 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-07 11:02:08,487 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-07/olist_products_dataset.parquet
+2025-06-07 11:02:09,387 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-07 11:02:12,200 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:02:12,201 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:02:12,202 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:02:12,202 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:02:43,413 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:02:43,414 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:02:43,414 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:02:43,415 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:03:14,151 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:03:14,152 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:03:14,152 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:03:14,152 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 11:03:45,743 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-07 11:03:45,744 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-07 11:03:45,744 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 11:03:45,744 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***

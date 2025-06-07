@@ -24,8 +24,8 @@ import unicodedata  # For removing accents
 
 
 # Define the path to the data directory (no need to pass as argument)
-DATA_DIR = "/Users/rojan/Desktop/cp-project/e-commerce-analytics/data/extracted_data"
-
+# DATA_DIR = "/Users/rojan/Desktop/cp-project/e-commerce-analytics/data/extracted_data"
+DATA_DIR = "/opt/airflow/data/extracted_data"
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
