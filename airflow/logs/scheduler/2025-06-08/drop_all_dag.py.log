@@ -1,0 +1,63 @@
+[2025-06-08T04:27:32.309+0000] {processor.py:161} INFO - Started process (PID=48) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:27:32.311+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:27:32.313+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.313+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:27:32.337+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:27:32.539+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.538+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:27:32.567+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.566+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:27:32.640+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.335 seconds
+[2025-06-08T04:31:01.227+0000] {processor.py:161} INFO - Started process (PID=60) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:01.236+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:31:01.241+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:01.240+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:01.273+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:01.456+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:01.456+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:31:01.471+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:01.471+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:31:01.506+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.312 seconds
+[2025-06-08T04:31:31.803+0000] {processor.py:161} INFO - Started process (PID=70) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:31.805+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:31:31.806+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:31.806+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:31.818+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:31:31.847+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:31.847+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:31:31.856+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:31.856+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:31:31.885+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.087 seconds
+[2025-06-08T04:32:02.229+0000] {processor.py:161} INFO - Started process (PID=80) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:02.231+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:32:02.235+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:02.235+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:02.249+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:02.275+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:02.275+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:32:02.283+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:02.283+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:32:02.296+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.071 seconds
+[2025-06-08T04:32:32.879+0000] {processor.py:161} INFO - Started process (PID=94) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:32.886+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:32:32.897+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:32.897+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:32.918+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:32:32.969+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:32.969+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:32:33.001+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:33.000+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:32:33.034+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.165 seconds
+[2025-06-08T04:33:03.843+0000] {processor.py:161} INFO - Started process (PID=110) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:03.844+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:33:03.845+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:03.845+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:03.854+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:03.875+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:03.875+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:33:03.884+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:03.884+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:33:03.893+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.054 seconds
+[2025-06-08T04:33:34.242+0000] {processor.py:161} INFO - Started process (PID=124) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:34.244+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:33:34.246+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:34.245+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:34.258+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:33:34.283+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:34.283+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:33:34.303+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:34.303+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:33:34.318+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.088 seconds
+[2025-06-08T04:34:04.746+0000] {processor.py:161} INFO - Started process (PID=134) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:04.748+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:34:04.752+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.752+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:04.779+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:04.825+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.825+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:34:04.840+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.839+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:34:04.866+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.133 seconds
+[2025-06-08T04:34:35.550+0000] {processor.py:161} INFO - Started process (PID=144) to work on /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:35.555+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/drop_all_dag.py for tasks to queue
+[2025-06-08T04:34:35.559+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.559+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:35.583+0000] {processor.py:840} INFO - DAG(s) 'drop_all_dag' retrieved from /opt/airflow/dags/drop_all_dag.py
+[2025-06-08T04:34:35.622+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.622+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:34:35.633+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.633+0000] {dag.py:3823} INFO - Setting next_dagrun for drop_all_dag to None, run_after=None
+[2025-06-08T04:34:35.654+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/drop_all_dag.py took 0.126 seconds

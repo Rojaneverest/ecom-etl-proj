@@ -7019,3 +7019,39 @@ Trying to import the above resulted in these errors:
 2025-06-07 11:03:45,744 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
 2025-06-07 11:03:45,744 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
 2025-06-07 11:03:45,744 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 21:09:37,270 - data_ingestion - INFO - AWS_REGION: us-east-1
+2025-06-07 21:09:37,270 - data_ingestion - INFO - S3_BUCKET (destination): rj-ecom-etl
+2025-06-07 21:09:37,270 - data_ingestion - INFO - SOURCE_S3_BUCKET (initial data): raw-csv-ecom-rj
+2025-06-07 21:09:37,270 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-07 21:09:37,270 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-07 21:09:37,271 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-07 21:09:38,329 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-07 21:09:38,329 - data_ingestion - INFO - Available buckets: ['raw-csv-ecom-rj', 'rj-ecom-etl']
+2025-06-07 21:09:39,266 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-07 21:09:40,600 - data_ingestion - INFO - Bucket raw-csv-ecom-rj already exists
+2025-06-07 21:09:40,905 - data_ingestion - INFO - Found 9 CSV files in raw-csv-ecom-rj to process
+2025-06-07 21:10:19,623 - data_ingestion - INFO - Processing olist_customers_dataset.csv from S3...
+2025-06-07 21:10:19,765 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-07 21:10:26,152 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-07 21:10:32,492 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-07/olist_customers_dataset.parquet
+2025-06-07 21:10:42,078 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv from S3...
+2025-06-07 21:10:42,870 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-08 04:27:37,979 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-08 04:27:37,980 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-08 04:27:37,980 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-08 04:27:37,981 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-08 04:27:37,982 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-08 04:27:39,115 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-08 04:27:39,142 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-08 04:27:40,852 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-08 04:27:40,854 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-08 04:27:40,855 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-08 04:27:40,873 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-08 04:27:41,163 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-08 04:27:43,497 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-08/olist_sellers_dataset.parquet
+2025-06-08 04:27:44,093 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-08 04:27:44,101 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-08 04:27:44,109 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-08 04:27:44,696 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-08/product_category_name_translation.parquet
+2025-06-08 04:27:45,277 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-08 04:27:45,550 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv

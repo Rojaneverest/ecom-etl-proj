@@ -15,11 +15,19 @@ pyspark==3.5.1
 # # Database
 # psycopg2-binary==2.9.3
 # sqlalchemy==1.4.36
+
 sqlalchemy
 psycopg2-binary
 dotenv
 pyarrow 
 fastparquet
+kafka-python
+Faker
+streamlit
+redis
+confluent-kafka
+pandas
+plotly
 # # Airflow
 # apache-airflow==2.3.0
 # apache-airflow-providers-postgres==2.4.0

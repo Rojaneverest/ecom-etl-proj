@@ -1,0 +1,31 @@
+[2025-06-08T04:27:36.281+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.run_ingestion_script scheduled__2025-06-07T00:00:00+00:00 [queued]>
+[2025-06-08T04:27:36.290+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.run_ingestion_script scheduled__2025-06-07T00:00:00+00:00 [queued]>
+[2025-06-08T04:27:36.290+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-08T04:27:36.303+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_ingestion_script> on 2025-06-07 00:00:00+00:00
+[2025-06-08T04:27:36.307+0000] {standard_task_runner.py:60} INFO - Started process 72 to run task
+[2025-06-08T04:27:36.312+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'run_ingestion_script', 'scheduled__2025-06-07T00:00:00+00:00', '--job-id', '72', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmpeacehyjg']
+[2025-06-08T04:27:36.314+0000] {standard_task_runner.py:88} INFO - Job 72: Subtask run_ingestion_script
+[2025-06-08T04:27:36.384+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.run_ingestion_script scheduled__2025-06-07T00:00:00+00:00 [running]> on host be3b55b974ba
+[2025-06-08T04:27:36.442+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_script' AIRFLOW_CTX_EXECUTION_DATE='2025-06-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-07T00:00:00+00:00'
+[2025-06-08T04:27:36.445+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-08T04:27:36.449+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ingestion && python ingestion_script.py']
+[2025-06-08T04:27:36.463+0000] {subprocess.py:86} INFO - Output:
+[2025-06-08T04:27:37.981+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:37,979 - data_ingestion - INFO - AWS_REGION: eu-north-1
+[2025-06-08T04:27:37.984+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:37,980 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+[2025-06-08T04:27:37.986+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:37,980 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+[2025-06-08T04:27:37.987+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:37,981 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+[2025-06-08T04:27:37.988+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:37,982 - data_ingestion - INFO - Using provided AWS credentials
+[2025-06-08T04:27:39.143+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:39,115 - data_ingestion - INFO - Successfully connected to AWS S3
+[2025-06-08T04:27:39.193+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:39,142 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+[2025-06-08T04:27:40.853+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:40,852 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+[2025-06-08T04:27:40.855+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:40,854 - data_ingestion - INFO - Found 9 CSV files to process
+[2025-06-08T04:27:40.857+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:40,855 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+[2025-06-08T04:27:40.873+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:40,873 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+[2025-06-08T04:27:41.164+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:41,163 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+[2025-06-08T04:27:43.499+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:43,497 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-08/olist_sellers_dataset.parquet
+[2025-06-08T04:27:44.095+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:44,093 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+[2025-06-08T04:27:44.101+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:44,101 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+[2025-06-08T04:27:44.110+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:44,109 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+[2025-06-08T04:27:44.700+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:44,696 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-08/product_category_name_translation.parquet
+[2025-06-08T04:27:45.277+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:45,277 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+[2025-06-08T04:27:45.551+0000] {subprocess.py:93} INFO - 2025-06-08 04:27:45,550 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv

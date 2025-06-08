@@ -1,0 +1,262 @@
+2025-06-07 18:50:04,469 - snowflake_dwh_script - INFO - --- Starting Snowflake DWH Load Script ---
+2025-06-07 18:50:04,469 - snowflake.connector.connection - INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-6.10.14-linuxkit-aarch64-with-glibc2.34
+2025-06-07 18:50:04,469 - snowflake.connector.connection - INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+2025-06-07 18:50:05,830 - snowflake_dwh_script - INFO - Successfully connected to Snowflake.
+2025-06-07 18:50:05,831 - snowflake_dwh_script - INFO - Ensuring database 'ECOM_DWH' and schema 'PUBLIC' exist...
+2025-06-07 18:50:05,832 - snowflake.connector.cursor - INFO - query: [CREATE DATABASE IF NOT EXISTS ECOM_DWH;]
+2025-06-07 18:50:06,524 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:06,525 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:06,525 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:06,525 - snowflake.connector.cursor - INFO - query: [CREATE SCHEMA IF NOT EXISTS ECOM_DWH.PUBLIC;]
+2025-06-07 18:50:06,842 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:06,843 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:06,844 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:06,844 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_DWH;]
+2025-06-07 18:50:07,605 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:07,605 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:07,605 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:07,605 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC;]
+2025-06-07 18:50:08,445 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:08,446 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:08,447 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:08,448 - snowflake_dwh_script - INFO - Creating DWH tables in the correct order...
+2025-06-07 18:50:08,448 - snowflake_dwh_script - INFO - Creating table: DWH_GEOLOCATION...
+2025-06-07 18:50:08,448 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_GEOLOCATION ( GEOLOCATION_ID NUMBER ...]
+2025-06-07 18:50:08,866 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:08,867 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:08,867 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:08,867 - snowflake_dwh_script - INFO - Creating table: DWH_PRODUCTS...
+2025-06-07 18:50:08,867 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_PRODUCTS ( PRODUCT_ID VARCHAR NOT NU...]
+2025-06-07 18:50:09,658 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:09,659 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:09,660 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:09,660 - snowflake_dwh_script - INFO - Creating table: DWH_CUSTOMERS...
+2025-06-07 18:50:09,661 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_CUSTOMERS ( CUSTOMER_ID VARCHAR NOT ...]
+2025-06-07 18:50:10,786 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:10,787 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:10,788 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:10,788 - snowflake_dwh_script - INFO - Creating table: DWH_SELLERS...
+2025-06-07 18:50:10,789 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_SELLERS ( SELLER_ID VARCHAR NOT NULL...]
+2025-06-07 18:50:11,728 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:11,729 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:11,729 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:11,729 - snowflake_dwh_script - INFO - Creating table: DWH_ORDERS...
+2025-06-07 18:50:11,729 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDERS ( ORDER_ID VARCHAR NOT NULL P...]
+2025-06-07 18:50:12,623 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:12,628 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:12,629 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:12,630 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_ITEMS...
+2025-06-07 18:50:12,631 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_ITEMS ( ORDER_ID VARCHAR NOT N...]
+2025-06-07 18:50:13,146 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:13,147 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:13,147 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:13,148 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_PAYMENTS...
+2025-06-07 18:50:13,148 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_PAYMENTS ( ORDER_ID VARCHAR NO...]
+2025-06-07 18:50:13,586 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:13,586 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:13,587 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:13,587 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_REVIEWS...
+2025-06-07 18:50:13,587 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_REVIEWS ( REVIEW_ID VARCHAR NO...]
+2025-06-07 18:50:14,007 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:14,008 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+2025-06-07 18:50:14,008 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:14,008 - snowflake_dwh_script - INFO - --- Starting Data Load from Staging to DWH ---
+2025-06-07 18:50:14,008 - snowflake_dwh_script - INFO - Loading data from STG_GEOLOCATION into DWH_GEOLOCATION...
+2025-06-07 18:50:14,008 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_GEOLOCATION;]
+2025-06-07 18:50:14,328 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:14,328 - snowflake.connector.cursor - INFO - Number of results in first chunk: 6
+2025-06-07 18:50:14,329 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_GEOLOCATION (GEOLOCATION_ID, GEOLOCATION_ZIP_COD...]
+2025-06-07 18:50:15,493 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:15,496 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:15,497 - snowflake_dwh_script - INFO - Loading data from STG_PRODUCTS into DWH_PRODUCTS...
+2025-06-07 18:50:15,498 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_PRODUCTS;]
+2025-06-07 18:50:16,518 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:16,519 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+2025-06-07 18:50:16,520 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_PRODUCTS (PRODUCT_ID, PRODUCT_CATEGORY_NAME, PRO...]
+2025-06-07 18:50:17,764 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:17,765 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:17,766 - snowflake_dwh_script - INFO - Loading data from STG_CUSTOMERS into DWH_CUSTOMERS...
+2025-06-07 18:50:17,768 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_CUSTOMERS;]
+2025-06-07 18:50:18,105 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:18,106 - snowflake.connector.cursor - INFO - Number of results in first chunk: 6
+2025-06-07 18:50:18,106 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_CUSTOMERS (CUSTOMER_ID, CUSTOMER_UNIQUE_ID, CUST...]
+2025-06-07 18:50:19,733 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:19,735 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:19,736 - snowflake_dwh_script - INFO - Loading data from STG_SELLERS into DWH_SELLERS...
+2025-06-07 18:50:19,736 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_SELLERS;]
+2025-06-07 18:50:20,818 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:20,819 - snowflake.connector.cursor - INFO - Number of results in first chunk: 5
+2025-06-07 18:50:20,820 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_SELLERS (SELLER_ID, SELLER_ZIP_CODE_PREFIX, SELL...]
+2025-06-07 18:50:22,991 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:22,992 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:22,993 - snowflake_dwh_script - INFO - Loading data from STG_ORDERS into DWH_ORDERS...
+2025-06-07 18:50:22,994 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDERS;]
+2025-06-07 18:50:23,412 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:23,413 - snowflake.connector.cursor - INFO - Number of results in first chunk: 8
+2025-06-07 18:50:23,413 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDERS (ORDER_ID, CUSTOMER_ID, ORDER_STATUS, ORD...]
+2025-06-07 18:50:24,633 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:24,634 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:24,634 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_ITEMS into DWH_ORDER_ITEMS...
+2025-06-07 18:50:24,634 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_ITEMS;]
+2025-06-07 18:50:25,093 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:25,096 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+2025-06-07 18:50:25,097 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_ITEMS (ORDER_ID, ORDER_ITEM_ID, PRODUCT_ID...]
+2025-06-07 18:50:26,274 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:26,275 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:26,275 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_PAYMENTS into DWH_ORDER_PAYMENTS...
+2025-06-07 18:50:26,276 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_PAYMENTS;]
+2025-06-07 18:50:26,792 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:26,792 - snowflake.connector.cursor - INFO - Number of results in first chunk: 5
+2025-06-07 18:50:26,793 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_PAYMENTS (ORDER_ID, PAYMENT_SEQUENTIAL, PA...]
+2025-06-07 18:50:27,731 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:27,732 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:27,732 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_REVIEWS into DWH_ORDER_REVIEWS...
+2025-06-07 18:50:27,733 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_REVIEWS;]
+2025-06-07 18:50:28,171 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:28,171 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+2025-06-07 18:50:28,171 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_REVIEWS (REVIEW_ID, ORDER_ID, REVIEW_SCORE...]
+2025-06-07 18:50:29,410 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:29,410 - snowflake_dwh_script - INFO - Query executed successfully.
+2025-06-07 18:50:29,410 - snowflake_dwh_script - INFO - --- Data Loading to DWH Finished ---
+2025-06-07 18:50:29,410 - snowflake_dwh_script - INFO - --- Starting Data Export to S3 as Parquet ---
+2025-06-07 18:50:29,420 - botocore.credentials - INFO - Found credentials in environment variables.
+2025-06-07 18:50:29,516 - snowflake_dwh_script - INFO - Exporting data from ECOM_DWH.PUBLIC.DWH_GEOLOCATION to S3...
+2025-06-07 18:50:29,587 - snowflake.connector.cursor - INFO - query: [SELECT * FROM ECOM_DWH.PUBLIC.DWH_GEOLOCATION;]
+2025-06-07 18:50:32,370 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:50:32,382 - snowflake.connector.cursor - INFO - Number of results in first chunk: 2212
+2025-06-07 18:50:47,773 - snowflake.connector.result_batch - ERROR - Failed to fetch the large result set batch data_0_0_5_1 for the 1 th time, backing off for 1s for the reason: 'HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/contrib/pyopenssl.py", line 318, in recv_into
+    return self.connection.recv_into(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/OpenSSL/SSL.py", line 2108, in recv_into
+    self._raise_ssl_error(self._ssl, result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/OpenSSL/SSL.py", line 1810, in _raise_ssl_error
+    raise WantReadError()
+OpenSSL.SSL.WantReadError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 444, in _error_catcher
+    yield
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 567, in read
+    data = self._fp_read(amt) if not fp_closed else b""
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 533, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+  File "/usr/local/lib/python3.8/http/client.py", line 459, in read
+    n = self.readinto(b)
+  File "/usr/local/lib/python3.8/http/client.py", line 503, in readinto
+    n = self.fp.readinto(b)
+  File "/usr/local/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/contrib/pyopenssl.py", line 331, in recv_into
+    raise timeout("The read operation timed out")
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 816, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 628, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 593, in read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+  File "/usr/local/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 449, in _error_catcher
+    raise ReadTimeoutError(self._pool, None, "Read timed out.")
+snowflake.connector.vendored.urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/result_batch.py", line 332, in _download
+    response = session.request("get", **request_data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/sessions.py", line 747, in send
+    r.content
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 899, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 822, in generate
+    raise ConnectionError(e)
+snowflake.connector.vendored.requests.exceptions.ConnectionError: HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.
+2025-06-07 18:50:52,866 - snowflake.connector.result_batch - ERROR - Failed to fetch the large result set batch data_0_0_3_1 for the 1 th time, backing off for 1s for the reason: 'HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.'
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/contrib/pyopenssl.py", line 318, in recv_into
+    return self.connection.recv_into(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/OpenSSL/SSL.py", line 2108, in recv_into
+    self._raise_ssl_error(self._ssl, result)
+  File "/home/airflow/.local/lib/python3.8/site-packages/OpenSSL/SSL.py", line 1810, in _raise_ssl_error
+    raise WantReadError()
+OpenSSL.SSL.WantReadError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 444, in _error_catcher
+    yield
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 567, in read
+    data = self._fp_read(amt) if not fp_closed else b""
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 533, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+  File "/usr/local/lib/python3.8/http/client.py", line 459, in read
+    n = self.readinto(b)
+  File "/usr/local/lib/python3.8/http/client.py", line 503, in readinto
+    n = self.fp.readinto(b)
+  File "/usr/local/lib/python3.8/socket.py", line 669, in readinto
+    return self._sock.recv_into(b)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/contrib/pyopenssl.py", line 331, in recv_into
+    raise timeout("The read operation timed out")
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 816, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 628, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 593, in read
+    raise IncompleteRead(self._fp_bytes_read, self.length_remaining)
+  File "/usr/local/lib/python3.8/contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/urllib3/response.py", line 449, in _error_catcher
+    raise ReadTimeoutError(self._pool, None, "Read timed out.")
+snowflake.connector.vendored.urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/result_batch.py", line 332, in _download
+    response = session.request("get", **request_data)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/sessions.py", line 747, in send
+    r.content
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 899, in content
+    self._content = b"".join(self.iter_content(CONTENT_CHUNK_SIZE)) or b""
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/vendored/requests/models.py", line 822, in generate
+    raise ConnectionError(e)
+snowflake.connector.vendored.requests.exceptions.ConnectionError: HTTPSConnectionPool(host='sfc-va4-ds1-06-customer-stage.s3.amazonaws.com', port=443): Read timed out.
+2025-06-07 18:51:59,021 - snowflake_dwh_script - INFO - Successfully saved DWH_GEOLOCATION to s3://rj-ecom-etl/processed/dwh_geolocation/dwh_geolocation_20250607185125.parquet
+2025-06-07 18:51:59,024 - snowflake_dwh_script - INFO - Exporting data from ECOM_DWH.PUBLIC.DWH_PRODUCTS to S3...
+2025-06-07 18:51:59,036 - snowflake.connector.cursor - INFO - query: [SELECT * FROM ECOM_DWH.PUBLIC.DWH_PRODUCTS;]
+2025-06-07 18:52:00,893 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:52:00,900 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1157
+2025-06-07 18:52:16,637 - snowflake_dwh_script - INFO - Successfully saved DWH_PRODUCTS to s3://rj-ecom-etl/processed/dwh_products/dwh_products_20250607185213.parquet
+2025-06-07 18:52:16,642 - snowflake_dwh_script - INFO - Exporting data from ECOM_DWH.PUBLIC.DWH_CUSTOMERS to S3...
+2025-06-07 18:52:16,656 - snowflake.connector.cursor - INFO - query: [SELECT * FROM ECOM_DWH.PUBLIC.DWH_CUSTOMERS;]
+2025-06-07 18:52:18,565 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:52:18,566 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1074
+2025-06-07 18:52:24,083 - snowflake_dwh_script - INFO - Successfully saved DWH_CUSTOMERS to s3://rj-ecom-etl/processed/dwh_customers/dwh_customers_20250607185222.parquet
+2025-06-07 18:52:24,086 - snowflake_dwh_script - INFO - Exporting data from ECOM_DWH.PUBLIC.DWH_SELLERS to S3...
+2025-06-07 18:52:24,086 - snowflake.connector.cursor - INFO - query: [SELECT * FROM ECOM_DWH.PUBLIC.DWH_SELLERS;]
+2025-06-07 18:52:25,540 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:52:25,542 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1651
+2025-06-07 18:52:34,048 - snowflake_dwh_script - INFO - Successfully saved DWH_SELLERS to s3://rj-ecom-etl/processed/dwh_sellers/dwh_sellers_20250607185231.parquet
+2025-06-07 18:52:34,052 - snowflake_dwh_script - INFO - Exporting data from ECOM_DWH.PUBLIC.DWH_ORDERS to S3...
+2025-06-07 18:52:34,059 - snowflake.connector.cursor - INFO - query: [SELECT * FROM ECOM_DWH.PUBLIC.DWH_ORDERS;]
+2025-06-07 18:52:36,093 - snowflake.connector.cursor - INFO - query execution done
+2025-06-07 18:52:36,095 - snowflake.connector.cursor - INFO - Number of results in first chunk: 706

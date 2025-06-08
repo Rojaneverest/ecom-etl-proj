@@ -1,0 +1,140 @@
+[2025-06-07T18:58:21.096+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.run_target_layer manual__2025-06-07T18:48:29.247909+00:00 [queued]>
+[2025-06-07T18:58:21.120+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.run_target_layer manual__2025-06-07T18:48:29.247909+00:00 [queued]>
+[2025-06-07T18:58:21.121+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 2
+[2025-06-07T18:58:21.130+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_target_layer> on 2025-06-07 18:48:29.247909+00:00
+[2025-06-07T18:58:21.134+0000] {standard_task_runner.py:60} INFO - Started process 298 to run task
+[2025-06-07T18:58:21.146+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'run_target_layer', 'manual__2025-06-07T18:48:29.247909+00:00', '--job-id', '41', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpzkxbjp4d']
+[2025-06-07T18:58:21.148+0000] {standard_task_runner.py:88} INFO - Job 41: Subtask run_target_layer
+[2025-06-07T18:58:21.194+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_dag.run_target_layer manual__2025-06-07T18:48:29.247909+00:00 [running]> on host c183c35f0e34
+[2025-06-07T18:58:21.248+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='run_target_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-07T18:48:29.247909+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-07T18:48:29.247909+00:00'
+[2025-06-07T18:58:21.251+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-07T18:58:21.255+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python target_layer.py']
+[2025-06-07T18:58:21.265+0000] {subprocess.py:86} INFO - Output:
+[2025-06-07T18:58:22.112+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:22,112 - snowflake_dwh_script - INFO - --- Starting Snowflake DWH Load Script ---
+[2025-06-07T18:58:22.122+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:22,112 - snowflake.connector.connection - INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-6.10.14-linuxkit-aarch64-with-glibc2.34
+[2025-06-07T18:58:22.125+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:22,112 - snowflake.connector.connection - INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-06-07T18:58:24.423+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,419 - snowflake_dwh_script - INFO - Successfully connected to Snowflake.
+[2025-06-07T18:58:24.434+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,420 - snowflake_dwh_script - INFO - Ensuring database 'ECOM_DWH' and schema 'PUBLIC' exist...
+[2025-06-07T18:58:24.434+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,420 - snowflake.connector.cursor - INFO - query: [CREATE DATABASE IF NOT EXISTS ECOM_DWH;]
+[2025-06-07T18:58:24.719+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,717 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:24.720+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,718 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:24.720+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,718 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:24.720+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:24,718 - snowflake.connector.cursor - INFO - query: [CREATE SCHEMA IF NOT EXISTS ECOM_DWH.PUBLIC;]
+[2025-06-07T18:58:25.006+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,006 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:25.006+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,006 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:25.007+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,006 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:25.007+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,006 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_DWH;]
+[2025-06-07T18:58:25.306+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,306 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:25.307+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,306 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:25.307+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,306 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:25.307+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,306 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC;]
+[2025-06-07T18:58:25.627+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,626 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:25.629+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,627 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:25.630+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,627 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:25.631+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,628 - snowflake_dwh_script - INFO - Creating DWH tables in the correct order...
+[2025-06-07T18:58:25.632+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,628 - snowflake_dwh_script - INFO - Creating table: DWH_GEOLOCATION...
+[2025-06-07T18:58:25.633+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:25,628 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_GEOLOCATION ( GEOLOCATION_ID NUMBER ...]
+[2025-06-07T18:58:26.048+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,047 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:26.050+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,048 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:26.050+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,048 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:26.050+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,048 - snowflake_dwh_script - INFO - Creating table: DWH_PRODUCTS...
+[2025-06-07T18:58:26.050+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,048 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_PRODUCTS ( PRODUCT_ID VARCHAR NOT NU...]
+[2025-06-07T18:58:26.460+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,459 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:26.462+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,460 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:26.462+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,460 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:26.463+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,460 - snowflake_dwh_script - INFO - Creating table: DWH_CUSTOMERS...
+[2025-06-07T18:58:26.463+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,461 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_CUSTOMERS ( CUSTOMER_ID VARCHAR NOT ...]
+[2025-06-07T18:58:26.855+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,855 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:26.857+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,855 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:26.857+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,855 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:26.857+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,855 - snowflake_dwh_script - INFO - Creating table: DWH_SELLERS...
+[2025-06-07T18:58:26.858+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:26,856 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_SELLERS ( SELLER_ID VARCHAR NOT NULL...]
+[2025-06-07T18:58:27.306+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,306 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:27.308+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,306 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:27.308+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,307 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:27.309+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,307 - snowflake_dwh_script - INFO - Creating table: DWH_ORDERS...
+[2025-06-07T18:58:27.309+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,307 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDERS ( ORDER_ID VARCHAR NOT NULL P...]
+[2025-06-07T18:58:27.698+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,698 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:27.700+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,698 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:27.700+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,698 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:27.701+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,698 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_ITEMS...
+[2025-06-07T18:58:27.702+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:27,699 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_ITEMS ( ORDER_ID VARCHAR NOT N...]
+[2025-06-07T18:58:28.127+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,127 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:28.127+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,127 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:28.128+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,127 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:28.128+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,127 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_PAYMENTS...
+[2025-06-07T18:58:28.128+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,127 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_PAYMENTS ( ORDER_ID VARCHAR NO...]
+[2025-06-07T18:58:28.565+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,565 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:28.567+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,565 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:28.568+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,566 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:28.568+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,566 - snowflake_dwh_script - INFO - Creating table: DWH_ORDER_REVIEWS...
+[2025-06-07T18:58:28.568+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,566 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_DWH.PUBLIC.DWH_ORDER_REVIEWS ( REVIEW_ID VARCHAR NO...]
+[2025-06-07T18:58:28.986+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,985 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:28.987+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,986 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-07T18:58:28.988+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,986 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:28.988+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,986 - snowflake_dwh_script - INFO - --- Starting Data Load from Staging to DWH ---
+[2025-06-07T18:58:28.988+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,986 - snowflake_dwh_script - INFO - Loading data from STG_GEOLOCATION into DWH_GEOLOCATION...
+[2025-06-07T18:58:28.989+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:28,986 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_GEOLOCATION;]
+[2025-06-07T18:58:29.278+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:29,277 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:29.282+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:29,277 - snowflake.connector.cursor - INFO - Number of results in first chunk: 6
+[2025-06-07T18:58:29.287+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:29,278 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_GEOLOCATION (GEOLOCATION_ID, GEOLOCATION_ZIP_COD...]
+[2025-06-07T18:58:30.524+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,522 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:30.528+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,523 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:30.529+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,523 - snowflake_dwh_script - INFO - Loading data from STG_PRODUCTS into DWH_PRODUCTS...
+[2025-06-07T18:58:30.529+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,524 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_PRODUCTS;]
+[2025-06-07T18:58:30.804+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,803 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:30.806+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,804 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+[2025-06-07T18:58:30.807+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:30,804 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_PRODUCTS (PRODUCT_ID, PRODUCT_CATEGORY_NAME, PRO...]
+[2025-06-07T18:58:31.576+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,575 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:31.577+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,576 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:31.577+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,576 - snowflake_dwh_script - INFO - Loading data from STG_CUSTOMERS into DWH_CUSTOMERS...
+[2025-06-07T18:58:31.577+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,576 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_CUSTOMERS;]
+[2025-06-07T18:58:31.865+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,865 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:31.866+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,866 - snowflake.connector.cursor - INFO - Number of results in first chunk: 6
+[2025-06-07T18:58:31.867+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:31,866 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_CUSTOMERS (CUSTOMER_ID, CUSTOMER_UNIQUE_ID, CUST...]
+[2025-06-07T18:58:32.901+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:32,901 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:32.901+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:32,901 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:32.902+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:32,901 - snowflake_dwh_script - INFO - Loading data from STG_SELLERS into DWH_SELLERS...
+[2025-06-07T18:58:32.902+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:32,901 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_SELLERS;]
+[2025-06-07T18:58:33.180+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:33,179 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:33.180+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:33,180 - snowflake.connector.cursor - INFO - Number of results in first chunk: 5
+[2025-06-07T18:58:33.181+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:33,180 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_SELLERS (SELLER_ID, SELLER_ZIP_CODE_PREFIX, SELL...]
+[2025-06-07T18:58:34.245+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,245 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:34.245+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,245 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:34.246+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,245 - snowflake_dwh_script - INFO - Loading data from STG_ORDERS into DWH_ORDERS...
+[2025-06-07T18:58:34.246+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,245 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDERS;]
+[2025-06-07T18:58:34.522+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,521 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:34.523+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,522 - snowflake.connector.cursor - INFO - Number of results in first chunk: 8
+[2025-06-07T18:58:34.523+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:34,522 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDERS (ORDER_ID, CUSTOMER_ID, ORDER_STATUS, ORD...]
+[2025-06-07T18:58:35.935+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:35,935 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:35.937+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:35,935 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:35.938+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:35,936 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_ITEMS into DWH_ORDER_ITEMS...
+[2025-06-07T18:58:35.938+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:35,936 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_ITEMS;]
+[2025-06-07T18:58:36.519+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:36,518 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:36.519+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:36,519 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+[2025-06-07T18:58:36.519+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:36,519 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_ITEMS (ORDER_ID, ORDER_ITEM_ID, PRODUCT_ID...]
+[2025-06-07T18:58:38.118+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,108 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:38.127+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,116 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:38.127+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,117 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_PAYMENTS into DWH_ORDER_PAYMENTS...
+[2025-06-07T18:58:38.127+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,118 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_PAYMENTS;]
+[2025-06-07T18:58:38.404+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,403 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:38.404+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,404 - snowflake.connector.cursor - INFO - Number of results in first chunk: 5
+[2025-06-07T18:58:38.404+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:38,404 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_PAYMENTS (ORDER_ID, PAYMENT_SEQUENTIAL, PA...]
+[2025-06-07T18:58:39.353+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,352 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:39.354+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,353 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:39.355+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,353 - snowflake_dwh_script - INFO - Loading data from STG_ORDER_REVIEWS into DWH_ORDER_REVIEWS...
+[2025-06-07T18:58:39.355+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,353 - snowflake.connector.cursor - INFO - query: [DESCRIBE TABLE ECOM_STG.PUBLIC.STG_ORDER_REVIEWS;]
+[2025-06-07T18:58:39.624+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,624 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:39.626+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,624 - snowflake.connector.cursor - INFO - Number of results in first chunk: 7
+[2025-06-07T18:58:39.626+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:39,625 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_DWH.PUBLIC.DWH_ORDER_REVIEWS (REVIEW_ID, ORDER_ID, REVIEW_SCORE...]
+[2025-06-07T18:58:40.712+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:40,708 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-07T18:58:40.717+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:40,713 - snowflake_dwh_script - INFO - Query executed successfully.
+[2025-06-07T18:58:40.717+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:40,713 - snowflake_dwh_script - INFO - --- Data Loading to DWH Finished ---
+[2025-06-07T18:58:40.717+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:40,713 - snowflake.connector.connection - INFO - closed
+[2025-06-07T18:58:40.975+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:40,974 - snowflake.connector.connection - INFO - No async queries seem to be running, deleting session
+[2025-06-07T18:58:41.239+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:41,238 - snowflake_dwh_script - INFO - Snowflake connection closed.
+[2025-06-07T18:58:41.240+0000] {subprocess.py:93} INFO - 2025-06-07 18:58:41,239 - snowflake_dwh_script - INFO - --- Snowflake DWH Load Script Finished Successfully ---
+[2025-06-07T18:58:41.393+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-07T18:58:41.461+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=run_target_layer, execution_date=20250607T184829, start_date=20250607T185821, end_date=20250607T185841
+[2025-06-07T18:58:41.516+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-07T18:58:41.556+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

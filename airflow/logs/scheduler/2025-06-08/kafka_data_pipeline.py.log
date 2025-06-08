@@ -1,0 +1,67 @@
+[2025-06-08T04:27:31.541+0000] {processor.py:161} INFO - Started process (PID=45) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:27:31.547+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:27:31.556+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:31.555+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:27:31.610+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:27:32.122+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.120+0000] {override.py:1769} INFO - Created Permission View: can delete on DAG:kafka_data_pipeline
+[2025-06-08T04:27:32.145+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.145+0000] {override.py:1769} INFO - Created Permission View: can edit on DAG:kafka_data_pipeline
+[2025-06-08T04:27:32.164+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.163+0000] {override.py:1769} INFO - Created Permission View: can read on DAG:kafka_data_pipeline
+[2025-06-08T04:27:32.170+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.169+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:27:32.198+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.197+0000] {dag.py:3058} INFO - Creating ORM DAG for kafka_data_pipeline
+[2025-06-08T04:27:32.223+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:27:32.223+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:24:00+00:00, run_after=2025-06-08 04:26:00+00:00
+[2025-06-08T04:27:32.260+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.730 seconds
+[2025-06-08T04:30:59.940+0000] {processor.py:161} INFO - Started process (PID=57) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:30:59.944+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:30:59.951+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:30:59.950+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:31:00.093+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:31:00.488+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:00.488+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:31:00.528+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:00.528+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:28:00+00:00, run_after=2025-06-08 04:30:00+00:00
+[2025-06-08T04:31:00.596+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.676 seconds
+[2025-06-08T04:31:30.724+0000] {processor.py:161} INFO - Started process (PID=68) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:31:30.726+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:31:30.727+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:30.727+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:31:30.736+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:31:30.757+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:30.757+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:31:30.769+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:31:30.769+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:28:00+00:00, run_after=2025-06-08 04:30:00+00:00
+[2025-06-08T04:31:30.778+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.057 seconds
+[2025-06-08T04:32:01.184+0000] {processor.py:161} INFO - Started process (PID=77) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:01.185+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:32:01.189+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:01.189+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:01.219+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:01.239+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:01.239+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:32:01.256+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:01.256+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:30:00+00:00, run_after=2025-06-08 04:32:00+00:00
+[2025-06-08T04:32:01.273+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.097 seconds
+[2025-06-08T04:32:31.786+0000] {processor.py:161} INFO - Started process (PID=91) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:31.789+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:32:31.803+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:31.802+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:31.836+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:32:31.882+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:31.881+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:32:31.910+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:32:31.910+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:32:00+00:00, run_after=2025-06-08 04:34:00+00:00
+[2025-06-08T04:32:31.925+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.152 seconds
+[2025-06-08T04:33:02.719+0000] {processor.py:161} INFO - Started process (PID=103) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:02.721+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:33:02.726+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:02.726+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:02.760+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:02.794+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:02.794+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:33:02.814+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:02.813+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:32:00+00:00, run_after=2025-06-08 04:34:00+00:00
+[2025-06-08T04:33:02.824+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.112 seconds
+[2025-06-08T04:33:33.509+0000] {processor.py:161} INFO - Started process (PID=117) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:33.513+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:33:33.527+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:33.526+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:33.754+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:33:33.987+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:33.986+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:33:34.104+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:33:34.103+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:32:00+00:00, run_after=2025-06-08 04:34:00+00:00
+[2025-06-08T04:33:34.160+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.671 seconds
+[2025-06-08T04:34:04.746+0000] {processor.py:161} INFO - Started process (PID=133) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:04.749+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:34:04.752+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.751+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:04.780+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:04.824+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.824+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:34:04.866+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:04.866+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:34:00+00:00, run_after=2025-06-08 04:36:00+00:00
+[2025-06-08T04:34:04.889+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.158 seconds
+[2025-06-08T04:34:35.550+0000] {processor.py:161} INFO - Started process (PID=143) to work on /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:35.553+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/kafka_data_pipeline.py for tasks to queue
+[2025-06-08T04:34:35.556+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.556+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:35.583+0000] {processor.py:840} INFO - DAG(s) 'kafka_data_pipeline' retrieved from /opt/airflow/dags/kafka_data_pipeline.py
+[2025-06-08T04:34:35.621+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.621+0000] {dag.py:3036} INFO - Sync 1 DAGs
+[2025-06-08T04:34:35.645+0000] {logging_mixin.py:188} INFO - [2025-06-08T04:34:35.645+0000] {dag.py:3823} INFO - Setting next_dagrun for kafka_data_pipeline to 2025-06-08 04:34:00+00:00, run_after=2025-06-08 04:36:00+00:00
+[2025-06-08T04:34:35.662+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/kafka_data_pipeline.py took 0.139 seconds
