@@ -1,0 +1,90 @@
+[2025-06-09T15:08:57.173+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: ingestion_dag.run_ingestion_script manual__2025-06-09T15:08:55.820960+00:00 [queued]>
+[2025-06-09T15:08:57.181+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: ingestion_dag.run_ingestion_script manual__2025-06-09T15:08:55.820960+00:00 [queued]>
+[2025-06-09T15:08:57.181+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-09T15:08:57.188+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_ingestion_script> on 2025-06-09 15:08:55.820960+00:00
+[2025-06-09T15:08:57.191+0000] {standard_task_runner.py:60} INFO - Started process 209 to run task
+[2025-06-09T15:08:57.196+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'ingestion_dag', 'run_ingestion_script', 'manual__2025-06-09T15:08:55.820960+00:00', '--job-id', '121', '--raw', '--subdir', 'DAGS_FOLDER/ingestion_dag.py', '--cfg-path', '/tmp/tmppzlmpi_4']
+[2025-06-09T15:08:57.197+0000] {standard_task_runner.py:88} INFO - Job 121: Subtask run_ingestion_script
+[2025-06-09T15:08:57.244+0000] {task_command.py:423} INFO - Running <TaskInstance: ingestion_dag.run_ingestion_script manual__2025-06-09T15:08:55.820960+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T15:08:57.309+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_script' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T15:08:55.820960+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-09T15:08:55.820960+00:00'
+[2025-06-09T15:08:57.311+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T15:08:57.312+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ingestion && python ingestion_script.py']
+[2025-06-09T15:08:57.320+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T15:08:57.830+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:57,829 - data_ingestion - INFO - AWS_REGION: eu-north-1
+[2025-06-09T15:08:57.831+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:57,830 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+[2025-06-09T15:08:57.831+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:57,831 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+[2025-06-09T15:08:57.832+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:57,831 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+[2025-06-09T15:08:57.832+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:57,832 - data_ingestion - INFO - Using provided AWS credentials
+[2025-06-09T15:08:58.883+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:58,879 - data_ingestion - INFO - Successfully connected to AWS S3
+[2025-06-09T15:08:58.896+0000] {subprocess.py:93} INFO - 2025-06-09 15:08:58,881 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+[2025-06-09T15:09:00.621+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:00,617 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+[2025-06-09T15:09:00.627+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:00,625 - data_ingestion - INFO - Found 9 CSV files to process
+[2025-06-09T15:09:00.627+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:00,626 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+[2025-06-09T15:09:00.665+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:00,665 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+[2025-06-09T15:09:00.955+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:00,954 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+[2025-06-09T15:09:02.574+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:02,573 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-09/olist_sellers_dataset.parquet
+[2025-06-09T15:09:03.190+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:03,188 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+[2025-06-09T15:09:03.206+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:03,206 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+[2025-06-09T15:09:03.215+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:03,215 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+[2025-06-09T15:09:03.837+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:03,835 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-09/product_category_name_translation.parquet
+[2025-06-09T15:09:04.442+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:04,441 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+[2025-06-09T15:09:04.734+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:04,733 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+[2025-06-09T15:09:21.040+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:21,030 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+[2025-06-09T15:09:27.706+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:27,700 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-09/olist_orders_dataset.parquet
+[2025-06-09T15:09:28.476+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:28,475 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+[2025-06-09T15:09:28.715+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:28,713 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+[2025-06-09T15:09:40.792+0000] {subprocess.py:93} INFO - 2025-06-09 15:09:40,790 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+[2025-06-09T15:10:01.338+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:01,333 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-09/olist_order_items_dataset.parquet
+[2025-06-09T15:10:02.079+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:02,078 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+[2025-06-09T15:10:02.253+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:02,253 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+[2025-06-09T15:10:10.107+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:10,102 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+[2025-06-09T15:10:14.234+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:14,232 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-09/olist_customers_dataset.parquet
+[2025-06-09T15:10:14.894+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:14,893 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+[2025-06-09T15:10:15.993+0000] {subprocess.py:93} INFO - 2025-06-09 15:10:15,990 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+[2025-06-09T15:11:47.022+0000] {subprocess.py:93} INFO - 2025-06-09 15:11:47,013 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+[2025-06-09T15:12:32.316+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:32,313 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-09/olist_geolocation_dataset.parquet
+[2025-06-09T15:12:33.851+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:33,849 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+[2025-06-09T15:12:33.992+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:33,991 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+[2025-06-09T15:12:43.211+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:43,207 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+[2025-06-09T15:12:47.233+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:47,227 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-09/olist_order_payments_dataset.parquet
+[2025-06-09T15:12:47.943+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:47,943 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+[2025-06-09T15:12:48.144+0000] {subprocess.py:93} INFO - 2025-06-09 15:12:48,144 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+[2025-06-09T15:13:00.043+0000] {subprocess.py:93} INFO - 2025-06-09 15:13:00,041 - data_ingestion - INFO - Validation complete: 99224 valid, 0 invalid
+[2025-06-09T15:14:02.019+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:02,012 - data_ingestion - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-09/olist_order_reviews_dataset.parquet
+[2025-06-09T15:14:02.798+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:02,796 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+[2025-06-09T15:14:02.847+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:02,847 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+[2025-06-09T15:14:07.654+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:07,652 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
+[2025-06-09T15:14:12.031+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:12,027 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-09/olist_products_dataset.parquet
+[2025-06-09T15:14:12.663+0000] {subprocess.py:93} INFO - 2025-06-09 15:14:12,661 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+[2025-06-09T15:14:12.698+0000] {subprocess.py:93} INFO -          523649239 function calls (513357054 primitive calls) in 314.852 seconds
+[2025-06-09T15:14:12.698+0000] {subprocess.py:93} INFO - 
+[2025-06-09T15:14:12.698+0000] {subprocess.py:93} INFO -    Ordered by: cumulative time
+[2025-06-09T15:14:12.699+0000] {subprocess.py:93} INFO -    List reduced from 2457 to 20 due to restriction <20>
+[2025-06-09T15:14:12.699+0000] {subprocess.py:93} INFO - 
+[2025-06-09T15:14:12.699+0000] {subprocess.py:93} INFO -    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+[2025-06-09T15:14:12.699+0000] {subprocess.py:93} INFO -         1    1.673    1.673  314.843  314.843 ingestion_script.py:598(main)
+[2025-06-09T15:14:12.700+0000] {subprocess.py:93} INFO -         9    7.328    0.814  310.375   34.486 ingestion_script.py:425(process_csv_file)
+[2025-06-09T15:14:12.700+0000] {subprocess.py:93} INFO -        20    0.002    0.000  152.238    7.612 /home/***/.local/lib/python3.8/site-packages/botocore/client.py:544(_api_call)
+[2025-06-09T15:14:12.701+0000] {subprocess.py:93} INFO -        20    0.006    0.000  152.236    7.612 /home/***/.local/lib/python3.8/site-packages/botocore/client.py:925(_make_api_call)
+[2025-06-09T15:14:12.701+0000] {subprocess.py:93} INFO -        20    0.000    0.000  151.971    7.599 /home/***/.local/lib/python3.8/site-packages/botocore/client.py:1013(_make_request)
+[2025-06-09T15:14:12.704+0000] {subprocess.py:93} INFO -        20    0.000    0.000  151.971    7.599 /home/***/.local/lib/python3.8/site-packages/botocore/endpoint.py:113(make_request)
+[2025-06-09T15:14:12.705+0000] {subprocess.py:93} INFO -        20    0.000    0.000  151.971    7.599 /home/***/.local/lib/python3.8/site-packages/botocore/endpoint.py:194(_send_request)
+[2025-06-09T15:14:12.705+0000] {subprocess.py:93} INFO -        21    0.002    0.000  151.927    7.235 /home/***/.local/lib/python3.8/site-packages/botocore/endpoint.py:235(_get_response)
+[2025-06-09T15:14:12.706+0000] {subprocess.py:93} INFO -        21    0.009    0.000  151.923    7.234 /home/***/.local/lib/python3.8/site-packages/botocore/endpoint.py:263(_do_get_response)
+[2025-06-09T15:14:12.706+0000] {subprocess.py:93} INFO -        21    0.001    0.000  151.886    7.233 /home/***/.local/lib/python3.8/site-packages/botocore/endpoint.py:376(_send)
+[2025-06-09T15:14:12.706+0000] {subprocess.py:93} INFO -        21    0.005    0.000  151.885    7.233 /home/***/.local/lib/python3.8/site-packages/botocore/httpsession.py:447(send)
+[2025-06-09T15:14:12.707+0000] {subprocess.py:93} INFO -        21    0.006    0.000  151.847    7.231 /home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py:534(urlopen)
+[2025-06-09T15:14:12.707+0000] {subprocess.py:93} INFO -        21    0.010    0.000  151.805    7.229 /home/***/.local/lib/python3.8/site-packages/urllib3/connectionpool.py:379(_make_request)
+[2025-06-09T15:14:12.707+0000] {subprocess.py:93} INFO -        21    0.002    0.000   93.408    4.448 /usr/local/lib/python3.8/http/client.py:1304(getresponse)
+[2025-06-09T15:14:12.708+0000] {subprocess.py:93} INFO -        21    0.004    0.000   93.401    4.448 /usr/local/lib/python3.8/http/client.py:309(begin)
+[2025-06-09T15:14:12.708+0000] {subprocess.py:93} INFO -       473    0.003    0.000   93.361    0.197 /usr/local/lib/python3.8/socket.py:655(readinto)
+[2025-06-09T15:14:12.708+0000] {subprocess.py:93} INFO -        21    0.006    0.000   93.361    4.446 /usr/local/lib/python3.8/http/client.py:276(_read_status)
+[2025-06-09T15:14:12.708+0000] {subprocess.py:93} INFO -       473    0.002    0.000   93.358    0.197 /usr/local/lib/python3.8/ssl.py:1263(recv_into)
+[2025-06-09T15:14:12.708+0000] {subprocess.py:93} INFO -       246    0.002    0.000   93.356    0.379 {method 'readline' of '_io.BufferedReader' objects}
+[2025-06-09T15:14:12.709+0000] {subprocess.py:93} INFO -       473    0.001    0.000   93.356    0.197 /usr/local/lib/python3.8/ssl.py:1123(read)
+[2025-06-09T15:14:12.709+0000] {subprocess.py:93} INFO - 
+[2025-06-09T15:14:12.709+0000] {subprocess.py:93} INFO - 
+[2025-06-09T15:14:12.929+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T15:14:12.998+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=ingestion_dag, task_id=run_ingestion_script, execution_date=20250609T150855, start_date=20250609T150857, end_date=20250609T151412
+[2025-06-09T15:14:13.046+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T15:14:13.099+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

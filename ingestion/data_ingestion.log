@@ -7147,3 +7147,177 @@ Trying to import the above resulted in these errors:
 2025-06-08 07:38:05,562 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
 2025-06-08 07:38:07,140 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-08/olist_products_dataset.parquet
 2025-06-08 07:38:07,781 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-09 11:07:43,077 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-09 11:07:43,077 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-09 11:07:43,077 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-09 11:07:43,077 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-09 11:07:43,077 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-09 11:07:43,078 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-09 11:07:43,078 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-09 11:07:43,078 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-09 11:07:43,078 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-09 11:07:43,078 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-09 11:07:44,359 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-09 11:07:44,360 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-09 11:07:44,361 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-09 11:07:44,364 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-09 11:07:46,465 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-09 11:07:46,466 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-09 11:07:46,472 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-09 11:07:46,473 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-09 11:07:46,476 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-09 11:07:46,476 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-09 11:07:46,514 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-09 11:07:46,514 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-09 11:07:46,998 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-09 11:07:47,054 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-09 11:07:48,691 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-09/olist_sellers_dataset.parquet
+2025-06-09 11:07:48,712 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-09/olist_sellers_dataset.parquet
+2025-06-09 11:07:49,304 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-09 11:07:49,315 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-09 11:07:49,324 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-09 11:07:49,332 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-09 11:07:49,339 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-09 11:07:49,346 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-09 11:07:49,942 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-09/product_category_name_translation.parquet
+2025-06-09 11:07:49,958 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-09/product_category_name_translation.parquet
+2025-06-09 11:07:50,541 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-09 11:07:50,563 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-09 11:07:51,013 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-09 11:07:51,015 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-09 11:08:07,823 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 11:08:07,974 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 11:08:12,888 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-09/olist_orders_dataset.parquet
+2025-06-09 11:08:13,781 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-09 11:08:14,191 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-09 11:08:32,147 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-09 11:08:37,330 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-09/olist_order_items_dataset.parquet
+2025-06-09 11:08:38,130 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-09 11:08:38,258 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-09 11:08:52,348 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 11:08:57,540 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-09/olist_customers_dataset.parquet
+2025-06-09 11:08:58,290 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-09 11:09:00,162 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-09 11:09:25,892 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-09/olist_orders_dataset.parquet
+2025-06-09 11:09:26,923 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-09 11:09:27,648 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-09 11:09:43,630 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-09 11:09:48,424 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-09/olist_order_items_dataset.parquet
+2025-06-09 11:09:49,599 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-09 11:09:49,895 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-09 11:10:05,478 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 11:10:10,072 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-09/olist_customers_dataset.parquet
+2025-06-09 11:10:10,789 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-09 11:10:13,042 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-09 11:11:02,791 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-09 11:11:57,579 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-09/olist_geolocation_dataset.parquet
+2025-06-09 11:11:59,902 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-09 11:12:00,129 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-09 11:12:15,892 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-09 11:12:18,314 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-09 11:12:23,360 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-09/olist_order_payments_dataset.parquet
+2025-06-09 11:12:24,171 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-09 11:12:24,460 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-09 11:12:41,733 - data_ingestion - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-09 11:12:46,759 - data_ingestion - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-09/olist_order_reviews_dataset.parquet
+2025-06-09 11:12:47,569 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-09 11:12:47,644 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-09 11:12:55,062 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-09 11:12:59,191 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-09/olist_products_dataset.parquet
+2025-06-09 11:12:59,979 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-09 11:13:25,753 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-09/olist_geolocation_dataset.parquet
+2025-06-09 11:13:30,599 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-09 11:13:30,843 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-09 11:13:43,526 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-09 15:08:57,829 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-09 15:08:57,830 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-09 15:08:57,831 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-09 15:08:57,831 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-09 15:08:57,832 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-09 15:08:58,879 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-09 15:08:58,881 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-09 15:09:00,617 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-09 15:09:00,625 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-09 15:09:00,626 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-09 15:09:00,665 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-09 15:09:00,954 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-09 15:09:02,573 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-09/olist_sellers_dataset.parquet
+2025-06-09 15:09:03,188 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-09 15:09:03,206 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-09 15:09:03,215 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-09 15:09:03,835 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-09/product_category_name_translation.parquet
+2025-06-09 15:09:04,441 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-09 15:09:04,733 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-09 15:09:21,030 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 15:09:27,700 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-09/olist_orders_dataset.parquet
+2025-06-09 15:09:28,475 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-09 15:09:28,713 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-09 15:09:40,790 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-09 15:10:01,333 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-09/olist_order_items_dataset.parquet
+2025-06-09 15:10:02,078 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-09 15:10:02,253 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-09 15:10:10,102 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 15:10:14,232 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-09/olist_customers_dataset.parquet
+2025-06-09 15:10:14,893 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-09 15:10:15,990 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-09 15:11:47,013 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-09 15:12:32,313 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-09/olist_geolocation_dataset.parquet
+2025-06-09 15:12:33,849 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-09 15:12:33,991 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-09 15:12:43,207 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-09 15:12:47,227 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-09/olist_order_payments_dataset.parquet
+2025-06-09 15:12:47,943 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-09 15:12:48,144 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-09 15:13:00,041 - data_ingestion - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-09 15:14:02,012 - data_ingestion - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-09/olist_order_reviews_dataset.parquet
+2025-06-09 15:14:02,796 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-09 15:14:02,847 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-09 15:14:07,652 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-09 15:14:12,027 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-09/olist_products_dataset.parquet
+2025-06-09 15:14:12,661 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-09 15:37:41,503 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-09 15:37:41,504 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-09 15:37:41,505 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-09 15:37:41,506 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-09 15:37:41,508 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-09 15:37:42,595 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-09 15:37:42,597 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-09 15:37:44,575 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-09 15:37:44,584 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-09 15:37:44,585 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-09 15:37:44,639 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-09 15:37:45,032 - data_ingestion - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-09 15:37:46,701 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-09/olist_sellers_dataset.parquet
+2025-06-09 15:37:47,294 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-09 15:37:47,305 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-09 15:37:47,312 - data_ingestion - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-09 15:37:47,929 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-09/product_category_name_translation.parquet
+2025-06-09 15:37:48,511 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-09 15:37:48,951 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-09 15:38:04,773 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 15:38:56,049 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-09/olist_orders_dataset.parquet
+2025-06-09 15:38:56,904 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-09 15:38:57,100 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-09 15:39:10,344 - data_ingestion - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-09 15:39:22,902 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-09/olist_order_items_dataset.parquet
+2025-06-09 15:39:23,684 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-09 15:39:23,826 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-09 15:39:32,156 - data_ingestion - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-09 15:39:38,005 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-09/olist_customers_dataset.parquet
+2025-06-09 15:39:38,740 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-09 15:39:40,523 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-09 15:41:10,416 - data_ingestion - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-09 15:42:09,986 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-09/olist_geolocation_dataset.parquet
+2025-06-09 15:42:11,825 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-09 15:42:12,012 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-09 15:42:21,118 - data_ingestion - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-09 15:42:26,470 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-09/olist_order_payments_dataset.parquet
+2025-06-09 15:42:27,225 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-09 15:42:27,475 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-09 15:42:40,234 - data_ingestion - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-09 15:42:46,441 - data_ingestion - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-09/olist_order_reviews_dataset.parquet
+2025-06-09 15:42:47,297 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-09 15:42:47,373 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-09 15:42:52,117 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-09 15:42:52,970 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-09/olist_products_dataset.parquet
+2025-06-09 15:42:53,615 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.

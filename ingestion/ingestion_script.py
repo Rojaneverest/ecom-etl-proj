@@ -313,17 +313,26 @@ def validate_record(record, dataset_name):
             ):
                 continue
 
-            # Validate timestamps
+            # In the validate_record function in your ingestion script
+
+# Validate timestamps
             if (
                 field.endswith("_timestamp")
                 or field.endswith("_date")
                 or field.endswith("_at")
             ):
                 try:
-                    # Use the new function to get a normalized value
+                    # Use the function to get a normalized value (datetime object or None)
                     normalized_value = validate_timestamp(str(value))
-                    # Update the record with the normalized value (datetime object or None)
-                    record[field] = normalized_value
+
+                    # --- THIS IS THE FIX ---
+                    # If the value is a datetime object, convert it back to an ISO 8601 string.
+                    # If it's None, it remains None, which Pandas handles correctly as a null.
+                    if isinstance(normalized_value, datetime):
+                        record[field] = normalized_value.isoformat()
+                    else:
+                        record[field] = None # Ensure empty/invalid values are explicitly None
+
                 except ValueError as e:
                     # The function will raise an error for invalid formats
                     return False, str(e)

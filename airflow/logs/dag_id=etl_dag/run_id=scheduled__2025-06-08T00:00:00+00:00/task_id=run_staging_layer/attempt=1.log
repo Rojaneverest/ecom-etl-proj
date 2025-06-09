@@ -272,3 +272,140 @@
 [2025-06-09T08:13:47.154+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=run_staging_layer, execution_date=20250608T000000, start_date=20250609T081325, end_date=20250609T081347
 [2025-06-09T08:13:47.212+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
 [2025-06-09T08:13:47.242+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-06-09T11:15:31.698+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.run_staging_layer scheduled__2025-06-08T00:00:00+00:00 [queued]>
+[2025-06-09T11:15:31.706+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.run_staging_layer scheduled__2025-06-08T00:00:00+00:00 [queued]>
+[2025-06-09T11:15:31.707+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-09T11:15:31.725+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_staging_layer> on 2025-06-08 00:00:00+00:00
+[2025-06-09T11:15:31.732+0000] {standard_task_runner.py:60} INFO - Started process 1251 to run task
+[2025-06-09T11:15:31.737+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'run_staging_layer', 'scheduled__2025-06-08T00:00:00+00:00', '--job-id', '98', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp_k3roovw']
+[2025-06-09T11:15:31.739+0000] {standard_task_runner.py:88} INFO - Job 98: Subtask run_staging_layer
+[2025-06-09T11:15:31.800+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_dag.run_staging_layer scheduled__2025-06-08T00:00:00+00:00 [running]> on host 2fcbbaba1dfb
+[2025-06-09T11:15:31.891+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='run_staging_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-08T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-08T00:00:00+00:00'
+[2025-06-09T11:15:31.892+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T11:15:31.893+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python staging_layer.py']
+[2025-06-09T11:15:31.900+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T11:15:33.195+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:33,193 - snowflake_elt_script - INFO - --- Starting Snowflake ELT Script ---
+[2025-06-09T11:15:33.203+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:33,194 - snowflake.connector.connection - INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-6.10.14-linuxkit-aarch64-with-glibc2.34
+[2025-06-09T11:15:33.205+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:33,194 - snowflake.connector.connection - INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-06-09T11:15:34.603+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,600 - snowflake_elt_script - INFO - Successfully connected to Snowflake.
+[2025-06-09T11:15:34.614+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,601 - snowflake_elt_script - INFO - Ensuring database 'ECOM_STG' and schema 'PUBLIC' exist...
+[2025-06-09T11:15:34.615+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,601 - snowflake.connector.cursor - INFO - query: [CREATE DATABASE IF NOT EXISTS ECOM_STG;]
+[2025-06-09T11:15:34.965+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,965 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:34.967+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,966 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:34.970+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,970 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:34.971+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:34,970 - snowflake.connector.cursor - INFO - query: [CREATE SCHEMA IF NOT EXISTS ECOM_STG.PUBLIC;]
+[2025-06-09T11:15:35.291+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,290 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:35.294+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,290 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:35.295+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,291 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:35.296+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,291 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_STG;]
+[2025-06-09T11:15:35.622+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,621 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:35.626+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,621 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:35.627+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,622 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:35.628+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,622 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC;]
+[2025-06-09T11:15:35.999+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:35,998 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:36.001+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,000 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:36.002+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,001 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:36.002+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,001 - snowflake_elt_script - INFO - Creating staging tables in the correct order...
+[2025-06-09T11:15:36.003+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,001 - snowflake_elt_script - INFO - Creating table: GEOLOCATION...
+[2025-06-09T11:15:36.004+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,001 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_GEOLOCATION ( GEOLOCATION_ID NUMBER ...]
+[2025-06-09T11:15:36.463+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,462 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:36.465+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,462 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:36.466+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,462 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:36.466+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,462 - snowflake_elt_script - INFO - Creating table: PRODUCT_CATEGORY_TRANSLATION...
+[2025-06-09T11:15:36.466+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,462 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_PRODUCT_CATEGORY_TRANSLATION ( PRODU...]
+[2025-06-09T11:15:36.882+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,881 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:36.884+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,881 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:36.885+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,881 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:36.885+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,881 - snowflake_elt_script - INFO - Creating table: PRODUCTS...
+[2025-06-09T11:15:36.885+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:36,882 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_PRODUCTS ( PRODUCT_ID VARCHAR NOT NU...]
+[2025-06-09T11:15:37.330+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,330 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:37.333+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,330 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:37.336+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,330 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:37.340+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,330 - snowflake_elt_script - INFO - Creating table: CUSTOMERS...
+[2025-06-09T11:15:37.340+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,331 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_CUSTOMERS ( CUSTOMER_ID VARCHAR NOT ...]
+[2025-06-09T11:15:37.751+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,750 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:37.763+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,754 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:37.777+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,755 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:37.782+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,757 - snowflake_elt_script - INFO - Creating table: SELLERS...
+[2025-06-09T11:15:37.790+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:37,757 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_SELLERS ( SELLER_ID VARCHAR NOT NULL...]
+[2025-06-09T11:15:38.200+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,198 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:38.205+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,199 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:38.206+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,199 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:38.206+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,199 - snowflake_elt_script - INFO - Creating table: ORDERS...
+[2025-06-09T11:15:38.206+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,199 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_ORDERS ( ORDER_ID VARCHAR NOT NULL P...]
+[2025-06-09T11:15:38.657+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,655 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:38.662+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,655 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:38.662+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,656 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:38.662+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,656 - snowflake_elt_script - INFO - Creating table: ORDER_ITEMS...
+[2025-06-09T11:15:38.662+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:38,656 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_ORDER_ITEMS ( ORDER_ID VARCHAR NOT N...]
+[2025-06-09T11:15:39.280+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,274 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:39.290+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,278 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:39.290+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,280 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:39.291+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,280 - snowflake_elt_script - INFO - Creating table: ORDER_PAYMENTS...
+[2025-06-09T11:15:39.292+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,281 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_ORDER_PAYMENTS ( ORDER_ID VARCHAR NO...]
+[2025-06-09T11:15:39.723+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,722 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:39.723+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,723 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:39.723+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,723 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:39.724+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,723 - snowflake_elt_script - INFO - Creating table: ORDER_REVIEWS...
+[2025-06-09T11:15:39.724+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:39,723 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TABLE ECOM_STG.PUBLIC.STG_ORDER_REVIEWS ( REVIEW_ID VARCHAR NO...]
+[2025-06-09T11:15:40.170+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,169 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:40.172+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,170 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:40.172+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,170 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:40.172+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,170 - snowflake_elt_script - INFO - --- Starting Data Transformation and Loading ---
+[2025-06-09T11:15:40.172+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,170 - snowflake_elt_script - INFO - Transforming and loading GEOLOCATION...
+[2025-06-09T11:15:40.172+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:40,170 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_GEOLOCATION (GEOLOCATION_ZIP_CODE_PREFIX, GEOLOC...]
+[2025-06-09T11:15:42.033+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,032 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:42.036+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,033 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:42.037+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,033 - snowflake_elt_script - INFO - Transforming and loading PRODUCT_CATEGORY_TRANSLATION...
+[2025-06-09T11:15:42.037+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,033 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_PRODUCT_CATEGORY_TRANSLATION SELECT PRODUCT_CATE...]
+[2025-06-09T11:15:42.693+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,693 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:42.694+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,693 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:42.694+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,693 - snowflake_elt_script - INFO - Transforming and loading PRODUCTS with null handling and category translation...
+[2025-06-09T11:15:42.694+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:42,693 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_PRODUCTS WITH product_means AS ( SELECT AVG(PROD...]
+[2025-06-09T11:15:43.670+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:43,670 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:43.673+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:43,670 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:43.673+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:43,670 - snowflake_elt_script - INFO - Creating temporary geolocation map...
+[2025-06-09T11:15:43.674+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:43,671 - snowflake.connector.cursor - INFO - query: [CREATE OR REPLACE TEMPORARY TABLE geolocation_map AS SELECT GEOLOCATION_ZIP_CODE...]
+[2025-06-09T11:15:44.588+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:44,586 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:44.594+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:44,588 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:15:44.595+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:44,588 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:44.595+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:44,588 - snowflake_elt_script - INFO - Creating fallback geolocation record...
+[2025-06-09T11:15:44.595+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:44,588 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_GEOLOCATION (GEOLOCATION_ZIP_CODE_PREFIX, GEOLOC...]
+[2025-06-09T11:15:45.300+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:45,300 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:45.302+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:45,300 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:45.302+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:45,301 - snowflake.connector.cursor - INFO - query: [INSERT INTO geolocation_map SELECT -1, GEOLOCATION_ID FROM ECOM_STG.PUBLIC.STG_G...]
+[2025-06-09T11:15:46.029+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:46,028 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:46.030+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:46,029 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:46.031+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:46,029 - snowflake_elt_script - INFO - Transforming and loading CUSTOMERS with NULL handling...
+[2025-06-09T11:15:46.031+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:46,029 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_CUSTOMERS SELECT c.CUSTOMER_ID, c.CUSTOMER_UNIQU...]
+[2025-06-09T11:15:47.358+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:47,357 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:47.361+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:47,358 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:47.361+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:47,358 - snowflake_elt_script - INFO - Transforming and loading SELLERS with NULL handling...
+[2025-06-09T11:15:47.361+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:47,359 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_SELLERS SELECT s.SELLER_ID, s.SELLER_ZIP_CODE_PR...]
+[2025-06-09T11:15:48.394+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:48,392 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:48.399+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:48,394 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:48.399+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:48,394 - snowflake_elt_script - INFO - Transforming and loading ORDERS with NULL timestamp handling...
+[2025-06-09T11:15:48.399+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:48,395 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_ORDERS SELECT ORDER_ID, CUSTOMER_ID, ORDER_STATU...]
+[2025-06-09T11:15:49.609+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:49,609 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:49.611+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:49,609 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:49.611+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:49,609 - snowflake_elt_script - INFO - Transforming and loading ORDER_ITEMS...
+[2025-06-09T11:15:49.612+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:49,610 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_ORDER_ITEMS SELECT ORDER_ID, ORDER_ITEM_ID, PROD...]
+[2025-06-09T11:15:50.693+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:50,691 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:50.698+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:50,691 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:50.698+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:50,691 - snowflake_elt_script - INFO - Transforming and loading ORDER_PAYMENTS...
+[2025-06-09T11:15:50.698+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:50,691 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_ORDER_PAYMENTS SELECT ORDER_ID, PAYMENT_SEQUENTI...]
+[2025-06-09T11:15:51.653+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:51,653 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:51.655+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:51,653 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:51.655+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:51,653 - snowflake_elt_script - INFO - Transforming and loading ORDER_REVIEWS with null handling for comments...
+[2025-06-09T11:15:51.655+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:51,654 - snowflake.connector.cursor - INFO - query: [INSERT INTO ECOM_STG.PUBLIC.STG_ORDER_REVIEWS SELECT REVIEW_ID, ORDER_ID, REVIEW...]
+[2025-06-09T11:15:53.002+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:52,999 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:15:53.007+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,002 - snowflake_elt_script - INFO - Query executed successfully.
+[2025-06-09T11:15:53.008+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,002 - snowflake_elt_script - INFO - --- Data Transformation and Loading Finished ---
+[2025-06-09T11:15:53.008+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,002 - snowflake.connector.connection - INFO - closed
+[2025-06-09T11:15:53.393+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,393 - snowflake.connector.connection - INFO - No async queries seem to be running, deleting session
+[2025-06-09T11:15:53.697+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,694 - snowflake_elt_script - INFO - Snowflake connection closed.
+[2025-06-09T11:15:53.700+0000] {subprocess.py:93} INFO - 2025-06-09 11:15:53,694 - snowflake_elt_script - INFO - --- Snowflake ELT Script Finished Successfully ---
+[2025-06-09T11:15:53.992+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T11:15:54.081+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=run_staging_layer, execution_date=20250608T000000, start_date=20250609T111531, end_date=20250609T111554
+[2025-06-09T11:15:54.157+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T11:15:54.219+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

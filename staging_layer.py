@@ -283,7 +283,7 @@ def transform_and_load_data(conn):
         CROSS JOIN (SELECT GEOLOCATION_ID FROM geolocation_map WHERE GEOLOCATION_ZIP_CODE_PREFIX = -1) fallback;
     """)
 
-    # Orders (handle NULL timestamp values)
+    # Orders (handle NULL timestamp values for ALL timestamp columns)
     logger.info("Transforming and loading ORDERS with NULL timestamp handling...")
     execute_query(conn, f"""
         INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDERS
@@ -291,16 +291,17 @@ def transform_and_load_data(conn):
             ORDER_ID,
             CUSTOMER_ID,
             ORDER_STATUS,
-            ORDER_PURCHASE_TIMESTAMP,
+            -- Apply COALESCE to all timestamp columns that are NOT NULL in the DWH
+            COALESCE(ORDER_PURCHASE_TIMESTAMP, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_PURCHASE_TIMESTAMP,
             COALESCE(ORDER_APPROVED_AT, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_APPROVED_AT,
             COALESCE(ORDER_DELIVERED_CARRIER_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_DELIVERED_CARRIER_DATE,
             COALESCE(ORDER_DELIVERED_CUSTOMER_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_DELIVERED_CUSTOMER_DATE,
-            ORDER_ESTIMATED_DELIVERY_DATE
+            COALESCE(ORDER_ESTIMATED_DELIVERY_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS ORDER_ESTIMATED_DELIVERY_DATE
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDERS;
     """)
-    
+
     # Dependent tables
-    logger.info("Transforming and loading ORDER_ITEMS...")
+    logger.info("Transforming and loading ORDER_ITEMS with NULL timestamp handling...")
     execute_query(conn, f"""
         INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDER_ITEMS
         SELECT
@@ -308,7 +309,7 @@ def transform_and_load_data(conn):
             ORDER_ITEM_ID,
             PRODUCT_ID,
             SELLER_ID,
-            SHIPPING_LIMIT_DATE,
+            COALESCE(SHIPPING_LIMIT_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS SHIPPING_LIMIT_DATE,
             PRICE,
             FREIGHT_VALUE
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_ITEMS;
@@ -326,8 +327,8 @@ def transform_and_load_data(conn):
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_PAYMENTS;
     """)
 
-    # Order Reviews: Handle nulls for comments
-    logger.info("Transforming and loading ORDER_REVIEWS with null handling for comments...")
+    # Order Reviews: Handle nulls for comments and timestamps
+    logger.info("Transforming and loading ORDER_REVIEWS with null handling for comments and timestamps...")
     execute_query(conn, f"""
         INSERT INTO {STG_DB}.{STG_SCHEMA}.STG_ORDER_REVIEWS
         SELECT
@@ -336,10 +337,10 @@ def transform_and_load_data(conn):
             REVIEW_SCORE,
             NVL(REVIEW_COMMENT_TITLE, 'None') AS REVIEW_COMMENT_TITLE,
             NVL(REVIEW_COMMENT_MESSAGE, 'None') AS REVIEW_COMMENT_MESSAGE,
-            REVIEW_CREATION_DATE,
-            REVIEW_ANSWER_TIMESTAMP
+            COALESCE(REVIEW_CREATION_DATE, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS REVIEW_CREATION_DATE,
+            COALESCE(REVIEW_ANSWER_TIMESTAMP, '1900-01-01 00:00:00'::TIMESTAMP_NTZ) AS REVIEW_ANSWER_TIMESTAMP
         FROM {SOURCE_DB}.PUBLIC.ODS_ORDER_REVIEWS
-        QUALIFY ROW_NUMBER() OVER(PARTITION BY REVIEW_ID ORDER BY REVIEW_CREATION_DATE DESC) = 1;
+        QUALIFY ROW_NUMBER() OVER(PARTITION BY REVIEW_ID ORDER BY REVIEW_CREATION_DATE DESC NULLS LAST) = 1;
     """)
 
     logger.info("--- Data Transformation and Loading Finished ---")

@@ -1,0 +1,70 @@
+[2025-06-09T11:14:30.938+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.run_ods_layer manual__2025-06-09T11:14:26.242012+00:00 [queued]>
+[2025-06-09T11:14:30.990+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.run_ods_layer manual__2025-06-09T11:14:26.242012+00:00 [queued]>
+[2025-06-09T11:14:30.991+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-09T11:14:31.058+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_ods_layer> on 2025-06-09 11:14:26.242012+00:00
+[2025-06-09T11:14:31.087+0000] {standard_task_runner.py:60} INFO - Started process 1214 to run task
+[2025-06-09T11:14:31.099+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'run_ods_layer', 'manual__2025-06-09T11:14:26.242012+00:00', '--job-id', '96', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp4swdxz5q']
+[2025-06-09T11:14:31.107+0000] {standard_task_runner.py:88} INFO - Job 96: Subtask run_ods_layer
+[2025-06-09T11:14:31.403+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_dag.run_ods_layer manual__2025-06-09T11:14:26.242012+00:00 [running]> on host 2fcbbaba1dfb
+[2025-06-09T11:14:31.695+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='run_ods_layer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T11:14:26.242012+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-09T11:14:26.242012+00:00'
+[2025-06-09T11:14:31.706+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T11:14:31.715+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python ods_layer.py']
+[2025-06-09T11:14:31.754+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T11:14:34.287+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:34,248 - ods_snowflake_copy_script - INFO - --- Starting Optimized ODS Ingestion Script for Snowflake (COPY INTO) ---
+[2025-06-09T11:14:34.791+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:34,791 - snowflake.connector.connection - INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-6.10.14-linuxkit-aarch64-with-glibc2.34
+[2025-06-09T11:14:34.796+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:34,794 - snowflake.connector.connection - INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2025-06-09T11:14:36.345+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,343 - ods_snowflake_copy_script - INFO - Successfully connected to Snowflake.
+[2025-06-09T11:14:36.353+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,344 - ods_snowflake_copy_script - INFO - Creating ECOM_ODS database if it doesn't exist...
+[2025-06-09T11:14:36.353+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,344 - snowflake.connector.cursor - INFO - query: [CREATE DATABASE IF NOT EXISTS ECOM_ODS]
+[2025-06-09T11:14:36.698+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,698 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:36.699+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,699 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:36.700+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:36,699 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-09T11:14:37.053+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,053 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:37.055+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,053 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:37.056+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,054 - ods_snowflake_copy_script - INFO - Creating PUBLIC schema if it doesn't exist...
+[2025-06-09T11:14:37.056+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,054 - snowflake.connector.cursor - INFO - query: [CREATE SCHEMA IF NOT EXISTS PUBLIC]
+[2025-06-09T11:14:37.420+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,419 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:37.420+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,420 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:37.421+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,420 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-09T11:14:37.749+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,749 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:37.750+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,749 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:37.750+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,749 - ods_snowflake_copy_script - INFO - Database and schema setup completed successfully.
+[2025-06-09T11:14:37.750+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:37,749 - snowflake.connector.cursor - INFO - query: [USE DATABASE ECOM_ODS]
+[2025-06-09T11:14:38.135+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,135 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:38.138+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,135 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:38.139+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,135 - snowflake.connector.cursor - INFO - query: [USE SCHEMA PUBLIC]
+[2025-06-09T11:14:38.445+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,445 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:38.446+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,445 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:38.446+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,445 - ods_snowflake_copy_script - INFO - Creating external stage 'S3_RAW_DATA_STAGE'...
+[2025-06-09T11:14:38.446+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,445 - snowflake.connector.cursor - INFO - query: [DROP STAGE IF EXISTS S3_RAW_DATA_STAGE]
+[2025-06-09T11:14:38.854+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,853 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:38.856+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,854 - snowflake.connector.cursor - INFO - Number of results in first chunk: 1
+[2025-06-09T11:14:38.857+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:38,854 - snowflake.connector.cursor - INFO - query: [CREATE STAGE S3_RAW_DATA_STAGE URL = 's3://rj-ecom-etl/' CREDENTIALS = ( AWS_KEY...]
+[2025-06-09T11:14:39.261+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,260 - snowflake.connector.cursor - INFO - query execution done
+[2025-06-09T11:14:39.272+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,271 - ods_snowflake_copy_script - ERROR - Error creating external stage: 002002 (42710): 01bce9a2-0000-2084-0000-0017048bb6bd: SQL compilation error:
+[2025-06-09T11:14:39.273+0000] {subprocess.py:93} INFO - Object 'S3_RAW_DATA_STAGE' already exists.
+[2025-06-09T11:14:39.274+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,272 - ods_snowflake_copy_script - ERROR - An error occurred in the main process: 002002 (42710): 01bce9a2-0000-2084-0000-0017048bb6bd: SQL compilation error:
+[2025-06-09T11:14:39.274+0000] {subprocess.py:93} INFO - Object 'S3_RAW_DATA_STAGE' already exists.
+[2025-06-09T11:14:39.274+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,272 - snowflake.connector.connection - INFO - closed
+[2025-06-09T11:14:39.565+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,565 - snowflake.connector.connection - INFO - No async queries seem to be running, deleting session
+[2025-06-09T11:14:39.885+0000] {subprocess.py:93} INFO - 2025-06-09 11:14:39,884 - ods_snowflake_copy_script - INFO - Snowflake connection closed.
+[2025-06-09T11:14:39.887+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-06-09T11:14:39.888+0000] {subprocess.py:93} INFO -   File "ods_layer.py", line 444, in <module>
+[2025-06-09T11:14:39.888+0000] {subprocess.py:93} INFO -     main()
+[2025-06-09T11:14:39.889+0000] {subprocess.py:93} INFO -   File "ods_layer.py", line 388, in main
+[2025-06-09T11:14:39.889+0000] {subprocess.py:93} INFO -     create_external_stage(conn)
+[2025-06-09T11:14:39.889+0000] {subprocess.py:93} INFO -   File "ods_layer.py", line 246, in create_external_stage
+[2025-06-09T11:14:39.889+0000] {subprocess.py:93} INFO -     cursor.execute(stage_sql)
+[2025-06-09T11:14:39.890+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/snowflake/connector/cursor.py", line 1132, in execute
+[2025-06-09T11:14:39.891+0000] {subprocess.py:93} INFO -     Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+[2025-06-09T11:14:39.891+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+[2025-06-09T11:14:39.892+0000] {subprocess.py:93} INFO -     handed_over = Error.hand_to_other_handler(
+[2025-06-09T11:14:39.892+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 345, in hand_to_other_handler
+[2025-06-09T11:14:39.892+0000] {subprocess.py:93} INFO -     cursor.errorhandler(connection, cursor, error_class, error_value)
+[2025-06-09T11:14:39.893+0000] {subprocess.py:93} INFO -   File "/home/***/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+[2025-06-09T11:14:39.893+0000] {subprocess.py:93} INFO -     raise error_class(
+[2025-06-09T11:14:39.894+0000] {subprocess.py:93} INFO - snowflake.connector.errors.ProgrammingError: 002002 (42710): 01bce9a2-0000-2084-0000-0017048bb6bd: SQL compilation error:
+[2025-06-09T11:14:39.894+0000] {subprocess.py:93} INFO - Object 'S3_RAW_DATA_STAGE' already exists.
+[2025-06-09T11:14:40.286+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-06-09T11:14:40.432+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T11:14:40.495+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,80 @@
+[2025-06-09T17:00:03.882+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T16:59:00+00:00 [queued]>
+[2025-06-09T17:00:03.891+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T16:59:00+00:00 [queued]>
+[2025-06-09T17:00:03.893+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T17:00:03.901+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_producer> on 2025-06-09 16:59:00+00:00
+[2025-06-09T17:00:03.911+0000] {standard_task_runner.py:60} INFO - Started process 5339 to run task
+[2025-06-09T17:00:03.924+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_producer', 'scheduled__2025-06-09T16:59:00+00:00', '--job-id', '589', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpu7ecwu13']
+[2025-06-09T17:00:03.927+0000] {standard_task_runner.py:88} INFO - Job 589: Subtask run_kafka_producer
+[2025-06-09T17:00:03.993+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T16:59:00+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T17:00:04.058+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_producer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T16:59:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T16:59:00+00:00'
+[2025-06-09T17:00:04.060+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T17:00:04.062+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /app/kafka_scripts/producer.py']
+[2025-06-09T17:00:04.072+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T17:17:09.783+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Producer
+[2025-06-09T17:17:09.799+0000] {subprocess.py:93} INFO - 🔗 Kafka Bootstrap Servers: kafka:29092
+[2025-06-09T17:17:09.799+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka producer with bootstrap servers: kafka:29092
+[2025-06-09T17:17:09.800+0000] {subprocess.py:93} INFO - ⚠️ Error creating topics: [Error 36] TopicAlreadyExistsError: Request 'CreateTopicsRequest_v3(create_topic_requests=[(topic='ecommerce.product.views', num_partitions=3, replication_factor=1, replica_assignment=[], configs=[]), (topic='ecommerce.cart.add', num_partitions=3, replication_factor=1, replica_assignment=[], configs=[]), (topic='ecommerce.wishlist.add', num_partitions=3, replication_factor=1, replica_assignment=[], configs=[]), (topic='ecommerce.orders.completed', num_partitions=3, replication_factor=1, replica_assignment=[], configs=[])], timeout=30000, validate_only=False)' failed with response 'CreateTopicsResponse_v3(throttle_time_ms=0, topic_errors=[(topic='ecommerce.product.views', error_code=36, error_message="Topic 'ecommerce.product.views' already exists."), (topic='ecommerce.cart.add', error_code=36, error_message="Topic 'ecommerce.cart.add' already exists."), (topic='ecommerce.wishlist.add', error_code=36, error_message="Topic 'ecommerce.wishlist.add' already exists."), (topic='ecommerce.orders.completed', error_code=36, error_message="Topic 'ecommerce.orders.completed' already exists.")])'.
+[2025-06-09T17:17:09.801+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T17:17:09.809+0000] {subprocess.py:93} INFO - 🚀 Starting traffic simulation for 60 seconds at 5 events/second
+[2025-06-09T17:17:09.810+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14687)
+[2025-06-09T17:17:09.811+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14688)
+[2025-06-09T17:17:09.811+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14689)
+[2025-06-09T17:17:09.812+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.wishlist.add: add_to_wishlist (partition: 0, offset: 1603)
+[2025-06-09T17:17:09.813+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14690)
+[2025-06-09T17:17:09.814+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14691)
+[2025-06-09T17:17:09.816+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14692)
+[2025-06-09T17:17:09.818+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14693)
+[2025-06-09T17:17:09.819+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4196)
+[2025-06-09T17:17:09.823+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14694)
+[2025-06-09T17:17:09.824+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14695)
+[2025-06-09T17:17:09.825+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14696)
+[2025-06-09T17:17:09.826+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4197)
+[2025-06-09T17:17:09.829+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14697)
+[2025-06-09T17:17:09.833+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4198)
+[2025-06-09T17:17:09.835+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4199)
+[2025-06-09T17:17:09.836+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14698)
+[2025-06-09T17:17:09.839+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14699)
+[2025-06-09T17:17:09.841+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.orders.completed: order_completed (partition: 0, offset: 394)
+[2025-06-09T17:17:09.844+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14700)
+[2025-06-09T17:17:09.845+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14701)
+[2025-06-09T17:17:09.845+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4200)
+[2025-06-09T17:17:09.848+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.orders.completed: order_completed (partition: 0, offset: 395)
+[2025-06-09T17:17:09.853+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14702)
+[2025-06-09T17:17:09.854+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14703)
+[2025-06-09T17:17:09.854+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14704)
+[2025-06-09T17:17:09.855+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14705)
+[2025-06-09T17:17:09.855+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14706)
+[2025-06-09T17:17:09.855+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4201)
+[2025-06-09T17:17:09.855+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14707)
+[2025-06-09T17:17:09.856+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14708)
+[2025-06-09T17:17:09.856+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14709)
+[2025-06-09T17:17:09.856+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4202)
+[2025-06-09T17:17:09.857+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.wishlist.add: add_to_wishlist (partition: 0, offset: 1604)
+[2025-06-09T17:17:09.857+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14710)
+[2025-06-09T17:17:09.857+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14711)
+[2025-06-09T17:17:09.857+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.cart.add: add_to_cart (partition: 0, offset: 4203)
+[2025-06-09T17:17:09.858+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14712)
+[2025-06-09T17:17:09.858+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14713)
+[2025-06-09T17:17:09.858+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14714)
+[2025-06-09T17:17:09.859+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14715)
+[2025-06-09T17:17:09.859+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14716)
+[2025-06-09T17:17:09.859+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14717)
+[2025-06-09T17:17:09.861+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14718)
+[2025-06-09T17:17:09.861+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14719)
+[2025-06-09T17:17:09.861+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14720)
+[2025-06-09T17:17:09.861+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14721)
+[2025-06-09T17:17:09.862+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14722)
+[2025-06-09T17:17:09.863+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14723)
+[2025-06-09T17:17:09.864+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.wishlist.add: add_to_wishlist (partition: 0, offset: 1605)
+[2025-06-09T17:17:09.865+0000] {subprocess.py:93} INFO - 📊 Progress: 10s elapsed, 50 events sent (5.0 events/sec)
+[2025-06-09T17:17:09.869+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14724)
+[2025-06-09T17:17:09.871+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14725)
+[2025-06-09T17:17:09.872+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14726)
+[2025-06-09T17:17:09.872+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.wishlist.add: add_to_wishlist (partition: 0, offset: 1606)
+[2025-06-09T17:17:09.872+0000] {subprocess.py:93} INFO - ✅ Sent to ecommerce.product.views: product_view (partition: 0, offset: 14727)
+[2025-06-09T17:17:09.873+0000] {subprocess.py:93} INFO - 🏁 Simulation completed: 55 events in 1025.4 seconds (0.1 events/sec)
+[2025-06-09T17:17:09.873+0000] {subprocess.py:93} INFO - ✅ Producer closed successfully
+[2025-06-09T17:17:09.971+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T17:17:10.123+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_producer, execution_date=20250609T165900, start_date=20250609T170003, end_date=20250609T171710
+[2025-06-09T17:17:10.226+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T17:17:10.392+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

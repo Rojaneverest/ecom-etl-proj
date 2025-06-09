@@ -1,0 +1,24 @@
+[2025-06-09T15:44:05.888+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.check_services_health scheduled__2025-06-09T15:43:00+00:00 [queued]>
+[2025-06-09T15:44:05.895+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.check_services_health scheduled__2025-06-09T15:43:00+00:00 [queued]>
+[2025-06-09T15:44:05.895+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T15:44:05.901+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): check_services_health> on 2025-06-09 15:43:00+00:00
+[2025-06-09T15:44:05.904+0000] {standard_task_runner.py:60} INFO - Started process 2295 to run task
+[2025-06-09T15:44:05.907+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'check_services_health', 'scheduled__2025-06-09T15:43:00+00:00', '--job-id', '306', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpk1nqt92e']
+[2025-06-09T15:44:05.908+0000] {standard_task_runner.py:88} INFO - Job 306: Subtask check_services_health
+[2025-06-09T15:44:05.941+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.check_services_health scheduled__2025-06-09T15:43:00+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T15:44:05.981+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='check_services_health' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T15:43:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T15:43:00+00:00'
+[2025-06-09T15:44:05.982+0000] {kafka_data_pipeline.py:55} INFO - 🔍 Checking service health...
+[2025-06-09T15:44:05.983+0000] {kafka_data_pipeline.py:61} INFO - ✅ Redis is reachable at redis:6379
+[2025-06-09T15:44:05.986+0000] {conn.py:396} INFO - <BrokerConnection client_id=airflow_health_check, node_id=bootstrap-0 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T15:44:05.998+0000] {conn.py:618} INFO - <BrokerConnection client_id=airflow_health_check, node_id=bootstrap-0 host=kafka:29092 <checking_api_versions_recv> [IPv4 ('172.18.0.5', 29092)]>: Broker version identified as 2.6
+[2025-06-09T15:44:05.998+0000] {conn.py:457} INFO - <BrokerConnection client_id=airflow_health_check, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T15:44:06.003+0000] {conn.py:396} INFO - <BrokerConnection client_id=airflow_health_check, node_id=1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T15:44:06.003+0000] {conn.py:457} INFO - <BrokerConnection client_id=airflow_health_check, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T15:44:06.004+0000] {conn.py:945} INFO - <BrokerConnection client_id=airflow_health_check, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection. 
+[2025-06-09T15:44:06.011+0000] {kafka_data_pipeline.py:80} INFO - ✅ Kafka is reachable at kafka:29092
+[2025-06-09T15:44:06.012+0000] {conn.py:945} INFO - <BrokerConnection client_id=airflow_health_check, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection. 
+[2025-06-09T15:44:06.013+0000] {kafka_data_pipeline.py:91} INFO - ℹ️ KafkaAdminClient closed.
+[2025-06-09T15:44:06.013+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-06-09T15:44:06.025+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=check_services_health, execution_date=20250609T154300, start_date=20250609T154405, end_date=20250609T154406
+[2025-06-09T15:44:06.047+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T15:44:06.079+0000] {taskinstance.py:3280} INFO - 2 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,29 @@
+[2025-06-09T15:37:19.163+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: drop_all_dag.drop_ods manual__2025-06-09T15:37:17.396467+00:00 [queued]>
+[2025-06-09T15:37:19.169+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: drop_all_dag.drop_ods manual__2025-06-09T15:37:17.396467+00:00 [queued]>
+[2025-06-09T15:37:19.170+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-09T15:37:19.178+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): drop_ods> on 2025-06-09 15:37:17.396467+00:00
+[2025-06-09T15:37:19.182+0000] {standard_task_runner.py:60} INFO - Started process 1880 to run task
+[2025-06-09T15:37:19.190+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'drop_all_dag', 'drop_ods', 'manual__2025-06-09T15:37:17.396467+00:00', '--job-id', '269', '--raw', '--subdir', 'DAGS_FOLDER/drop_all_dag.py', '--cfg-path', '/tmp/tmpffg1dgn7']
+[2025-06-09T15:37:19.192+0000] {standard_task_runner.py:88} INFO - Job 269: Subtask drop_ods
+[2025-06-09T15:37:19.236+0000] {task_command.py:423} INFO - Running <TaskInstance: drop_all_dag.drop_ods manual__2025-06-09T15:37:17.396467+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T15:37:19.292+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='drop_all_dag' AIRFLOW_CTX_TASK_ID='drop_ods' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T15:37:17.396467+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-09T15:37:17.396467+00:00'
+[2025-06-09T15:37:19.294+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T15:37:19.295+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python drop_ods.py']
+[2025-06-09T15:37:19.303+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T15:37:26.422+0000] {subprocess.py:93} INFO - 📍 Connected to ECOM_ODS.PUBLIC schema
+[2025-06-09T15:37:26.428+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_GEOLOCATION' dropped successfully.
+[2025-06-09T15:37:26.429+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_CUSTOMERS' dropped successfully.
+[2025-06-09T15:37:26.429+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_SELLERS' dropped successfully.
+[2025-06-09T15:37:26.429+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_ORDERS' dropped successfully.
+[2025-06-09T15:37:26.430+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_PRODUCTS' dropped successfully.
+[2025-06-09T15:37:26.430+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_ORDER_ITEMS' dropped successfully.
+[2025-06-09T15:37:26.430+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_ORDER_PAYMENTS' dropped successfully.
+[2025-06-09T15:37:26.431+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_ORDER_REVIEWS' dropped successfully.
+[2025-06-09T15:37:26.431+0000] {subprocess.py:93} INFO - ✅ Table 'ODS_PRODUCT_CATEGORY_TRANSLATION' dropped successfully.
+[2025-06-09T15:37:26.431+0000] {subprocess.py:93} INFO - 
+[2025-06-09T15:37:26.432+0000] {subprocess.py:93} INFO - 🎯 Summary: 9/9 tables dropped successfully.
+[2025-06-09T15:37:26.432+0000] {subprocess.py:93} INFO - 🔌 Connection closed.
+[2025-06-09T15:37:26.572+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T15:37:26.614+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=drop_all_dag, task_id=drop_ods, execution_date=20250609T153717, start_date=20250609T153719, end_date=20250609T153726
+[2025-06-09T15:37:26.653+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T15:37:26.691+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

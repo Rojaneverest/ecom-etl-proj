@@ -1,0 +1,18 @@
+[2025-06-09T16:29:17.935+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T16:27:00+00:00 [queued]>
+[2025-06-09T16:29:17.940+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T16:27:00+00:00 [queued]>
+[2025-06-09T16:29:17.940+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T16:29:17.945+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): verify_pipeline_results> on 2025-06-09 16:27:00+00:00
+[2025-06-09T16:29:17.951+0000] {standard_task_runner.py:60} INFO - Started process 4744 to run task
+[2025-06-09T16:29:17.956+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'verify_pipeline_results', 'scheduled__2025-06-09T16:27:00+00:00', '--job-id', '525', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpgkx07y0z']
+[2025-06-09T16:29:17.958+0000] {standard_task_runner.py:88} INFO - Job 525: Subtask verify_pipeline_results
+[2025-06-09T16:29:17.992+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T16:27:00+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T16:29:18.033+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='verify_pipeline_results' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T16:27:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T16:27:00+00:00'
+[2025-06-09T16:29:18.033+0000] {kafka_data_pipeline.py:133} INFO - ✅ Verifying pipeline results in Redis...
+[2025-06-09T16:29:18.035+0000] {kafka_data_pipeline.py:140} INFO - 📈 Total Views in Redis: 13259
+[2025-06-09T16:29:18.035+0000] {kafka_data_pipeline.py:145} INFO - 💰 Total Revenue in Redis: $970,713.08
+[2025-06-09T16:29:18.036+0000] {kafka_data_pipeline.py:154} WARNING - No minutely aggregation keys found in Redis.
+[2025-06-09T16:29:18.036+0000] {kafka_data_pipeline.py:160} INFO - 🧾 Found 100 recent orders and 100 recent views.
+[2025-06-09T16:29:18.036+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-06-09T16:29:18.041+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=verify_pipeline_results, execution_date=20250609T162700, start_date=20250609T162917, end_date=20250609T162918
+[2025-06-09T16:29:18.055+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T16:29:18.067+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

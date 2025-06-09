@@ -1,0 +1,17 @@
+[2025-06-09T16:26:32.937+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.wait_for_producer_data scheduled__2025-06-09T16:24:00+00:00 [queued]>
+[2025-06-09T16:26:32.945+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.wait_for_producer_data scheduled__2025-06-09T16:24:00+00:00 [queued]>
+[2025-06-09T16:26:32.945+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T16:26:32.960+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): wait_for_producer_data> on 2025-06-09 16:24:00+00:00
+[2025-06-09T16:26:32.971+0000] {standard_task_runner.py:60} INFO - Started process 4606 to run task
+[2025-06-09T16:26:32.981+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'wait_for_producer_data', 'scheduled__2025-06-09T16:24:00+00:00', '--job-id', '512', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmph8a7qpdz']
+[2025-06-09T16:26:32.984+0000] {standard_task_runner.py:88} INFO - Job 512: Subtask wait_for_producer_data
+[2025-06-09T16:26:33.044+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.wait_for_producer_data scheduled__2025-06-09T16:24:00+00:00 [running]> on host ed7c78a1ebb0
+[2025-06-09T16:26:33.118+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='wait_for_producer_data' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T16:24:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T16:24:00+00:00'
+[2025-06-09T16:26:33.120+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T16:26:33.121+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'echo "Waiting for producer to generate data..."; sleep 10;']
+[2025-06-09T16:26:33.128+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T16:26:33.139+0000] {subprocess.py:93} INFO - Waiting for producer to generate data...
+[2025-06-09T16:26:43.143+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T16:26:43.216+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=wait_for_producer_data, execution_date=20250609T162400, start_date=20250609T162632, end_date=20250609T162643
+[2025-06-09T16:26:43.270+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T16:26:43.316+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
