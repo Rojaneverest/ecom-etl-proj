@@ -1,0 +1,25 @@
+[2025-06-09T10:22:07.298+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T10:18:00+00:00 [queued]>
+[2025-06-09T10:22:07.303+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T10:18:00+00:00 [queued]>
+[2025-06-09T10:22:07.303+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2025-06-09T10:22:07.309+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_producer> on 2025-06-09 10:18:00+00:00
+[2025-06-09T10:22:07.312+0000] {standard_task_runner.py:60} INFO - Started process 202 to run task
+[2025-06-09T10:22:07.314+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_producer', 'scheduled__2025-06-09T10:18:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpo50hiwqz']
+[2025-06-09T10:22:07.315+0000] {standard_task_runner.py:88} INFO - Job 7: Subtask run_kafka_producer
+[2025-06-09T10:22:07.342+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T10:18:00+00:00 [running]> on host a0ec9d43225f
+[2025-06-09T10:22:07.380+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_producer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T10:18:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T10:18:00+00:00'
+[2025-06-09T10:22:07.381+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T10:22:07.382+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /app/producer.py']
+[2025-06-09T10:22:07.388+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T10:22:07.402+0000] {subprocess.py:93} INFO - python: can't open file '/app/producer.py': [Errno 2] No such file or directory
+[2025-06-09T10:22:07.403+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-06-09T10:22:07.411+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 428, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-06-09T10:22:07.412+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_producer, execution_date=20250609T101800, start_date=20250609T102207, end_date=20250609T102207
+[2025-06-09T10:22:07.418+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 7 for task run_kafka_producer (Bash command failed. The command returned a non-zero exit code 2.; 202)
+[2025-06-09T10:22:07.454+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-06-09T10:22:07.469+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

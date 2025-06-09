@@ -102,6 +102,7 @@ x-airflow-common:
     - ./airflow/plugins:/opt/airflow/plugins
     - ./ingestion:/opt/airflow/ingestion
     - ./data:/opt/airflow/data
+    - ./kafka_scripts:/app/kafka_scripts
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -372,6 +373,39 @@ services:
       # SPRING_SECURITY_USER_PASSWORD: admin
     restart: always
 
+  consumer-service:
+    build:
+      context: .
+      dockerfile: kafka_scripts/Dockerfile.consumer # Assuming this path for the new Dockerfile
+    container_name: kafka-ecommerce-consumer
+    restart: unless-stopped # Ensure it always restarts
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      KAFKA_TOPIC_PRODUCT_VIEWS: ecommerce.product.views
+      KAFKA_TOPIC_CART_ADD: ecommerce.cart.add
+      KAFKA_TOPIC_WISHLIST_ADD: ecommerce.wishlist.add
+      KAFKA_TOPIC_ORDERS: ecommerce.orders.completed
+      KAFKA_GROUP_ID: ecommerce-analytics-service # Use a consistent group ID for the service
+      LOG_LEVEL: INFO # Or DEBUG for more verbosity
+      RESET_KAFKA_OFFSETS: "false" # Set to "true" to reset on startup
+    volumes:
+      # Mount the kafka_scripts directory to /app
+      - ./kafka_scripts:/app 
+    depends_on:
+      - kafka
+      - redis # Ensure Kafka and Redis are up before consumer starts
+    command: ["python", "/app/consumer.py"] # Command to run the consumer script
+    healthcheck:
+      test: ["CMD", "sh", "-c", "python -c 'import redis; r = redis.Redis(host=\"redis\", port=6379); r.ping()'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - default # Or your specific network
+  
   streamlit-dashboard:
     build:
       context: .

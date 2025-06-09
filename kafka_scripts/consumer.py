@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
 """
-E-commerce Event Consumer - FIXED VERSION (Minutely Aggregation)
-Processes Kafka events and stores real-time metrics in Redis for dashboards
+E-commerce Event Consumer - Optimized for Continuous Operation
+Processes Kafka events and stores real-time metrics in Redis.
+Designed to run as a long-lived service, without dashboard printing.
 """
 
 import json
@@ -50,9 +51,9 @@ class ECommerceEventConsumer:
         self.running = True
         self.reset_offset = reset_offset
         
-        print(f"🚀 Initializing Kafka consumer with bootstrap servers: {self.bootstrap_servers}")
-        print(f"🔌 Connecting to Redis at {self.redis_host}:{self.redis_port}")
-        print(f"🔄 Reset offset mode: {self.reset_offset}")
+        logger.info(f"🚀 Initializing Kafka consumer with bootstrap servers: {self.bootstrap_servers}")
+        logger.info(f"🔌 Connecting to Redis at {self.redis_host}:{self.redis_port}")
+        logger.info(f"🔄 Reset offset mode: {self.reset_offset}")
 
         # Initialize signal handlers for graceful shutdown
         signal.signal(signal.SIGTERM, self._signal_handler)
@@ -71,7 +72,7 @@ class ECommerceEventConsumer:
 
             # Test Redis connection
             self.redis_client.ping()
-            print("✅ Successfully connected to Redis")
+            logger.info("✅ Successfully connected to Redis")
 
             # Initialize Kafka consumer with proper offset strategy
             offset_reset = 'earliest' if self.reset_offset else 'latest'
@@ -94,10 +95,10 @@ class ECommerceEventConsumer:
                 fetch_min_bytes=1,  # Don't wait for large batches
                 fetch_max_wait_ms=500  # Short wait time
             )
-            print("✅ Successfully connected to Kafka")
+            logger.info("✅ Successfully connected to Kafka")
 
         except Exception as e:
-            print(f"❌ Error initializing consumer: {e}")
+            logger.error(f"❌ Error initializing consumer: {e}")
             raise
 
         # Initialize or reset metrics based on mode
@@ -108,23 +109,23 @@ class ECommerceEventConsumer:
 
     def _signal_handler(self, signum, frame):
         """Handle shutdown signals gracefully"""
-        print(f"\n🛑 Received signal {signum}, shutting down...")
+        logger.info(f"\n🛑 Received signal {signum}, shutting down...")
         self.running = False
 
     def reset_all_metrics(self):
         """Reset all metrics to zero (for fresh start)"""
         try:
-            print("🧹 Resetting all metrics to zero...")
+            logger.info("🧹 Resetting all metrics to zero...")
             
             # Clear all Redis keys related to metrics
             keys_to_delete = [
                 "metrics:totals",
-                "views:minutely",  # Changed from hourly
-                "cart:minutely",   # Changed from hourly
-                "wishlist:minutely", # Changed from hourly
-                "orders:minutely",   # Changed from hourly
-                "revenue:minutely",  # Changed from hourly
-                "cart:value:minutely", # Changed from hourly
+                "views:minutely",
+                "cart:minutely",
+                "wishlist:minutely",
+                "orders:minutely",
+                "revenue:minutely",
+                "cart:value:minutely",
                 "product:views",
                 "product:cart_adds",
                 "product:wishlist_adds",
@@ -154,10 +155,10 @@ class ECommerceEventConsumer:
             
             # Store initial empty state
             self.update_metrics_in_redis()
-            print("✅ All metrics reset successfully")
+            logger.info("✅ All metrics reset successfully")
             
         except Exception as e:
-            print(f"⚠️ Error resetting metrics: {e}")
+            logger.warning(f"⚠️ Error resetting metrics: {e}")
             self.metrics = {
                 'total_views': 0,
                 'total_cart_adds': 0,
@@ -177,9 +178,9 @@ class ECommerceEventConsumer:
                 'total_orders': int(existing_metrics.get('total_orders', 0)),
                 'total_revenue': float(existing_metrics.get('total_revenue', 0.0))
             }
-            print(f"📊 Loaded existing metrics: {self.metrics}")
+            logger.info(f"📊 Loaded existing metrics: {self.metrics}")
         except Exception as e:
-            print(f"⚠️ Could not load existing metrics, starting fresh: {e}")
+            logger.warning(f"⚠️ Could not load existing metrics, starting fresh: {e}")
             self.metrics = {
                 'total_views': 0,
                 'total_cart_adds': 0,
@@ -190,16 +191,16 @@ class ECommerceEventConsumer:
 
     def process_product_view(self, event):
         """Process product view event"""
-        print(f"👀 Product View: {event['product_name']} by {event['user_id']}")
+        logger.debug(f"👀 Product View: {event['product_name']} by {event['user_id']}")
 
         # Update counters
         self.metrics['total_views'] += 1
 
         # Use minutely timestamp for aggregation
-        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M") # Changed to minutely
+        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M")
 
         # Increment minutely view counts
-        self.redis_client.hincrby("views:minutely", current_minute, 1) # Changed Redis key
+        self.redis_client.hincrby("views:minutely", current_minute, 1)
         self.redis_client.expire("views:minutely", 86400) # 24 hours (still keep 24h of minutes)
 
         # Product-specific views
@@ -229,16 +230,16 @@ class ECommerceEventConsumer:
 
     def process_cart_add(self, event):
         """Process add to cart event"""
-        print(f"🛒 Cart Add: {event['quantity']}x {event['product_name']} by {event['user_id']} (${event['total_amount']})")
+        logger.debug(f"🛒 Cart Add: {event['quantity']}x {event['product_name']} by {event['user_id']} (${event['total_amount']})")
 
         # Update counters
         self.metrics['total_cart_adds'] += 1
 
         # Use minutely timestamp for aggregation
-        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M") # Changed to minutely
+        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M")
 
         # Increment minutely cart adds
-        self.redis_client.hincrby("cart:minutely", current_minute, 1) # Changed Redis key
+        self.redis_client.hincrby("cart:minutely", current_minute, 1)
         self.redis_client.expire("cart:minutely", 86400)
 
         # Product-specific cart adds
@@ -246,7 +247,7 @@ class ECommerceEventConsumer:
         self.redis_client.expire("product:cart_adds", 86400)
 
         # Cart value tracking
-        self.redis_client.hincrbyfloat("cart:value:minutely", current_minute, event['total_amount']) # Changed Redis key
+        self.redis_client.hincrbyfloat("cart:value:minutely", current_minute, event['total_amount'])
         self.redis_client.expire("cart:value:minutely", 86400)
 
         # Recent cart additions
@@ -265,16 +266,16 @@ class ECommerceEventConsumer:
 
     def process_wishlist_add(self, event):
         """Process wishlist add event"""
-        print(f"❤️ Wishlist Add: {event['product_name']} by {event['user_id']}")
+        logger.debug(f"❤️ Wishlist Add: {event['product_name']} by {event['user_id']}")
 
         # Update counters
         self.metrics['total_wishlist_adds'] += 1
 
         # Use minutely timestamp for aggregation
-        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M") # Changed to minutely
+        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M")
 
         # Increment minutely wishlist adds
-        self.redis_client.hincrby("wishlist:minutely", current_minute, 1) # Changed Redis key
+        self.redis_client.hincrby("wishlist:minutely", current_minute, 1)
         self.redis_client.expire("wishlist:minutely", 86400)
 
         # Product-specific wishlist adds
@@ -296,21 +297,21 @@ class ECommerceEventConsumer:
 
     def process_order(self, event):
         """Process order completion event"""
-        print(f"💰 Order: {event['order_id']} by {event['user_id']} - ${event['total_amount']} ({len(event['items'])} items)")
+        logger.debug(f"💰 Order: {event['order_id']} by {event['user_id']} - ${event['total_amount']} ({len(event['items'])} items)")
 
         # Update counters
         self.metrics['total_orders'] += 1
         self.metrics['total_revenue'] += event['total_amount']
 
         # Use minutely timestamp for aggregation
-        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M") # Changed to minutely
+        current_minute = datetime.now().strftime("%Y-%m-%d-%H-%M")
 
         # Increment minutely orders
-        self.redis_client.hincrby("orders:minutely", current_minute, 1) # Changed Redis key
+        self.redis_client.hincrby("orders:minutely", current_minute, 1)
         self.redis_client.expire("orders:minutely", 86400)
 
         # Revenue tracking
-        self.redis_client.hincrbyfloat("revenue:minutely", current_minute, event['total_amount']) # Changed Redis key
+        self.redis_client.hincrbyfloat("revenue:minutely", current_minute, event['total_amount'])
         self.redis_client.expire("revenue:minutely", 86400)
 
         # Process each item in the order
@@ -359,112 +360,35 @@ class ECommerceEventConsumer:
             self.redis_client.set("metrics:last_activity", datetime.now().isoformat(), ex=300)
 
         except Exception as e:
-            print(f"Error updating metrics in Redis: {e}")
+            logger.error(f"Error updating metrics in Redis: {e}")
 
-    def get_dashboard_data(self):
-        """Get current dashboard data from Redis"""
-        dashboard_data = {}
-
-        try:
-            # Get totals
-            dashboard_data['totals'] = self.redis_client.hgetall("metrics:totals")
-
-            # Get minutely data (changed from hourly)
-            dashboard_data['minutely_views'] = self.redis_client.hgetall("views:minutely") # Changed Redis key
-            dashboard_data['minutely_orders'] = self.redis_client.hgetall("orders:minutely") # Changed Redis key
-            dashboard_data['minutely_revenue'] = self.redis_client.hgetall("revenue:minutely") # Changed Redis key
-
-            # Get top products
-            dashboard_data['top_viewed_products'] = self.redis_client.hgetall("product:views")
-            dashboard_data['top_ordered_products'] = self.redis_client.hgetall("product:orders")
-
-            # Get recent activity
-            recent_views = self.redis_client.lrange("recent:views", 0, 9) # Last 10
-            dashboard_data['recent_views'] = [json.loads(v) for v in recent_views] if recent_views else []
-
-            recent_orders = self.redis_client.lrange("recent:orders", 0, 9) # Last 10
-            dashboard_data['recent_orders'] = [json.loads(o) for o in recent_orders] if recent_orders else []
-
-            return dashboard_data
-
-        except Exception as e:
-            print(f"Error getting dashboard data: {e}")
-            return {}
-
-    def print_dashboard_summary(self):
-        """Print a summary of current metrics"""
-        data = self.get_dashboard_data()
-
-        print("\n" + "="*60)
-        print("📊 REAL-TIME E-COMMERCE DASHBOARD")
-        print("="*60)
-
-        # Print in-memory metrics
-        print(f"👀 Total Views: {self.metrics['total_views']}")
-        print(f"🛒 Total Cart Adds: {self.metrics['total_cart_adds']}")
-        print(f"❤️ Total Wishlist Adds: {self.metrics['total_wishlist_adds']}")
-        print(f"📦 Total Orders: {self.metrics['total_orders']}")
-        print(f"💰 Total Revenue: ${self.metrics['total_revenue']:.2f}")
-        print(f"🕐 Last Updated: {datetime.now().isoformat()}")
-
-        if 'recent_orders' in data and data['recent_orders']:
-            print("\n🔥 Recent Orders:")
-            for order in data['recent_orders'][:5]:
-                print(f" • {order['order_id']}: ${order['total_amount']} ({order['item_count']} items)")
-
-        print("="*60)
-
-    def consume_events(self, max_messages=100, timeout_seconds=60):
-        """Start consuming events with timeout"""
-        print("🚀 Starting Kafka consumer...")
-        print(f"📊 Subscribed to Topics: {list(self.consumer.subscription())}")
-        print(f"🔍 Will process up to {max_messages} messages or run for {timeout_seconds} seconds")
-
-        # Wait a moment for producer to send messages
-        print("⏳ Waiting 3 seconds for messages to be produced...")
+    def consume_events(self):
+        """Start consuming events indefinitely"""
+        logger.info("🚀 Starting Kafka consumer for continuous operation...")
+        logger.info(f"📊 Subscribed to Topics: {list(self.consumer.subscription())}")
+        
+        # Wait a moment for producer to send messages (optional, mainly for initial startup observation)
+        logger.info("⏳ Waiting 3 seconds for messages to be produced (initial warmup)...")
         time.sleep(3)
 
         message_count = 0
         start_time = time.time()
-        last_message_time = start_time
-        consecutive_empty_polls = 0
-        max_empty_polls = 3  # Exit after 6 consecutive empty polls (30 seconds)
 
         try:
             while self.running:
-                current_time = time.time()
-
-                if current_time - start_time > timeout_seconds:
-                    print(f"⏰ Timeout reached ({timeout_seconds}s), stopping consumer")
-                    break
-
-                if message_count >= max_messages:
-                    print(f"✅ Processed {message_count} messages, stopping consumer")
-                    break
-
                 try:
                     # Poll with shorter timeout for more responsive behavior
-                    message_batch = self.consumer.poll(timeout_ms=5000)
+                    # This will block for at most 1 second if no messages, then continue loop
+                    message_batch = self.consumer.poll(timeout_ms=1000)
 
                     if not message_batch:
-                        consecutive_empty_polls += 1
-                        elapsed_since_last = current_time - last_message_time
-                        
-                        print(f"⏸️ No messages received (poll #{consecutive_empty_polls})")
-                        
-                        if consecutive_empty_polls >= max_empty_polls:
-                            print(f"🏁 No messages for {max_empty_polls} consecutive polls, assuming completion")
-                            break
-                            
+                        # No messages received in this poll, continue polling
                         continue
                     
-                    # Reset empty poll counter when we get messages
-                    consecutive_empty_polls = 0
-
                     for topic_partition, messages in message_batch.items():
                         for message in messages:
                             if not self.running:
-                                break
+                                break # Exit if shutdown signal received mid-batch
 
                             try:
                                 # Process messages based on topic
@@ -477,35 +401,30 @@ class ECommerceEventConsumer:
                                 elif message.topic == TOPIC_ORDERS:
                                     self.process_order(message.value)
                                 else:
-                                    print(f"⚠️ Unknown topic: {message.topic}")
+                                    logger.warning(f"⚠️ Unknown topic: {message.topic}")
 
                                 message_count += 1
-                                last_message_time = time.time()
-
-                                if message_count % 5 == 0:
+                                if message_count % 10 == 0: # Log progress every 10 messages
                                     elapsed = time.time() - start_time
-                                    print(f"📊 Processed {message_count} messages in {elapsed:.1f} seconds")
-
-                                if message_count >= max_messages:
-                                    break
+                                    logger.info(f"📊 Processed {message_count} messages in {elapsed:.1f} seconds")
 
                             except Exception as e:
-                                print(f"⚠️ Error processing message: {e}")
+                                logger.error(f"⚠️ Error processing message: {e}")
+                                # Continue to next message if one fails
                                 continue
 
                 except Exception as e:
-                    print(f"⚠️ Error polling messages: {e}")
-                    time.sleep(1)
+                    logger.error(f"⚠️ Error polling messages: {e}")
+                    time.sleep(5) # Wait before retrying poll to avoid tight loop on persistent errors
                     continue
 
         except Exception as e:
-            print(f"❌ Error in consumer loop: {e}")
+            logger.critical(f"❌ Critical error in consumer loop: {e}")
 
         finally:
             self.cleanup()
             elapsed = time.time() - start_time
-            print(f"👋 Consumer completed after processing {message_count} messages in {elapsed:.1f} seconds")
-            self.print_dashboard_summary()
+            logger.info(f"👋 Consumer gracefully shut down after processing {message_count} messages in {elapsed:.1f} seconds")
 
     def cleanup(self):
         """Clean up resources"""
@@ -517,36 +436,36 @@ class ECommerceEventConsumer:
         try:
             if hasattr(self, 'consumer') and self.consumer:
                 self.consumer.close()
-                print("✅ Kafka consumer closed")
+                logger.info("✅ Kafka consumer closed")
         except Exception as e:
-            print(f"⚠️ Error closing Kafka consumer: {e}")
+            logger.warning(f"⚠️ Error closing Kafka consumer: {e}")
 
         try:
             if hasattr(self, 'redis_client') and self.redis_client:
                 self.redis_client.close()
-                print("✅ Redis connection closed")
+                logger.info("✅ Redis connection closed")
         except Exception as e:
-            print(f"⚠️ Error closing Redis connection: {e}")
+            logger.warning(f"⚠️ Error closing Redis connection: {e}")
 
 
 def main():
     try:
-        print("🚀 Starting E-Commerce Event Consumer")
-        print(f"🔗 Kafka: {os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'kafka:29092')}")
-        print(f"🔴 Redis: {os.getenv('REDIS_HOST', 'redis')}:{os.getenv('REDIS_PORT', 6379)}")
+        logger.info("🚀 Starting E-Commerce Event Consumer service")
+        logger.info(f"🔗 Kafka: {os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'kafka:29092')}")
+        logger.info(f"🔴 Redis: {os.getenv('REDIS_HOST', 'redis')}:{os.getenv('REDIS_PORT', 6379)}")
 
         # Check if we should reset offsets (for fresh start)
         reset_mode = os.getenv('RESET_KAFKA_OFFSETS', 'false').lower() == 'true'
         
         # Create and start consumer
         consumer = ECommerceEventConsumer(reset_offset=reset_mode)
-        consumer.consume_events(max_messages=100, timeout_seconds=90)
+        consumer.consume_events() # Call without max_messages or timeout_seconds for continuous run
 
     except KeyboardInterrupt:
-        print("\n🛑 Shutdown requested, stopping consumer...")
+        logger.info("\n🛑 Shutdown requested, stopping consumer...")
     except Exception as e:
-        print(f"❌ Error in main: {e}")
-        raise
+        logger.critical(f"❌ Error in main: {e}")
+        sys.exit(1)
 
 
 if __name__ == "__main__":

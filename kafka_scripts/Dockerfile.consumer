@@ -1,0 +1,18 @@
+# Dockerfile.consumer
+FROM python:3.9-slim-buster
+
+WORKDIR /app
+
+# Copy your requirements.txt and install dependencies
+# Assuming your requirements.txt is in the same directory as consumer.py (kafka_scripts)
+COPY requirements.txt . 
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy your consumer script and any other necessary files
+# Copy the entire kafka_scripts directory if consumer.py depends on other files there
+COPY kafka_scripts/consumer.py .
+# If you have a .env file that consumer.py uses, copy it as well
+# COPY .env . 
+
+# Command to run the consumer script
+CMD ["python", "consumer.py"]

@@ -22424,3 +22424,700 @@ File Path                                 PID    Runtime      # DAGs    # Errors
 /opt/airflow/dags/drop_all_dag.py                                  1           0  0.08s           2025-06-09T09:58:59
 ================================================================================
 [2025-06-09T09:59:34.107+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:19:25.981+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2025-06-09T10:19:25.982+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2025-06-09T10:19:25.982+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-06-09T10:19:25.982+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:19:26.004+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:19:26.168+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/kafka_data_pipeline.py     73  0.08s             0           0
+/opt/airflow/dags/ingestion_dag.py           74  0.07s             0           0
+/opt/airflow/dags/etl_dag.py                                       0           0
+/opt/airflow/dags/drop_all_dag.py                                  0           0
+================================================================================
+[2025-06-09T10:19:56.479+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.69s           2025-06-09T10:19:26
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.66s           2025-06-09T10:19:26
+/opt/airflow/dags/etl_dag.py                                       1           0  0.38s           2025-06-09T10:19:27
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.22s           2025-06-09T10:19:27
+================================================================================
+[2025-06-09T10:20:27.036+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.14s           2025-06-09T10:19:57
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.12s           2025-06-09T10:19:57
+/opt/airflow/dags/etl_dag.py                                       1           0  0.05s           2025-06-09T10:19:57
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.04s           2025-06-09T10:19:57
+================================================================================
+[2025-06-09T10:20:57.444+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.60s           2025-06-09T10:20:44
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.24s           2025-06-09T10:20:28
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:20:28
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.11s           2025-06-09T10:20:28
+================================================================================
+[2025-06-09T10:21:28.020+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.41s           2025-06-09T10:21:15
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.17s           2025-06-09T10:20:58
+/opt/airflow/dags/etl_dag.py                                       1           0  0.05s           2025-06-09T10:20:58
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.13s           2025-06-09T10:20:58
+================================================================================
+[2025-06-09T10:21:58.593+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.39s           2025-06-09T10:21:45
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.18s           2025-06-09T10:21:29
+/opt/airflow/dags/etl_dag.py                                       1           0  0.15s           2025-06-09T10:21:29
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:21:29
+================================================================================
+[2025-06-09T10:22:29.168+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.42s           2025-06-09T10:22:16
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:21:59
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:21:59
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.04s           2025-06-09T10:21:59
+================================================================================
+[2025-06-09T10:22:59.674+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.50s           2025-06-09T10:22:47
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:22:30
+/opt/airflow/dags/etl_dag.py                                       1           0  0.12s           2025-06-09T10:22:30
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.04s           2025-06-09T10:22:30
+================================================================================
+[2025-06-09T10:23:30.610+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.04s           2025-06-09T10:23:25
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T10:23:00
+/opt/airflow/dags/etl_dag.py                                       1           0  0.10s           2025-06-09T10:23:00
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:23:01
+================================================================================
+[2025-06-09T10:23:45.490+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:24:46.088+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2025-06-09T10:24:46.089+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2025-06-09T10:24:46.089+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-06-09T10:24:46.089+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:24:46.103+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:24:46.214+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/kafka_data_pipeline.py     73  0.06s             0           0
+/opt/airflow/dags/ingestion_dag.py           74  0.04s             0           0
+/opt/airflow/dags/etl_dag.py                                       0           0
+/opt/airflow/dags/drop_all_dag.py                                  0           0
+================================================================================
+[2025-06-09T10:25:16.942+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.49s           2025-06-09T10:24:47
+/opt/airflow/dags/ingestion_dag.py           82  0.04s             1           0  0.54s           2025-06-09T10:24:46
+/opt/airflow/dags/etl_dag.py                                       1           0  0.28s           2025-06-09T10:24:47
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.44s           2025-06-09T10:24:47
+================================================================================
+[2025-06-09T10:25:47.033+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.39s           2025-06-09T10:25:19
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.38s           2025-06-09T10:25:17
+/opt/airflow/dags/etl_dag.py                                       1           0  0.19s           2025-06-09T10:25:17
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.17s           2025-06-09T10:25:17
+================================================================================
+[2025-06-09T10:26:17.094+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.02s           2025-06-09T10:25:50
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.21s           2025-06-09T10:25:47
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T10:25:47
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.09s           2025-06-09T10:25:47
+================================================================================
+[2025-06-09T10:26:47.300+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.57s           2025-06-09T10:26:22
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.32s           2025-06-09T10:26:18
+/opt/airflow/dags/etl_dag.py                                       1           0  0.24s           2025-06-09T10:26:18
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.08s           2025-06-09T10:26:18
+================================================================================
+[2025-06-09T10:27:18.058+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.65s           2025-06-09T10:26:53
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T10:26:48
+/opt/airflow/dags/etl_dag.py                                       1           0  0.12s           2025-06-09T10:26:48
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:26:49
+================================================================================
+[2025-06-09T10:27:48.675+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.28s           2025-06-09T10:27:25
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.13s           2025-06-09T10:27:19
+/opt/airflow/dags/etl_dag.py                                       1           0  0.12s           2025-06-09T10:27:19
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:27:19
+================================================================================
+[2025-06-09T10:28:18.700+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.51s           2025-06-09T10:27:56
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T10:27:49
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T10:27:49
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:27:49
+================================================================================
+[2025-06-09T10:28:49.522+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.70s           2025-06-09T10:28:28
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:28:20
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:28:20
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:28:20
+================================================================================
+[2025-06-09T10:29:20.290+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.01s           2025-06-09T10:28:52
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.28s           2025-06-09T10:28:50
+/opt/airflow/dags/etl_dag.py                                       1           0  0.25s           2025-06-09T10:28:50
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.18s           2025-06-09T10:28:51
+================================================================================
+[2025-06-09T10:29:46.097+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:29:46.117+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:29:50.771+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.46s           2025-06-09T10:29:23
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:29:21
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:29:21
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.04s           2025-06-09T10:29:21
+================================================================================
+[2025-06-09T10:30:20.803+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.58s           2025-06-09T10:29:54
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.17s           2025-06-09T10:29:51
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:29:51
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:29:52
+================================================================================
+[2025-06-09T10:30:50.982+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.37s           2025-06-09T10:30:24
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.18s           2025-06-09T10:30:22
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:30:22
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:30:22
+================================================================================
+[2025-06-09T10:31:21.313+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.61s           2025-06-09T10:31:11
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:30:53
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T10:30:53
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:30:53
+================================================================================
+[2025-06-09T10:31:51.397+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.47s           2025-06-09T10:31:42
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.18s           2025-06-09T10:31:23
+/opt/airflow/dags/etl_dag.py                                       1           0  0.16s           2025-06-09T10:31:23
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.08s           2025-06-09T10:31:23
+================================================================================
+[2025-06-09T10:32:21.603+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.37s           2025-06-09T10:32:12
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.20s           2025-06-09T10:31:54
+/opt/airflow/dags/etl_dag.py                                       1           0  0.15s           2025-06-09T10:31:54
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:31:54
+================================================================================
+[2025-06-09T10:32:52.094+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.45s           2025-06-09T10:32:43
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:32:24
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:32:24
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:32:24
+================================================================================
+[2025-06-09T10:33:22.259+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.44s           2025-06-09T10:33:14
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.39s           2025-06-09T10:32:55
+/opt/airflow/dags/etl_dag.py                                       1           0  0.36s           2025-06-09T10:32:55
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.30s           2025-06-09T10:32:55
+================================================================================
+[2025-06-09T10:33:52.692+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.38s           2025-06-09T10:33:44
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.13s           2025-06-09T10:33:26
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:33:26
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:33:26
+================================================================================
+[2025-06-09T10:34:22.961+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.72s           2025-06-09T10:34:15
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:33:56
+/opt/airflow/dags/etl_dag.py                                       1           0  0.11s           2025-06-09T10:33:56
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.05s           2025-06-09T10:33:56
+================================================================================
+[2025-06-09T10:34:45.019+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:46:06.794+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2025-06-09T10:46:06.795+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2025-06-09T10:46:06.795+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-06-09T10:46:06.795+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:46:06.804+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:46:06.926+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/kafka_data_pipeline.py     72  0.06s             0           0
+/opt/airflow/dags/ingestion_dag.py           73  0.05s             0           0
+/opt/airflow/dags/etl_dag.py                                       0           0
+/opt/airflow/dags/drop_all_dag.py                                  0           0
+================================================================================
+[2025-06-09T10:46:37.634+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.27s           2025-06-09T10:46:08
+/opt/airflow/dags/ingestion_dag.py           82  0.03s             1           0  0.43s           2025-06-09T10:46:07
+/opt/airflow/dags/etl_dag.py                                       1           0  0.28s           2025-06-09T10:46:07
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.40s           2025-06-09T10:46:08
+================================================================================
+[2025-06-09T10:47:08.391+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.50s           2025-06-09T10:46:39
+/opt/airflow/dags/ingestion_dag.py           92  0.03s             1           0  0.24s           2025-06-09T10:46:37
+/opt/airflow/dags/etl_dag.py                 93  0.00s             1           0  0.17s           2025-06-09T10:46:37
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.08s           2025-06-09T10:46:38
+================================================================================
+[2025-06-09T10:47:38.502+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.80s           2025-06-09T10:47:10
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.19s           2025-06-09T10:47:08
+/opt/airflow/dags/etl_dag.py                                       1           0  0.16s           2025-06-09T10:47:08
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.27s           2025-06-09T10:47:09
+================================================================================
+[2025-06-09T10:48:08.655+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.47s           2025-06-09T10:47:40
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.19s           2025-06-09T10:47:39
+/opt/airflow/dags/etl_dag.py                                       1           0  0.17s           2025-06-09T10:47:39
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.13s           2025-06-09T10:47:40
+================================================================================
+[2025-06-09T10:48:39.313+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.37s           2025-06-09T10:48:11
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.26s           2025-06-09T10:48:09
+/opt/airflow/dags/etl_dag.py                                       1           0  0.20s           2025-06-09T10:48:09
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.08s           2025-06-09T10:48:11
+================================================================================
+[2025-06-09T10:49:09.971+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.83s           2025-06-09T10:48:55
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.13s           2025-06-09T10:48:40
+/opt/airflow/dags/etl_dag.py                                       1           0  0.10s           2025-06-09T10:48:40
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:48:41
+================================================================================
+[2025-06-09T10:49:40.447+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.31s           2025-06-09T10:49:26
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.13s           2025-06-09T10:49:11
+/opt/airflow/dags/etl_dag.py                                       1           0  0.10s           2025-06-09T10:49:11
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:49:12
+================================================================================
+[2025-06-09T10:50:10.523+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.60s           2025-06-09T10:50:01
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.16s           2025-06-09T10:49:41
+/opt/airflow/dags/etl_dag.py                                       1           0  0.15s           2025-06-09T10:49:41
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:49:42
+================================================================================
+[2025-06-09T10:50:41.059+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.36s           2025-06-09T10:50:32
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.31s           2025-06-09T10:50:12
+/opt/airflow/dags/etl_dag.py                                       1           0  0.25s           2025-06-09T10:50:12
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.06s           2025-06-09T10:50:12
+================================================================================
+[2025-06-09T10:51:06.849+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:51:06.861+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:51:11.470+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.45s           2025-06-09T10:51:02
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.12s           2025-06-09T10:50:42
+/opt/airflow/dags/etl_dag.py                                       1           0  0.09s           2025-06-09T10:50:42
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:50:43
+================================================================================
+[2025-06-09T10:51:41.872+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.34s           2025-06-09T10:51:34
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.20s           2025-06-09T10:51:12
+/opt/airflow/dags/etl_dag.py                                       1           0  0.18s           2025-06-09T10:51:12
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.13s           2025-06-09T10:51:13
+================================================================================
+[2025-06-09T10:52:02.845+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:53:08.112+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2025-06-09T10:53:08.116+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2025-06-09T10:53:08.122+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-06-09T10:53:08.123+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:53:08.269+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:53:08.510+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/kafka_data_pipeline.py     72  0.09s             0           0
+/opt/airflow/dags/ingestion_dag.py           73  0.08s             0           0
+/opt/airflow/dags/etl_dag.py                                       0           0
+/opt/airflow/dags/drop_all_dag.py                                  0           0
+================================================================================
+[2025-06-09T10:53:38.559+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  2.52s           2025-06-09T10:53:10
+/opt/airflow/dags/ingestion_dag.py                                 1           0  1.35s           2025-06-09T10:53:09
+/opt/airflow/dags/etl_dag.py                                       1           0  0.55s           2025-06-09T10:53:10
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.81s           2025-06-09T10:53:11
+================================================================================
+[2025-06-09T10:54:08.926+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.59s           2025-06-09T10:53:42
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.18s           2025-06-09T10:53:40
+/opt/airflow/dags/etl_dag.py                                       1           0  0.15s           2025-06-09T10:53:40
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.09s           2025-06-09T10:53:41
+================================================================================
+[2025-06-09T10:54:13.383+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:54:13.382+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:54:14.264+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2025-06-09T10:55:19.238+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2025-06-09T10:55:19.244+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2025-06-09T10:55:19.245+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2025-06-09T10:55:19.246+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T10:55:19.284+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T10:55:19.525+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/kafka_data_pipeline.py     79  0.11s             0           0
+/opt/airflow/dags/ingestion_dag.py           80  0.09s             0           0
+/opt/airflow/dags/etl_dag.py                                       0           0
+/opt/airflow/dags/drop_all_dag.py                                  0           0
+================================================================================
+[2025-06-09T10:55:50.012+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  2.08s           2025-06-09T10:55:21
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.74s           2025-06-09T10:55:20
+/opt/airflow/dags/etl_dag.py                                       1           0  0.68s           2025-06-09T10:55:20
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.61s           2025-06-09T10:55:21
+================================================================================
+[2025-06-09T10:56:20.076+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  1.82s           2025-06-09T10:55:54
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.19s           2025-06-09T10:55:51
+/opt/airflow/dags/etl_dag.py                                       1           0  0.17s           2025-06-09T10:55:51
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.49s           2025-06-09T10:55:52
+================================================================================
+[2025-06-09T10:56:50.676+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.28s           2025-06-09T10:56:24
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T10:56:21
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:56:21
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.11s           2025-06-09T10:56:23
+================================================================================
+[2025-06-09T10:57:21.239+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.58s           2025-06-09T10:56:55
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.31s           2025-06-09T10:56:52
+/opt/airflow/dags/etl_dag.py                                       1           0  0.26s           2025-06-09T10:56:52
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.16s           2025-06-09T10:56:53
+================================================================================
+[2025-06-09T10:57:51.697+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.40s           2025-06-09T10:57:25
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.18s           2025-06-09T10:57:22
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:57:22
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.12s           2025-06-09T10:57:24
+================================================================================
+[2025-06-09T10:58:22.158+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.55s           2025-06-09T10:57:57
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.16s           2025-06-09T10:57:52
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:57:52
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T10:57:54
+================================================================================
+[2025-06-09T10:58:52.764+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.49s           2025-06-09T10:58:27
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.23s           2025-06-09T10:58:23
+/opt/airflow/dags/etl_dag.py                                       1           0  0.24s           2025-06-09T10:58:23
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.21s           2025-06-09T10:58:25
+================================================================================
+[2025-06-09T10:59:23.779+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.43s           2025-06-09T10:58:58
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.34s           2025-06-09T10:58:54
+/opt/airflow/dags/etl_dag.py                                       1           0  0.29s           2025-06-09T10:58:54
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.44s           2025-06-09T10:58:56
+================================================================================
+[2025-06-09T10:59:54.260+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.39s           2025-06-09T10:59:29
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.16s           2025-06-09T10:59:24
+/opt/airflow/dags/etl_dag.py                                       1           0  0.14s           2025-06-09T10:59:24
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.09s           2025-06-09T10:59:26
+================================================================================
+[2025-06-09T11:00:20.248+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2025-06-09T11:00:20.259+0000] {manager.py:741} INFO - There are 4 files in /opt/airflow/dags
+[2025-06-09T11:00:24.340+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.41s           2025-06-09T10:59:59
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T10:59:55
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T10:59:55
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.11s           2025-06-09T10:59:57
+================================================================================
+[2025-06-09T11:00:54.402+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.52s           2025-06-09T11:00:31
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T11:00:26
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T11:00:26
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T11:00:27
+================================================================================
+[2025-06-09T11:01:24.824+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.59s           2025-06-09T11:01:02
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.19s           2025-06-09T11:00:57
+/opt/airflow/dags/etl_dag.py                                       1           0  0.16s           2025-06-09T11:00:57
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T11:00:57
+================================================================================
+[2025-06-09T11:01:54.984+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.40s           2025-06-09T11:01:33
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.15s           2025-06-09T11:01:27
+/opt/airflow/dags/etl_dag.py                                       1           0  0.13s           2025-06-09T11:01:27
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.09s           2025-06-09T11:01:28
+================================================================================
+[2025-06-09T11:02:25.455+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.45s           2025-06-09T11:02:04
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T11:01:57
+/opt/airflow/dags/etl_dag.py                                       1           0  0.12s           2025-06-09T11:01:57
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.10s           2025-06-09T11:01:58
+================================================================================
+[2025-06-09T11:02:56.006+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/kafka_data_pipeline.py                           1           0  0.38s           2025-06-09T11:02:35
+/opt/airflow/dags/ingestion_dag.py                                 1           0  0.14s           2025-06-09T11:02:28
+/opt/airflow/dags/etl_dag.py                                       1           0  0.12s           2025-06-09T11:02:28
+/opt/airflow/dags/drop_all_dag.py                                  1           0  0.07s           2025-06-09T11:02:29
+================================================================================

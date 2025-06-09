@@ -80,16 +80,16 @@ if st.session_state.redis_client:
         # Test the connection
         if st.session_state.redis_client.ping():
             status_placeholder.success("✅ Connected to Redis")
-    except:
-        # If ping fails, mark as disconnected
+    except Exception: # Catch any exception during ping
+        # If ping fails, mark as disconnected and attempt to reconnect on next run
         status_placeholder.error("❌ Redis connection lost")
         st.session_state.redis_client = None
         st.sidebar.warning("Lost connection to Redis. Attempting to reconnect...")
-        st.experimental_rerun()
+        st.rerun() # Use st.rerun() for a clean restart
 else:
     status_placeholder.error(f"❌ Redis: {st.session_state.redis_error or 'Not connected'}")
     st.sidebar.error("Cannot connect to Redis. Some features may be unavailable.")
-    st.stop()  # Stop execution if Redis is not connected
+    st.stop() # Stop execution if Redis is not connected and an error exists
 
 # --- Helper Functions ---
 def fetch_data(redis_key, data_type='hash'):
@@ -118,7 +118,7 @@ def fetch_data(redis_key, data_type='hash'):
     except redis.exceptions.ConnectionError as e:
         st.error("Lost connection to Redis. Attempting to reconnect...")
         st.session_state.redis_client = None
-        st.experimental_rerun()
+        st.rerun() # Use st.rerun()
         return None
         
     except redis.exceptions.RedisError as e:
@@ -180,7 +180,7 @@ if not st.session_state.redis_client:
 col1, col2 = st.columns([0.8, 0.2])
 with col1:
     # Use key to persist the slider value across reruns
-    refresh_rate = st.slider("Select refresh rate (seconds)", 5, 60, 10, key="refresh_rate_slider")
+    refresh_rate = st.slider("Select auto-refresh rate (seconds)", 5, 60, 10, key="refresh_rate_slider")
 with col2:
     st.write("") # for alignment
     st.write("") # for alignment
@@ -188,7 +188,8 @@ with col2:
     if st.button("Refresh Now"):
         st.rerun() # This will cause the script to re-execute from the top
 
-# Auto-refresh mechanism using st.experimental_rerun() with session state
+# Auto-refresh mechanism
+# Initialize last_refresh in session state if it doesn't exist
 if 'last_refresh' not in st.session_state:
     st.session_state.last_refresh = time.time()
 
@@ -199,10 +200,7 @@ time_since_refresh = current_time - st.session_state.last_refresh
 # If refresh interval has passed, update the last refresh time and rerun
 if time_since_refresh >= refresh_rate:
     st.session_state.last_refresh = current_time
-    st.experimental_rerun()
-
-# Add a small delay to prevent high CPU usage
-time.sleep(0.1)
+    st.rerun() # Use st.rerun() for explicit re-execution
 
 
 # --- Key Metrics Display ---
@@ -320,3 +318,6 @@ with activity_col2:
                     continue
     else:
         st.write("No recent views to display.")
+
+# Add a small delay at the end to prevent high CPU usage in continuous reruns
+time.sleep(0.1)
