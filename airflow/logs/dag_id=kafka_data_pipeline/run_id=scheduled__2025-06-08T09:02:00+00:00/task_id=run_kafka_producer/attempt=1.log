@@ -1,0 +1,17 @@
+[2025-06-08T09:04:00.713+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_data_pipeline.run_kafka_producer scheduled__2025-06-08T09:02:00+00:00 [queued]>
+[2025-06-08T09:04:00.719+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_data_pipeline.run_kafka_producer scheduled__2025-06-08T09:02:00+00:00 [queued]>
+[2025-06-08T09:04:00.719+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-08T09:04:00.728+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_producer> on 2025-06-08 09:02:00+00:00
+[2025-06-08T09:04:00.731+0000] {standard_task_runner.py:60} INFO - Started process 5861 to run task
+[2025-06-08T09:04:00.734+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_data_pipeline', 'run_kafka_producer', 'scheduled__2025-06-08T09:02:00+00:00', '--job-id', '268', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpposcwhud']
+[2025-06-08T09:04:00.735+0000] {standard_task_runner.py:88} INFO - Job 268: Subtask run_kafka_producer
+[2025-06-08T09:04:00.783+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_data_pipeline.run_kafka_producer scheduled__2025-06-08T09:02:00+00:00 [running]> on host 677411ab3888
+[2025-06-08T09:04:00.844+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='kafka_data_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_producer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-08T09:02:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-08T09:02:00+00:00'
+[2025-06-08T09:04:00.846+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-08T09:04:00.847+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'python /opt/***/ecom_etl/kafka_scripts/producer.py']
+[2025-06-08T09:04:00.856+0000] {subprocess.py:86} INFO - Output:
+[2025-06-08T09:04:03.098+0000] {subprocess.py:93} INFO - Error: NoBrokersAvailable
+[2025-06-08T09:04:03.153+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-08T09:04:03.174+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_data_pipeline, task_id=run_kafka_producer, execution_date=20250608T090200, start_date=20250608T090400, end_date=20250608T090403
+[2025-06-08T09:04:03.203+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-08T09:04:03.216+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,29 @@
+[2025-06-08T07:41:13.898+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_dag.run_truncate_stg manual__2025-06-08T07:38:53.531365+00:00 [queued]>
+[2025-06-08T07:41:13.903+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_dag.run_truncate_stg manual__2025-06-08T07:38:53.531365+00:00 [queued]>
+[2025-06-08T07:41:13.903+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2025-06-08T07:41:13.909+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_truncate_stg> on 2025-06-08 07:38:53.531365+00:00
+[2025-06-08T07:41:13.912+0000] {standard_task_runner.py:60} INFO - Started process 3200 to run task
+[2025-06-08T07:41:13.915+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'etl_dag', 'run_truncate_stg', 'manual__2025-06-08T07:38:53.531365+00:00', '--job-id', '185', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp7_ekxj6q']
+[2025-06-08T07:41:13.917+0000] {standard_task_runner.py:88} INFO - Job 185: Subtask run_truncate_stg
+[2025-06-08T07:41:13.951+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_dag.run_truncate_stg manual__2025-06-08T07:38:53.531365+00:00 [running]> on host 677411ab3888
+[2025-06-08T07:41:14.002+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_dag' AIRFLOW_CTX_TASK_ID='run_truncate_stg' AIRFLOW_CTX_EXECUTION_DATE='2025-06-08T07:38:53.531365+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-08T07:38:53.531365+00:00'
+[2025-06-08T07:41:14.003+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-08T07:41:14.004+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl && python truncate_stg.py']
+[2025-06-08T07:41:14.011+0000] {subprocess.py:86} INFO - Output:
+[2025-06-08T07:41:28.237+0000] {subprocess.py:93} INFO - 📍 Connected to ECOM_STG.PUBLIC schema
+[2025-06-08T07:41:28.246+0000] {subprocess.py:93} INFO - ✅ Table 'STG_GEOLOCATION' truncated successfully.
+[2025-06-08T07:41:28.249+0000] {subprocess.py:93} INFO - ✅ Table 'STG_CUSTOMERS' truncated successfully.
+[2025-06-08T07:41:28.251+0000] {subprocess.py:93} INFO - ✅ Table 'STG_SELLERS' truncated successfully.
+[2025-06-08T07:41:28.252+0000] {subprocess.py:93} INFO - ✅ Table 'STG_ORDERS' truncated successfully.
+[2025-06-08T07:41:28.253+0000] {subprocess.py:93} INFO - ✅ Table 'STG_PRODUCTS' truncated successfully.
+[2025-06-08T07:41:28.253+0000] {subprocess.py:93} INFO - ✅ Table 'STG_ORDER_ITEMS' truncated successfully.
+[2025-06-08T07:41:28.254+0000] {subprocess.py:93} INFO - ✅ Table 'STG_ORDER_PAYMENTS' truncated successfully.
+[2025-06-08T07:41:28.255+0000] {subprocess.py:93} INFO - ✅ Table 'STG_ORDER_REVIEWS' truncated successfully.
+[2025-06-08T07:41:28.257+0000] {subprocess.py:93} INFO - ✅ Table 'STG_PRODUCT_CATEGORY_TRANSLATION' truncated successfully.
+[2025-06-08T07:41:28.258+0000] {subprocess.py:93} INFO - 
+[2025-06-08T07:41:28.259+0000] {subprocess.py:93} INFO - 🎯 Summary: 9/9 tables truncated successfully.
+[2025-06-08T07:41:28.261+0000] {subprocess.py:93} INFO - 🔌 Connection closed.
+[2025-06-08T07:41:28.451+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-08T07:41:28.505+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_dag, task_id=run_truncate_stg, execution_date=20250608T073853, start_date=20250608T074113, end_date=20250608T074128
+[2025-06-08T07:41:28.551+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-08T07:41:28.569+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

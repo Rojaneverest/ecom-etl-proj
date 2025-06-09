@@ -1,0 +1,43 @@
+[2025-06-09T05:59:58.881+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T05:50:00+00:00 [queued]>
+[2025-06-09T05:59:58.887+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T05:50:00+00:00 [queued]>
+[2025-06-09T05:59:58.888+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T05:59:58.894+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_consumer> on 2025-06-09 05:50:00+00:00
+[2025-06-09T05:59:58.897+0000] {standard_task_runner.py:60} INFO - Started process 376 to run task
+[2025-06-09T05:59:58.906+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_consumer', 'scheduled__2025-06-09T05:50:00+00:00', '--job-id', '21', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpa_btnct3']
+[2025-06-09T05:59:58.907+0000] {standard_task_runner.py:88} INFO - Job 21: Subtask run_kafka_consumer
+[2025-06-09T05:59:58.947+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T05:50:00+00:00 [running]> on host a66d86572bec
+[2025-06-09T05:59:58.997+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_consumer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T05:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T05:50:00+00:00'
+[2025-06-09T05:59:58.998+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T05:59:58.999+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl/ && python kafka_scripts/consumer.py']
+[2025-06-09T05:59:59.009+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T05:59:59.265+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Consumer
+[2025-06-09T05:59:59.267+0000] {subprocess.py:93} INFO - 🔗 Kafka: kafka:29092
+[2025-06-09T05:59:59.268+0000] {subprocess.py:93} INFO - 🔴 Redis: redis:6379
+[2025-06-09T05:59:59.268+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka consumer with bootstrap servers: kafka:29092
+[2025-06-09T05:59:59.268+0000] {subprocess.py:93} INFO - 🔌 Connecting to Redis at redis:6379
+[2025-06-09T05:59:59.269+0000] {subprocess.py:93} INFO - 2025-06-09 05:59:59,267 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connecting> [IPv4 ('172.18.0.6', 29092)]>: connecting to kafka:29092 [('172.18.0.6', 29092) IPv4]
+[2025-06-09T05:59:59.279+0000] {subprocess.py:93} INFO - 2025-06-09 05:59:59,278 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <checking_api_versions_recv> [IPv4 ('172.18.0.6', 29092)]>: Broker version identified as 2.6
+[2025-06-09T05:59:59.279+0000] {subprocess.py:93} INFO - 2025-06-09 05:59:59,279 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.6', 29092)]>: Connection complete.
+[2025-06-09T05:59:59.280+0000] {subprocess.py:93} INFO - 2025-06-09 05:59:59,279 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('ecommerce.product.views', 'ecommerce.cart.add', 'ecommerce.wishlist.add', 'ecommerce.orders.completed')
+[2025-06-09T05:59:59.280+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T05:59:59.282+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Redis
+[2025-06-09T05:59:59.282+0000] {subprocess.py:93} INFO - 📊 Loaded existing metrics: {'total_views': 11, 'total_cart_adds': 6, 'total_wishlist_adds': 1, 'total_orders': 2, 'total_revenue': 9259.85}
+[2025-06-09T05:59:59.283+0000] {subprocess.py:93} INFO - ❌ Error in main: 'ECommerceEventConsumer' object has no attribute 'consume_events'
+[2025-06-09T05:59:59.283+0000] {subprocess.py:93} INFO - Traceback (most recent call last):
+[2025-06-09T05:59:59.284+0000] {subprocess.py:93} INFO -   File "kafka_scripts/consumer.py", line 466, in <module>
+[2025-06-09T05:59:59.284+0000] {subprocess.py:93} INFO -     main()
+[2025-06-09T05:59:59.284+0000] {subprocess.py:93} INFO -   File "kafka_scripts/consumer.py", line 457, in main
+[2025-06-09T05:59:59.285+0000] {subprocess.py:93} INFO -     consumer.consume_events(max_messages=100, timeout_seconds=90)  # 90 second timeout
+[2025-06-09T05:59:59.285+0000] {subprocess.py:93} INFO - AttributeError: 'ECommerceEventConsumer' object has no attribute 'consume_events'
+[2025-06-09T05:59:59.321+0000] {subprocess.py:97} INFO - Command exited with return code 1
+[2025-06-09T05:59:59.328+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 428, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 212, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 1.
+[2025-06-09T05:59:59.330+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_consumer, execution_date=20250609T055000, start_date=20250609T055958, end_date=20250609T055959
+[2025-06-09T05:59:59.336+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 21 for task run_kafka_consumer (Bash command failed. The command returned a non-zero exit code 1.; 376)
+[2025-06-09T05:59:59.377+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2025-06-09T05:59:59.478+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

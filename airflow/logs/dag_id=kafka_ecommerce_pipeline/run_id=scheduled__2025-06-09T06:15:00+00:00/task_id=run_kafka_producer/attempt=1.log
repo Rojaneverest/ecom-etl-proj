@@ -1,0 +1,52 @@
+[2025-06-09T06:20:01.669+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T06:15:00+00:00 [queued]>
+[2025-06-09T06:20:01.673+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T06:15:00+00:00 [queued]>
+[2025-06-09T06:20:01.673+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T06:20:01.679+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_producer> on 2025-06-09 06:15:00+00:00
+[2025-06-09T06:20:01.683+0000] {standard_task_runner.py:60} INFO - Started process 604 to run task
+[2025-06-09T06:20:01.686+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_producer', 'scheduled__2025-06-09T06:15:00+00:00', '--job-id', '33', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmp_y0j6c6_']
+[2025-06-09T06:20:01.689+0000] {standard_task_runner.py:88} INFO - Job 33: Subtask run_kafka_producer
+[2025-06-09T06:20:01.730+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_producer scheduled__2025-06-09T06:15:00+00:00 [running]> on host 214da608bc37
+[2025-06-09T06:20:01.777+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_producer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T06:15:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T06:15:00+00:00'
+[2025-06-09T06:20:01.778+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T06:20:01.780+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl/ && python kafka_scripts/producer.py']
+[2025-06-09T06:20:01.789+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T06:20:02.067+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Producer
+[2025-06-09T06:20:02.068+0000] {subprocess.py:93} INFO - 🔗 Kafka: kafka:29092
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO - 📊 Topics:
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO -    - ecommerce.product.views
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO -    - ecommerce.cart.add
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO -    - ecommerce.wishlist.add
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO -    - ecommerce.orders.completed
+[2025-06-09T06:20:02.069+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka producer with bootstrap servers: kafka:29092
+[2025-06-09T06:20:02.102+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T06:20:02.102+0000] {subprocess.py:93} INFO - 
+[2025-06-09T06:20:02.102+0000] {subprocess.py:93} INFO - 🔄 Starting e-commerce event simulation...
+[2025-06-09T06:20:02.102+0000] {subprocess.py:93} INFO - 🚀 Starting simulation for 20 events at 2 events/second
+[2025-06-09T06:20:02.192+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: iPhone 15 Pro
+[2025-06-09T06:20:02.193+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: iPhone 15 Pro
+[2025-06-09T06:20:02.694+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: iPhone 15 Pro
+[2025-06-09T06:20:02.695+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Samsung 4K TV
+[2025-06-09T06:20:03.201+0000] {subprocess.py:93} INFO - ❤️  Sent wishlist_add to ecommerce.wishlist.add - Product: Coffee Maker
+[2025-06-09T06:20:03.306+0000] {subprocess.py:93} INFO - 💰 Sent order to ecommerce.orders.completed - Order: order_28547
+[2025-06-09T06:20:03.806+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Nike Air Max
+[2025-06-09T06:20:03.813+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Samsung 4K TV
+[2025-06-09T06:20:04.312+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Wireless Headphones
+[2025-06-09T06:20:04.314+0000] {subprocess.py:93} INFO - 💰 Sent order to ecommerce.orders.completed - Order: order_62597
+[2025-06-09T06:20:04.315+0000] {subprocess.py:93} INFO - 📊 Progress: 10/20 events in 2.2 seconds
+[2025-06-09T06:20:04.819+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Nike Air Max
+[2025-06-09T06:20:04.820+0000] {subprocess.py:93} INFO - ❤️  Sent wishlist_add to ecommerce.wishlist.add - Product: Nike Air Max
+[2025-06-09T06:20:05.325+0000] {subprocess.py:93} INFO - 💰 Sent order to ecommerce.orders.completed - Order: order_73960
+[2025-06-09T06:20:05.327+0000] {subprocess.py:93} INFO - ❤️  Sent wishlist_add to ecommerce.wishlist.add - Product: iPhone 15 Pro
+[2025-06-09T06:20:05.832+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Samsung 4K TV
+[2025-06-09T06:20:05.840+0000] {subprocess.py:93} INFO - 🛒 Sent add_to_cart to ecommerce.cart.add - Product: Samsung 4K TV
+[2025-06-09T06:20:06.350+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Samsung 4K TV
+[2025-06-09T06:20:06.358+0000] {subprocess.py:93} INFO - 🛒 Sent add_to_cart to ecommerce.cart.add - Product: Coffee Maker
+[2025-06-09T06:20:06.867+0000] {subprocess.py:93} INFO - ✅ Sent product_view to ecommerce.product.views - Product: Adidas Sneakers
+[2025-06-09T06:20:06.888+0000] {subprocess.py:93} INFO - 🛒 Sent add_to_cart to ecommerce.cart.add - Product: iPhone 15 Pro
+[2025-06-09T06:20:06.890+0000] {subprocess.py:93} INFO - 📊 Progress: 20/20 events in 4.8 seconds
+[2025-06-09T06:20:06.984+0000] {subprocess.py:93} INFO - 
+[2025-06-09T06:20:06.986+0000] {subprocess.py:93} INFO - 📈 Simulation completed! Generated 20 events in 4.9 seconds
+[2025-06-09T06:20:07.191+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T06:20:07.234+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_producer, execution_date=20250609T061500, start_date=20250609T062001, end_date=20250609T062007
+[2025-06-09T06:20:07.305+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T06:20:07.397+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

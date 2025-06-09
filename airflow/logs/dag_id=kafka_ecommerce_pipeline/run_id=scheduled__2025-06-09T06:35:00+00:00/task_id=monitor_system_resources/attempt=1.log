@@ -1,0 +1,22 @@
+[2025-06-09T06:41:58.216+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.monitor_system_resources scheduled__2025-06-09T06:35:00+00:00 [queued]>
+[2025-06-09T06:41:58.221+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.monitor_system_resources scheduled__2025-06-09T06:35:00+00:00 [queued]>
+[2025-06-09T06:41:58.221+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T06:41:58.230+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): monitor_system_resources> on 2025-06-09 06:35:00+00:00
+[2025-06-09T06:41:58.235+0000] {standard_task_runner.py:60} INFO - Started process 1390 to run task
+[2025-06-09T06:41:58.238+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'monitor_system_resources', 'scheduled__2025-06-09T06:35:00+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmp5hg37jrj']
+[2025-06-09T06:41:58.240+0000] {standard_task_runner.py:88} INFO - Job 65: Subtask monitor_system_resources
+[2025-06-09T06:41:58.274+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.monitor_system_resources scheduled__2025-06-09T06:35:00+00:00 [running]> on host 214da608bc37
+[2025-06-09T06:41:58.317+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='monitor_system_resources' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T06:35:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T06:35:00+00:00'
+[2025-06-09T06:41:58.319+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T06:41:58.323+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n    echo "💻 System Resource Usage:"\n    echo "Memory: $(free -h | grep Mem | awk \'{print $3 "/" $2}\')"\n    echo "Disk: $(df -h / | tail -1 | awk \'{print $3 "/" $2 " (" $5 " used)"}\')"\n    echo "Load: $(uptime | awk -F\'load average:\' \'{print $2}\')"\n    ']
+[2025-06-09T06:41:58.334+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T06:41:58.342+0000] {subprocess.py:93} INFO - 💻 System Resource Usage:
+[2025-06-09T06:41:58.343+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 3: free: command not found
+[2025-06-09T06:41:58.346+0000] {subprocess.py:93} INFO - Memory:
+[2025-06-09T06:41:58.348+0000] {subprocess.py:93} INFO - Disk: 11G/1007G (2% used)
+[2025-06-09T06:41:58.349+0000] {subprocess.py:93} INFO - /usr/bin/bash: line 5: uptime: command not found
+[2025-06-09T06:41:58.349+0000] {subprocess.py:93} INFO - Load:
+[2025-06-09T06:41:58.350+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T06:41:58.365+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=monitor_system_resources, execution_date=20250609T063500, start_date=20250609T064158, end_date=20250609T064158
+[2025-06-09T06:41:58.382+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T06:41:58.396+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

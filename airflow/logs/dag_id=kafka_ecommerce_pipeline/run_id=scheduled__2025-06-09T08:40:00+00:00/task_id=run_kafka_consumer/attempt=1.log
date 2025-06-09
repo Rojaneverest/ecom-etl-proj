@@ -1,0 +1,422 @@
+[2025-06-09T08:47:20.675+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T08:40:00+00:00 [queued]>
+[2025-06-09T08:47:20.681+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T08:40:00+00:00 [queued]>
+[2025-06-09T08:47:20.681+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T08:47:20.688+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_consumer> on 2025-06-09 08:40:00+00:00
+[2025-06-09T08:47:20.693+0000] {standard_task_runner.py:60} INFO - Started process 422 to run task
+[2025-06-09T08:47:20.698+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_consumer', 'scheduled__2025-06-09T08:40:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmpfjiffue4']
+[2025-06-09T08:47:20.701+0000] {standard_task_runner.py:88} INFO - Job 30: Subtask run_kafka_consumer
+[2025-06-09T08:47:20.735+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T08:40:00+00:00 [running]> on host 1b1881543ac4
+[2025-06-09T08:47:20.776+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_consumer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T08:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T08:40:00+00:00'
+[2025-06-09T08:47:20.777+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T08:47:20.778+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl/ && python kafka_scripts/consumer.py']
+[2025-06-09T08:47:20.785+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T08:47:20.976+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Consumer
+[2025-06-09T08:47:20.978+0000] {subprocess.py:93} INFO - 🔗 Kafka: kafka:29092
+[2025-06-09T08:47:20.978+0000] {subprocess.py:93} INFO - 🔴 Redis: redis:6379
+[2025-06-09T08:47:20.979+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka consumer with bootstrap servers: kafka:29092
+[2025-06-09T08:47:20.979+0000] {subprocess.py:93} INFO - 🔌 Connecting to Redis at redis:6379
+[2025-06-09T08:47:20.979+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,978 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T08:47:20.991+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,991 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <checking_api_versions_recv> [IPv4 ('172.18.0.5', 29092)]>: Broker version identified as 2.6
+[2025-06-09T08:47:20.992+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,991 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T08:47:20.992+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,992 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('ecommerce.product.views', 'ecommerce.cart.add', 'ecommerce.wishlist.add', 'ecommerce.orders.completed')
+[2025-06-09T08:47:20.992+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T08:47:20.993+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Redis
+[2025-06-09T08:47:20.993+0000] {subprocess.py:93} INFO - 📊 Loaded existing metrics: {'total_views': 12, 'total_cart_adds': 4, 'total_wishlist_adds': 0, 'total_orders': 4, 'total_revenue': 959.93}
+[2025-06-09T08:47:20.994+0000] {subprocess.py:93} INFO - 🚀 Starting Kafka consumer...
+[2025-06-09T08:47:20.994+0000] {subprocess.py:93} INFO - 📊 Subscribed to Topics: {'ecommerce.product.views', 'ecommerce.wishlist.add', 'ecommerce.orders.completed', 'ecommerce.cart.add'}
+[2025-06-09T08:47:20.994+0000] {subprocess.py:93} INFO - 🔍 Will process up to 100 messages or run for 90 seconds
+[2025-06-09T08:47:20.997+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,997 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T08:47:20.998+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,997 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T08:47:20.998+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:20,997 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T08:47:21.104+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,104 - kafka.cluster - INFO - Coordinator for group/ecommerce-analytics-20250609 is BrokerMetadata(nodeId='coordinator-1', host='kafka', port=29092, rack=None)
+[2025-06-09T08:47:21.105+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,104 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group ecommerce-analytics-20250609
+[2025-06-09T08:47:21.106+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,104 - kafka.coordinator.heartbeat - INFO - Starting new heartbeat thread
+[2025-06-09T08:47:21.106+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,105 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group ecommerce-analytics-20250609
+[2025-06-09T08:47:21.107+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,105 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: NodeNotReadyError: coordinator-1
+[2025-06-09T08:47:21.108+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,106 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T08:47:21.108+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,107 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T08:47:21.208+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,208 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T08:47:21.216+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,216 - kafka.coordinator - INFO - Received member id kafka-python-2.2.11-19435fa2-f01f-4550-8bd7-d3b3ea92e729 for group ecommerce-analytics-20250609; will retry join-group
+[2025-06-09T08:47:21.216+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,216 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: [Error 79] MemberIdRequiredError
+[2025-06-09T08:47:21.216+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:21,216 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T08:47:24.223+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:24,222 - kafka.coordinator - INFO - Successfully joined group ecommerce-analytics-20250609 <Generation 5 (member_id: kafka-python-2.2.11-19435fa2-f01f-4550-8bd7-d3b3ea92e729, protocol: range)>
+[2025-06-09T08:47:24.225+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:24,222 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+[2025-06-09T08:47:24.230+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:24,230 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='ecommerce.cart.add', partition=0), TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=0)]
+[2025-06-09T08:47:24.231+0000] {subprocess.py:93} INFO - 2025-06-09 08:47:24,230 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='ecommerce.cart.add', partition=0), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=0)} for group ecommerce-analytics-20250609
+[2025-06-09T08:47:24.243+0000] {subprocess.py:93} INFO - 💰 Order: order_53738 by user_039 - $6219.94 (4 items)
+[2025-06-09T08:47:24.248+0000] {subprocess.py:93} INFO - kafka_scripts/consumer.py:281: DeprecationWarning: Redis.hmset() is deprecated. Use Redis.hset() instead.
+[2025-06-09T08:47:24.249+0000] {subprocess.py:93} INFO -   self.redis_client.hmset("metrics:totals", {
+[2025-06-09T08:47:24.249+0000] {subprocess.py:93} INFO - 💰 Order: order_25892 by user_076 - $2729.94 (4 items)
+[2025-06-09T08:47:24.251+0000] {subprocess.py:93} INFO - 💰 Order: order_12708 by user_070 - $2089.98 (2 items)
+[2025-06-09T08:47:24.252+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Wireless Headphones by user_031 ($199.99)
+[2025-06-09T08:47:24.253+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 3x Nike Air Max by user_047 ($389.97)
+[2025-06-09T08:47:24.255+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_028
+[2025-06-09T08:47:24.257+0000] {subprocess.py:93} INFO - 👀 Product View: MacBook Pro by user_020
+[2025-06-09T08:47:24.259+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_041
+[2025-06-09T08:47:24.262+0000] {subprocess.py:93} INFO - 👀 Product View: Samsung 4K TV by user_015
+[2025-06-09T08:47:24.263+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_071
+[2025-06-09T08:47:24.264+0000] {subprocess.py:93} INFO - 📊 Processed 10 messages in 3.3 seconds
+[2025-06-09T08:47:24.264+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 👀 Total Views: 17
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 0
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:24.265+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:24.264918
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:24.266+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_081
+[2025-06-09T08:47:24.267+0000] {subprocess.py:93} INFO - 👀 Product View: MacBook Pro by user_031
+[2025-06-09T08:47:24.267+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_069
+[2025-06-09T08:47:24.267+0000] {subprocess.py:93} INFO - 👀 Product View: Wireless Headphones by user_084
+[2025-06-09T08:47:24.268+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_010
+[2025-06-09T08:47:24.269+0000] {subprocess.py:93} INFO - 👀 Product View: iPhone 15 Pro by user_037
+[2025-06-09T08:47:24.269+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_051
+[2025-06-09T08:47:24.270+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Adidas Sneakers by user_075
+[2025-06-09T08:47:24.271+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Coffee Maker by user_016
+[2025-06-09T08:47:24.272+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Adidas Sneakers by user_100
+[2025-06-09T08:47:24.273+0000] {subprocess.py:93} INFO - 📊 Processed 20 messages in 3.3 seconds
+[2025-06-09T08:47:24.275+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:24.275+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:24.275+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:24.276+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:24.276+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:47:24.276+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:24.277+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:47:24.277+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:24.277+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:24.277+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:24.275141
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:24.278+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:44.282+0000] {subprocess.py:93} INFO - ⏸️ No messages for 15.0s, checking for completion...
+[2025-06-09T08:47:44.291+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:44.292+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:44.293+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:44.294+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:44.294+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:47:44.295+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:44.297+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:47:44.298+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:44.299+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:44.300+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:44.288215
+[2025-06-09T08:47:44.300+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:44.301+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:44.302+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:44.302+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:44.303+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:44.303+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:44.304+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:44.304+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:49.293+0000] {subprocess.py:93} INFO - ⏸️ No messages for 20.0s, checking for completion...
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:47:49.297+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:49.295351
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:49.298+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:49.299+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:49.299+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:49.299+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:49.299+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:54.297+0000] {subprocess.py:93} INFO - ⏸️ No messages for 25.0s, checking for completion...
+[2025-06-09T08:47:54.306+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:54.307+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:54.307+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:54.307+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:54.307+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:47:54.308+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:54.308+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:47:54.308+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:54.308+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:54.308+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:54.299125
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:54.309+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:54.310+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:54.310+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:59.302+0000] {subprocess.py:93} INFO - ⏸️ No messages for 30.0s, checking for completion...
+[2025-06-09T08:47:59.307+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:59.307+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:59.308+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:47:59.308+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:47:59.308+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:47:59.309+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:47:59.309+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:47:59.309+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:47:59.309+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:47:59.310+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:47:59.305283
+[2025-06-09T08:47:59.310+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:47:59.310+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:47:59.310+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:47:59.311+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:47:59.311+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:47:59.311+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:47:59.311+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:47:59.311+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:04.308+0000] {subprocess.py:93} INFO - ⏸️ No messages for 35.0s, checking for completion...
+[2025-06-09T08:48:04.311+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:04.311+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:04.311+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:04.311+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:04.311+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:04.310128
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:04.312+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:04.313+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:09.313+0000] {subprocess.py:93} INFO - ⏸️ No messages for 40.0s, checking for completion...
+[2025-06-09T08:48:09.322+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:09.322+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:09.322+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:09.322+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:09.323+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:09.323+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:09.323+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:09.324+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:09.324+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:09.324+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:09.319105
+[2025-06-09T08:48:09.324+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:09.325+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:14.324+0000] {subprocess.py:93} INFO - ⏸️ No messages for 45.0s, checking for completion...
+[2025-06-09T08:48:14.334+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:14.335+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:14.336+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:14.336+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:14.336+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:14.336+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:14.336+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:14.337+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:14.337+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:14.337+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:14.327231
+[2025-06-09T08:48:14.337+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:14.337+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:14.338+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:19.330+0000] {subprocess.py:93} INFO - ⏸️ No messages for 50.1s, checking for completion...
+[2025-06-09T08:48:19.336+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:19.336+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:19.336+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:19.337+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:19.337+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:19.337+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:19.337+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:19.338+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:19.338+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:19.338+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:19.335874
+[2025-06-09T08:48:19.338+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:19.339+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:19.340+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:24.341+0000] {subprocess.py:93} INFO - ⏸️ No messages for 55.1s, checking for completion...
+[2025-06-09T08:48:24.345+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:24.345+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:24.345+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:24.345+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:24.346+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:24.346+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:24.346+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:24.346+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:24.346+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:24.347+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:24.343409
+[2025-06-09T08:48:24.347+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:24.347+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:24.347+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:24.347+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:24.348+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:24.348+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:24.348+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:24.348+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:29.347+0000] {subprocess.py:93} INFO - ⏸️ No messages for 60.1s, checking for completion...
+[2025-06-09T08:48:29.359+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:29.360+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:29.361+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:29.367+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:29.369+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:29.370+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:29.375+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:29.378+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:29.381+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:29.382+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:29.348952
+[2025-06-09T08:48:29.382+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:29.382+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:29.383+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:29.383+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:29.383+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:29.384+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:29.384+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:29.384+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:34.350+0000] {subprocess.py:93} INFO - ⏸️ No messages for 65.1s, checking for completion...
+[2025-06-09T08:48:34.354+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:34.355+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:34.355+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:34.355+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:34.356+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:34.356+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:34.356+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:34.356+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:34.356+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:34.357+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:34.353347
+[2025-06-09T08:48:34.357+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:34.357+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:34.357+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:34.358+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:34.358+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:34.358+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:34.358+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:34.358+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:39.359+0000] {subprocess.py:93} INFO - ⏸️ No messages for 70.1s, checking for completion...
+[2025-06-09T08:48:39.362+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:39.362+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:39.363+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:39.363+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:39.363+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:39.363+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:39.361051
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:39.364+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:39.365+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:44.362+0000] {subprocess.py:93} INFO - ⏸️ No messages for 75.1s, checking for completion...
+[2025-06-09T08:48:44.369+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:44.369+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:44.369+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:44.369+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:44.370+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:44.363706
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:44.371+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:49.368+0000] {subprocess.py:93} INFO - ⏸️ No messages for 80.1s, checking for completion...
+[2025-06-09T08:48:49.377+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:49.377+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:49.378+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:49.379+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:49.380+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:49.381+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:49.382+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:49.382+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:49.382+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:49.383+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:49.374007
+[2025-06-09T08:48:49.384+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:49.384+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:49.385+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:49.385+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:49.386+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:49.386+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:49.386+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:49.386+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:54.375+0000] {subprocess.py:93} INFO - ⏸️ No messages for 85.1s, checking for completion...
+[2025-06-09T08:48:54.378+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:54.378+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:54.378+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:54.378+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:54.378+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:54.379+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:54.379+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:54.379+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:54.379+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:54.380+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:54.377088
+[2025-06-09T08:48:54.380+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:54.380+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:54.381+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:54.381+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:54.382+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:54.382+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:54.382+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:54.382+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:54.382+0000] {subprocess.py:93} INFO - ⏰ Timeout reached (90s), stopping consumer
+[2025-06-09T08:48:54.386+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:54,386 - kafka.coordinator.heartbeat - INFO - Stopping heartbeat thread
+[2025-06-09T08:48:57.392+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:57,389 - kafka.coordinator.heartbeat - WARNING - Heartbeat thread did not fully terminate during close
+[2025-06-09T08:48:57.401+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:57,391 - kafka.coordinator - INFO - Leaving consumer group (ecommerce-analytics-20250609).
+[2025-06-09T08:48:57.411+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:57,411 - kafka.coordinator - INFO - LeaveGroup request for group ecommerce-analytics-20250609 returned successfully
+[2025-06-09T08:48:57.412+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:57,412 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T08:48:57.413+0000] {subprocess.py:93} INFO - 2025-06-09 08:48:57,412 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T08:48:57.413+0000] {subprocess.py:93} INFO - ✅ Kafka consumer closed
+[2025-06-09T08:48:57.414+0000] {subprocess.py:93} INFO - ✅ Redis connection closed
+[2025-06-09T08:48:57.414+0000] {subprocess.py:93} INFO - 👋 Consumer completed after processing 20 messages in 96.4 seconds
+[2025-06-09T08:48:57.415+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:57.415+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:57.415+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T08:48:57.415+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 👀 Total Views: 24
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 6
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 📦 Total Orders: 7
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $11999.789999999999
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T08:48:57.415432
+[2025-06-09T08:48:57.416+0000] {subprocess.py:93} INFO - 
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:57.417+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T08:48:57.474+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T08:48:57.497+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_consumer, execution_date=20250609T084000, start_date=20250609T084720, end_date=20250609T084857
+[2025-06-09T08:48:57.561+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T08:48:57.588+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

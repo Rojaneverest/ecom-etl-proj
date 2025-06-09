@@ -1,0 +1,17 @@
+[2025-06-09T08:44:36.660+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.check_services_health manual__2025-06-09T08:42:34.265423+00:00 [queued]>
+[2025-06-09T08:44:36.664+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.check_services_health manual__2025-06-09T08:42:34.265423+00:00 [queued]>
+[2025-06-09T08:44:36.665+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T08:44:36.670+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): check_services_health> on 2025-06-09 08:42:34.265423+00:00
+[2025-06-09T08:44:36.677+0000] {standard_task_runner.py:60} INFO - Started process 294 to run task
+[2025-06-09T08:44:36.683+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'check_services_health', 'manual__2025-06-09T08:42:34.265423+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmp1amhg_88']
+[2025-06-09T08:44:36.685+0000] {standard_task_runner.py:88} INFO - Job 20: Subtask check_services_health
+[2025-06-09T08:44:36.724+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.check_services_health manual__2025-06-09T08:42:34.265423+00:00 [running]> on host 1b1881543ac4
+[2025-06-09T08:44:36.769+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='check_services_health' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T08:42:34.265423+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-06-09T08:42:34.265423+00:00'
+[2025-06-09T08:44:36.770+0000] {kafka_data_pipeline.py:80} INFO - 🔍 Checking service health...
+[2025-06-09T08:44:36.786+0000] {kafka_data_pipeline.py:98} INFO - ✅ Kafka is reachable at kafka:29092
+[2025-06-09T08:44:36.796+0000] {kafka_data_pipeline.py:98} INFO - ✅ Redis is reachable at redis:6379
+[2025-06-09T08:44:36.797+0000] {kafka_data_pipeline.py:104} INFO - 🏥 Health check completed
+[2025-06-09T08:44:36.797+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-06-09T08:44:36.808+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=check_services_health, execution_date=20250609T084234, start_date=20250609T084436, end_date=20250609T084436
+[2025-06-09T08:44:36.867+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T08:44:36.888+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

@@ -1,0 +1,27 @@
+[2025-06-09T08:48:58.711+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T08:40:00+00:00 [queued]>
+[2025-06-09T08:48:58.716+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T08:40:00+00:00 [queued]>
+[2025-06-09T08:48:58.717+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T08:48:58.723+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): verify_pipeline_results> on 2025-06-09 08:40:00+00:00
+[2025-06-09T08:48:58.726+0000] {standard_task_runner.py:60} INFO - Started process 471 to run task
+[2025-06-09T08:48:58.729+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'verify_pipeline_results', 'scheduled__2025-06-09T08:40:00+00:00', '--job-id', '31', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmphnn3r45r']
+[2025-06-09T08:48:58.731+0000] {standard_task_runner.py:88} INFO - Job 31: Subtask verify_pipeline_results
+[2025-06-09T08:48:58.775+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.verify_pipeline_results scheduled__2025-06-09T08:40:00+00:00 [running]> on host 1b1881543ac4
+[2025-06-09T08:48:58.820+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='verify_pipeline_results' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T08:40:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T08:40:00+00:00'
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:175} INFO - 📊 Pipeline Results:
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:176} INFO -  👀 Total Views: 24
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:177} INFO -  🛒 Total Cart Adds: 6
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:178} INFO -  ❤️ Total Wishlist Adds: 3
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:179} INFO -  📦 Total Orders: 7
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:180} INFO -  💰 Total Revenue: $11999.79
+[2025-06-09T08:48:58.824+0000] {kafka_data_pipeline.py:181} INFO -  🕐 Last Updated: 2025-06-09T08:48:54.377174
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:186} INFO - 🔥 Recent Orders:
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:189} INFO -  • order_12708: $2089.98 (2 items)
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:189} INFO -  • order_25892: $2729.94 (4 items)
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:189} INFO -  • order_53738: $6219.94 (4 items)
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:189} INFO -  • order_80647: $239.98 (2 items)
+[2025-06-09T08:48:58.825+0000] {kafka_data_pipeline.py:189} INFO -  • order_17009: $299.98 (1 items)
+[2025-06-09T08:48:58.826+0000] {kafka_data_pipeline.py:194} INFO - ✅ Pipeline completed successfully - Last activity: 2025-06-09T08:48:54.380468
+[2025-06-09T08:48:58.826+0000] {python.py:201} INFO - Done. Returned value was: None
+[2025-06-09T08:48:58.833+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=verify_pipeline_results, execution_date=20250609T084000, start_date=20250609T084858, end_date=20250609T084858
+[2025-06-09T08:48:58.872+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T08:48:58.896+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
