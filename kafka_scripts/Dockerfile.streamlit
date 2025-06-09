@@ -1,0 +1,42 @@
+FROM python:3.9-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    wget \
+    gnupg2 \
+    software-properties-common \
+    default-libmysqlclient-dev \
+    procps \
+    && wget -qO - https://packages.confluent.io/deb/7.3/archive.key | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/7.3/ stable main" \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        librdkafka-dev \
+        kafkacat \
+        redis-tools \
+        netcat-openbsd \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements first to leverage Docker cache
+COPY kafka_scripts/requirements-streamlit.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements-streamlit.txt
+
+# Copy all Python files from kafka_scripts
+COPY kafka_scripts/*.py ./
+
+# Expose the port the app runs on
+EXPOSE 8501
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD pgrep -f "python -u consumer.py" || exit 1
