@@ -1,0 +1,92 @@
+[2025-06-09T09:42:54.720+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:41:00+00:00 [queued]>
+[2025-06-09T09:42:54.726+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:41:00+00:00 [queued]>
+[2025-06-09T09:42:54.726+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T09:42:54.733+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_consumer> on 2025-06-09 09:41:00+00:00
+[2025-06-09T09:42:54.736+0000] {standard_task_runner.py:60} INFO - Started process 150 to run task
+[2025-06-09T09:42:54.738+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_consumer', 'scheduled__2025-06-09T09:41:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmp13kazuhu']
+[2025-06-09T09:42:54.739+0000] {standard_task_runner.py:88} INFO - Job 8: Subtask run_kafka_consumer
+[2025-06-09T09:42:54.782+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:41:00+00:00 [running]> on host e695025acf97
+[2025-06-09T09:42:54.827+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_consumer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T09:41:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T09:41:00+00:00'
+[2025-06-09T09:42:54.828+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T09:42:54.829+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl/ && python kafka_scripts/consumer.py']
+[2025-06-09T09:42:54.834+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T09:42:55.052+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Consumer
+[2025-06-09T09:42:55.054+0000] {subprocess.py:93} INFO - 🔗 Kafka: kafka:29092
+[2025-06-09T09:42:55.054+0000] {subprocess.py:93} INFO - 🔴 Redis: redis:6379
+[2025-06-09T09:42:55.054+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka consumer with bootstrap servers: kafka:29092
+[2025-06-09T09:42:55.055+0000] {subprocess.py:93} INFO - 🔌 Connecting to Redis at redis:6379
+[2025-06-09T09:42:55.055+0000] {subprocess.py:93} INFO - 🔄 Reset offset mode: False
+[2025-06-09T09:42:55.055+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Redis
+[2025-06-09T09:42:55.056+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:55,056 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:42:55.063+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:55,063 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <checking_api_versions_recv> [IPv4 ('172.18.0.5', 29092)]>: Broker version identified as 2.6
+[2025-06-09T09:42:55.063+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:55,063 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:55,063 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('ecommerce.product.views', 'ecommerce.cart.add', 'ecommerce.wishlist.add', 'ecommerce.orders.completed')
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - 📊 Loaded existing metrics: {'total_views': 0, 'total_cart_adds': 0, 'total_wishlist_adds': 0, 'total_orders': 0, 'total_revenue': 0.0}
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - 🚀 Starting Kafka consumer...
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - 📊 Subscribed to Topics: ['ecommerce.cart.add', 'ecommerce.product.views', 'ecommerce.orders.completed', 'ecommerce.wishlist.add']
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - 🔍 Will process up to 100 messages or run for 90 seconds
+[2025-06-09T09:42:55.064+0000] {subprocess.py:93} INFO - ⏳ Waiting 3 seconds for messages to be produced...
+[2025-06-09T09:42:58.110+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,106 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:42:58.118+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,107 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:42:58.119+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,108 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:42:58.812+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,812 - kafka.cluster - INFO - Coordinator for group/ecommerce-analytics-20250609 is BrokerMetadata(nodeId='coordinator-1', host='kafka', port=29092, rack=None)
+[2025-06-09T09:42:58.813+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,812 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group ecommerce-analytics-20250609
+[2025-06-09T09:42:58.813+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,812 - kafka.coordinator.heartbeat - INFO - Starting new heartbeat thread
+[2025-06-09T09:42:58.813+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,813 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group ecommerce-analytics-20250609
+[2025-06-09T09:42:58.814+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,813 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: NodeNotReadyError: coordinator-1
+[2025-06-09T09:42:58.815+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,815 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:42:58.815+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,815 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:42:58.919+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,918 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T09:42:58.946+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,945 - kafka.coordinator - INFO - Received member id kafka-python-2.2.11-999f7959-5a56-423a-a07b-5231057eabb2 for group ecommerce-analytics-20250609; will retry join-group
+[2025-06-09T09:42:58.948+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,945 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: [Error 79] MemberIdRequiredError
+[2025-06-09T09:42:58.948+0000] {subprocess.py:93} INFO - 2025-06-09 09:42:58,945 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T09:43:02.023+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,020 - kafka.coordinator - INFO - Successfully joined group ecommerce-analytics-20250609 <Generation 1 (member_id: kafka-python-2.2.11-999f7959-5a56-423a-a07b-5231057eabb2, protocol: range)>
+[2025-06-09T09:43:02.030+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,021 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+[2025-06-09T09:43:02.049+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,048 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='ecommerce.cart.add', partition=0), TopicPartition(topic='ecommerce.cart.add', partition=1), TopicPartition(topic='ecommerce.cart.add', partition=2), TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.orders.completed', partition=1), TopicPartition(topic='ecommerce.orders.completed', partition=2), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.product.views', partition=1), TopicPartition(topic='ecommerce.product.views', partition=2), TopicPartition(topic='ecommerce.wishlist.add', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=1), TopicPartition(topic='ecommerce.wishlist.add', partition=2)]
+[2025-06-09T09:43:02.050+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,049 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='ecommerce.wishlist.add', partition=2), TopicPartition(topic='ecommerce.cart.add', partition=0), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=1), TopicPartition(topic='ecommerce.orders.completed', partition=2), TopicPartition(topic='ecommerce.orders.completed', partition=1), TopicPartition(topic='ecommerce.cart.add', partition=2), TopicPartition(topic='ecommerce.product.views', partition=2), TopicPartition(topic='ecommerce.wishlist.add', partition=0), TopicPartition(topic='ecommerce.product.views', partition=1), TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.cart.add', partition=1)} for group ecommerce-analytics-20250609
+[2025-06-09T09:43:02.063+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,062 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.wishlist.add', partition=2) to offset 4.
+[2025-06-09T09:43:02.063+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,062 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.wishlist.add', partition=1) to offset 2.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.wishlist.add', partition=0) to offset 1.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.cart.add', partition=0) to offset 5.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.cart.add', partition=2) to offset 4.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.cart.add', partition=1) to offset 4.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.product.views', partition=0) to offset 7.
+[2025-06-09T09:43:02.064+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.product.views', partition=2) to offset 8.
+[2025-06-09T09:43:02.065+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.product.views', partition=1) to offset 10.
+[2025-06-09T09:43:02.065+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.orders.completed', partition=2) to offset 2.
+[2025-06-09T09:43:02.065+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.orders.completed', partition=1) to offset 2.
+[2025-06-09T09:43:02.065+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:02,063 - kafka.consumer.fetcher - INFO - Resetting offset for partition TopicPartition(topic='ecommerce.orders.completed', partition=0) to offset 1.
+[2025-06-09T09:43:03.073+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #1)
+[2025-06-09T09:43:08.071+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #2)
+[2025-06-09T09:43:13.079+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #3)
+[2025-06-09T09:43:18.078+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #4)
+[2025-06-09T09:43:23.079+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #5)
+[2025-06-09T09:43:28.082+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #6)
+[2025-06-09T09:43:28.090+0000] {subprocess.py:93} INFO - 🏁 No messages for 6 consecutive polls, assuming completion
+[2025-06-09T09:43:28.092+0000] {subprocess.py:93} INFO - kafka_scripts/consumer.py:346: DeprecationWarning: Redis.hmset() is deprecated. Use Redis.hset() instead.
+[2025-06-09T09:43:28.092+0000] {subprocess.py:93} INFO -   self.redis_client.hmset("metrics:totals", {
+[2025-06-09T09:43:28.096+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:28,095 - kafka.coordinator.heartbeat - INFO - Stopping heartbeat thread
+[2025-06-09T09:43:38.111+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:38,100 - kafka.coordinator.heartbeat - WARNING - Heartbeat thread did not fully terminate during close
+[2025-06-09T09:43:38.126+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:38,110 - kafka.coordinator - INFO - Leaving consumer group (ecommerce-analytics-20250609).
+[2025-06-09T09:43:38.183+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:38,183 - kafka.coordinator - INFO - LeaveGroup request for group ecommerce-analytics-20250609 returned successfully
+[2025-06-09T09:43:38.184+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:38,184 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:43:38.185+0000] {subprocess.py:93} INFO - 2025-06-09 09:43:38,185 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:43:38.185+0000] {subprocess.py:93} INFO - ✅ Kafka consumer closed
+[2025-06-09T09:43:38.186+0000] {subprocess.py:93} INFO - ✅ Redis connection closed
+[2025-06-09T09:43:38.187+0000] {subprocess.py:93} INFO - 👋 Consumer completed after processing 0 messages in 40.1 seconds
+[2025-06-09T09:43:38.195+0000] {subprocess.py:93} INFO - 
+[2025-06-09T09:43:38.195+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:43:38.195+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T09:43:38.196+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:43:38.196+0000] {subprocess.py:93} INFO - 👀 Total Views: 0
+[2025-06-09T09:43:38.196+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 0
+[2025-06-09T09:43:38.196+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 0
+[2025-06-09T09:43:38.197+0000] {subprocess.py:93} INFO - 📦 Total Orders: 0
+[2025-06-09T09:43:38.197+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $0.00
+[2025-06-09T09:43:38.197+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T09:43:38.195508
+[2025-06-09T09:43:38.197+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:43:38.260+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T09:43:38.299+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_consumer, execution_date=20250609T094100, start_date=20250609T094254, end_date=20250609T094338
+[2025-06-09T09:43:38.344+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T09:43:38.381+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

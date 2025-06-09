@@ -27,7 +27,7 @@ dag = DAG(
     'kafka_ecommerce_pipeline',
     default_args=default_args,
     description='E-commerce Kafka producer and consumer pipeline with Redis analytics',
-    schedule_interval='*/5 * * * *',  # Run every 5 minutes (more reasonable for demo)
+    schedule_interval='*/1 * * * *',  # Run every 1 minutes (more reasonable for demo)
     start_date=days_ago(1),
     catchup=False,
     max_active_runs=1,  # Prevent overlapping runs

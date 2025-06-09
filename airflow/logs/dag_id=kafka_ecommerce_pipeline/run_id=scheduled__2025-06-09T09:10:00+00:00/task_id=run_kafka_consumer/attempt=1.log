@@ -1,0 +1,147 @@
+[2025-06-09T09:16:06.334+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:10:00+00:00 [queued]>
+[2025-06-09T09:16:06.338+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:10:00+00:00 [queued]>
+[2025-06-09T09:16:06.338+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2025-06-09T09:16:06.343+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): run_kafka_consumer> on 2025-06-09 09:10:00+00:00
+[2025-06-09T09:16:06.350+0000] {standard_task_runner.py:60} INFO - Started process 716 to run task
+[2025-06-09T09:16:06.351+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'kafka_ecommerce_pipeline', 'run_kafka_consumer', 'scheduled__2025-06-09T09:10:00+00:00', '--job-id', '34', '--raw', '--subdir', 'DAGS_FOLDER/kafka_data_pipeline.py', '--cfg-path', '/tmp/tmp9_5ogdsf']
+[2025-06-09T09:16:06.354+0000] {standard_task_runner.py:88} INFO - Job 34: Subtask run_kafka_consumer
+[2025-06-09T09:16:06.380+0000] {task_command.py:423} INFO - Running <TaskInstance: kafka_ecommerce_pipeline.run_kafka_consumer scheduled__2025-06-09T09:10:00+00:00 [running]> on host 93140bc61108
+[2025-06-09T09:16:06.421+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-engineering-team' AIRFLOW_CTX_DAG_ID='kafka_ecommerce_pipeline' AIRFLOW_CTX_TASK_ID='run_kafka_consumer' AIRFLOW_CTX_EXECUTION_DATE='2025-06-09T09:10:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-06-09T09:10:00+00:00'
+[2025-06-09T09:16:06.422+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-06-09T09:16:06.423+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', 'cd /opt/***/ecom_etl/ && python kafka_scripts/consumer.py']
+[2025-06-09T09:16:06.429+0000] {subprocess.py:86} INFO - Output:
+[2025-06-09T09:16:06.601+0000] {subprocess.py:93} INFO - 🚀 Starting E-Commerce Event Consumer
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - 🔗 Kafka: kafka:29092
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - 🔴 Redis: redis:6379
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - 🚀 Initializing Kafka consumer with bootstrap servers: kafka:29092
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - 🔌 Connecting to Redis at redis:6379
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - 🔄 Reset offset mode: False
+[2025-06-09T09:16:06.602+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Redis
+[2025-06-09T09:16:06.603+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:06,603 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:16:06.604+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:06,604 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <checking_api_versions_recv> [IPv4 ('172.18.0.5', 29092)]>: Broker version identified as 2.6
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:06,604 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:06,605 - kafka.consumer.subscription_state - INFO - Updating subscribed topics to: ('ecommerce.product.views', 'ecommerce.cart.add', 'ecommerce.wishlist.add', 'ecommerce.orders.completed')
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - ✅ Successfully connected to Kafka
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 📊 Loaded existing metrics: {'total_views': 51, 'total_cart_adds': 19, 'total_wishlist_adds': 9, 'total_orders': 11, 'total_revenue': 22319.58}
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 🚀 Starting Kafka consumer...
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 📊 Subscribed to Topics: ['ecommerce.product.views', 'ecommerce.cart.add', 'ecommerce.orders.completed', 'ecommerce.wishlist.add']
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - 🔍 Will process up to 100 messages or run for 90 seconds
+[2025-06-09T09:16:06.605+0000] {subprocess.py:93} INFO - ⏳ Waiting 3 seconds for messages to be produced...
+[2025-06-09T09:16:09.617+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,615 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:16:09.620+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,617 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:16:09.621+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,617 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=bootstrap-0 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:16:09.741+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,740 - kafka.cluster - INFO - Coordinator for group/ecommerce-analytics-20250609 is BrokerMetadata(nodeId='coordinator-1', host='kafka', port=29092, rack=None)
+[2025-06-09T09:16:09.747+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,741 - kafka.coordinator - INFO - Discovered coordinator coordinator-1 for group ecommerce-analytics-20250609
+[2025-06-09T09:16:09.748+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,741 - kafka.coordinator.heartbeat - INFO - Starting new heartbeat thread
+[2025-06-09T09:16:09.748+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,748 - kafka.coordinator.consumer - INFO - Revoking previously assigned partitions set() for group ecommerce-analytics-20250609
+[2025-06-09T09:16:09.750+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,748 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: NodeNotReadyError: coordinator-1
+[2025-06-09T09:16:09.754+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,753 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connecting> [IPv4 ('172.18.0.5', 29092)]>: connecting to kafka:29092 [('172.18.0.5', 29092) IPv4]
+[2025-06-09T09:16:09.764+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,759 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Connection complete.
+[2025-06-09T09:16:09.867+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,866 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T09:16:09.879+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,878 - kafka.coordinator - INFO - Received member id kafka-python-2.2.11-59f63f86-b51f-4fe5-ba54-db1156be5669 for group ecommerce-analytics-20250609; will retry join-group
+[2025-06-09T09:16:09.879+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,879 - kafka.coordinator - INFO - Failed to join group ecommerce-analytics-20250609: [Error 79] MemberIdRequiredError
+[2025-06-09T09:16:09.879+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:09,879 - kafka.coordinator - INFO - (Re-)joining group ecommerce-analytics-20250609
+[2025-06-09T09:16:12.891+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:12,890 - kafka.coordinator - INFO - Successfully joined group ecommerce-analytics-20250609 <Generation 9 (member_id: kafka-python-2.2.11-59f63f86-b51f-4fe5-ba54-db1156be5669, protocol: range)>
+[2025-06-09T09:16:12.893+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:12,890 - kafka.coordinator - INFO - Elected group leader -- performing partition assignments using range
+[2025-06-09T09:16:12.904+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:12,904 - kafka.consumer.subscription_state - INFO - Updated partition assignment: [TopicPartition(topic='ecommerce.cart.add', partition=0), TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=0)]
+[2025-06-09T09:16:12.905+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:12,904 - kafka.coordinator.consumer - INFO - Setting newly assigned partitions {TopicPartition(topic='ecommerce.orders.completed', partition=0), TopicPartition(topic='ecommerce.wishlist.add', partition=0), TopicPartition(topic='ecommerce.product.views', partition=0), TopicPartition(topic='ecommerce.cart.add', partition=0)} for group ecommerce-analytics-20250609
+[2025-06-09T09:16:12.917+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Nike Air Max by user_031 ($129.99)
+[2025-06-09T09:16:12.921+0000] {subprocess.py:93} INFO - kafka_scripts/consumer.py:346: DeprecationWarning: Redis.hmset() is deprecated. Use Redis.hset() instead.
+[2025-06-09T09:16:12.921+0000] {subprocess.py:93} INFO -   self.redis_client.hmset("metrics:totals", {
+[2025-06-09T09:16:12.921+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 3x Wireless Headphones by user_026 ($599.97)
+[2025-06-09T09:16:12.923+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 3x Levi's Jeans by user_042 ($239.97)
+[2025-06-09T09:16:12.924+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Coffee Maker by user_038 ($149.99)
+[2025-06-09T09:16:12.925+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Wireless Headphones by user_009 ($199.99)
+[2025-06-09T09:16:12.926+0000] {subprocess.py:93} INFO - 📊 Processed 5 messages in 3.3 seconds
+[2025-06-09T09:16:12.927+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x MacBook Pro by user_061 ($1999.99)
+[2025-06-09T09:16:12.928+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Levi's Jeans by user_060 ($79.99)
+[2025-06-09T09:16:12.929+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Adidas Sneakers by user_082 ($89.99)
+[2025-06-09T09:16:12.930+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x iPhone 15 Pro by user_081 ($999.99)
+[2025-06-09T09:16:12.931+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 3x Coffee Maker by user_057 ($449.97)
+[2025-06-09T09:16:12.932+0000] {subprocess.py:93} INFO - 📊 Processed 10 messages in 3.3 seconds
+[2025-06-09T09:16:12.933+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Levi's Jeans by user_092 ($79.99)
+[2025-06-09T09:16:12.935+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x Samsung 4K TV by user_092 ($799.99)
+[2025-06-09T09:16:12.936+0000] {subprocess.py:93} INFO - 🛒 Cart Add: 1x iPhone 15 Pro by user_070 ($999.99)
+[2025-06-09T09:16:12.938+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Samsung 4K TV by user_053
+[2025-06-09T09:16:12.939+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Coffee Maker by user_001
+[2025-06-09T09:16:12.940+0000] {subprocess.py:93} INFO - 📊 Processed 15 messages in 3.3 seconds
+[2025-06-09T09:16:12.940+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Levi's Jeans by user_033
+[2025-06-09T09:16:12.941+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: iPhone 15 Pro by user_070
+[2025-06-09T09:16:12.942+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Nike Air Max by user_044
+[2025-06-09T09:16:12.943+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Wireless Headphones by user_018
+[2025-06-09T09:16:12.944+0000] {subprocess.py:93} INFO - ❤️ Wishlist Add: Adidas Sneakers by user_021
+[2025-06-09T09:16:12.945+0000] {subprocess.py:93} INFO - 📊 Processed 20 messages in 3.3 seconds
+[2025-06-09T09:16:12.946+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_035
+[2025-06-09T09:16:12.948+0000] {subprocess.py:93} INFO - 👀 Product View: iPhone 15 Pro by user_015
+[2025-06-09T09:16:12.949+0000] {subprocess.py:93} INFO - 👀 Product View: Wireless Headphones by user_004
+[2025-06-09T09:16:12.952+0000] {subprocess.py:93} INFO - 👀 Product View: MacBook Pro by user_087
+[2025-06-09T09:16:12.955+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_039
+[2025-06-09T09:16:12.957+0000] {subprocess.py:93} INFO - 📊 Processed 25 messages in 3.3 seconds
+[2025-06-09T09:16:12.957+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_064
+[2025-06-09T09:16:12.960+0000] {subprocess.py:93} INFO - 👀 Product View: Nike Air Max by user_080
+[2025-06-09T09:16:12.964+0000] {subprocess.py:93} INFO - 👀 Product View: iPhone 15 Pro by user_035
+[2025-06-09T09:16:12.971+0000] {subprocess.py:93} INFO - 👀 Product View: Nike Air Max by user_002
+[2025-06-09T09:16:12.972+0000] {subprocess.py:93} INFO - 👀 Product View: MacBook Pro by user_059
+[2025-06-09T09:16:12.974+0000] {subprocess.py:93} INFO - 📊 Processed 30 messages in 3.4 seconds
+[2025-06-09T09:16:12.977+0000] {subprocess.py:93} INFO - 👀 Product View: Adidas Sneakers by user_051
+[2025-06-09T09:16:12.986+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_053
+[2025-06-09T09:16:12.988+0000] {subprocess.py:93} INFO - 👀 Product View: Wireless Headphones by user_061
+[2025-06-09T09:16:12.992+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_011
+[2025-06-09T09:16:12.997+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_032
+[2025-06-09T09:16:13.001+0000] {subprocess.py:93} INFO - 📊 Processed 35 messages in 3.4 seconds
+[2025-06-09T09:16:13.002+0000] {subprocess.py:93} INFO - 👀 Product View: Wireless Headphones by user_004
+[2025-06-09T09:16:13.003+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_065
+[2025-06-09T09:16:13.007+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_063
+[2025-06-09T09:16:13.012+0000] {subprocess.py:93} INFO - 👀 Product View: Wireless Headphones by user_065
+[2025-06-09T09:16:13.015+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_076
+[2025-06-09T09:16:13.080+0000] {subprocess.py:93} INFO - 📊 Processed 40 messages in 3.5 seconds
+[2025-06-09T09:16:13.090+0000] {subprocess.py:93} INFO - 👀 Product View: iPhone 15 Pro by user_036
+[2025-06-09T09:16:13.105+0000] {subprocess.py:93} INFO - 👀 Product View: Levi's Jeans by user_072
+[2025-06-09T09:16:13.110+0000] {subprocess.py:93} INFO - 👀 Product View: Samsung 4K TV by user_030
+[2025-06-09T09:16:13.118+0000] {subprocess.py:93} INFO - 👀 Product View: Coffee Maker by user_066
+[2025-06-09T09:16:13.123+0000] {subprocess.py:93} INFO - 👀 Product View: Nike Air Max by user_047
+[2025-06-09T09:16:13.131+0000] {subprocess.py:93} INFO - 📊 Processed 45 messages in 3.5 seconds
+[2025-06-09T09:16:13.132+0000] {subprocess.py:93} INFO - 💰 Order: order_ba04d38b by user_004 - $4699.92 (5 items)
+[2025-06-09T09:16:13.144+0000] {subprocess.py:93} INFO - 💰 Order: order_1c792776 by user_029 - $1319.94 (4 items)
+[2025-06-09T09:16:13.152+0000] {subprocess.py:93} INFO - 💰 Order: order_f24353f3 by user_048 - $5439.92 (5 items)
+[2025-06-09T09:16:13.155+0000] {subprocess.py:93} INFO - 💰 Order: order_0cff85e4 by user_058 - $2199.97 (2 items)
+[2025-06-09T09:16:13.157+0000] {subprocess.py:93} INFO - 💰 Order: order_27ea8b83 by user_051 - $259.98 (1 items)
+[2025-06-09T09:16:13.160+0000] {subprocess.py:93} INFO - 📊 Processed 50 messages in 3.6 seconds
+[2025-06-09T09:16:18.162+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #1)
+[2025-06-09T09:16:23.164+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #2)
+[2025-06-09T09:16:28.167+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #3)
+[2025-06-09T09:16:33.171+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #4)
+[2025-06-09T09:16:38.169+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #5)
+[2025-06-09T09:16:43.172+0000] {subprocess.py:93} INFO - ⏸️ No messages received (poll #6)
+[2025-06-09T09:16:43.176+0000] {subprocess.py:93} INFO - 🏁 No messages for 6 consecutive polls, assuming completion
+[2025-06-09T09:16:43.179+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:43,178 - kafka.coordinator.heartbeat - INFO - Stopping heartbeat thread
+[2025-06-09T09:16:53.189+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:53,184 - kafka.coordinator.heartbeat - WARNING - Heartbeat thread did not fully terminate during close
+[2025-06-09T09:16:53.203+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:53,188 - kafka.coordinator - INFO - Leaving consumer group (ecommerce-analytics-20250609).
+[2025-06-09T09:16:53.216+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:53,216 - kafka.coordinator - INFO - LeaveGroup request for group ecommerce-analytics-20250609 returned successfully
+[2025-06-09T09:16:53.216+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:53,216 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:16:53.217+0000] {subprocess.py:93} INFO - 2025-06-09 09:16:53,217 - kafka.conn - INFO - <BrokerConnection client_id=kafka-python-2.2.11, node_id=coordinator-1 host=kafka:29092 <connected> [IPv4 ('172.18.0.5', 29092)]>: Closing connection.
+[2025-06-09T09:16:53.218+0000] {subprocess.py:93} INFO - ✅ Kafka consumer closed
+[2025-06-09T09:16:53.218+0000] {subprocess.py:93} INFO - ✅ Redis connection closed
+[2025-06-09T09:16:53.218+0000] {subprocess.py:93} INFO - 👋 Consumer completed after processing 50 messages in 43.6 seconds
+[2025-06-09T09:16:53.221+0000] {subprocess.py:93} INFO - 
+[2025-06-09T09:16:53.221+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:16:53.222+0000] {subprocess.py:93} INFO - 📊 REAL-TIME E-COMMERCE DASHBOARD
+[2025-06-09T09:16:53.222+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:16:53.223+0000] {subprocess.py:93} INFO - 👀 Total Views: 76
+[2025-06-09T09:16:53.223+0000] {subprocess.py:93} INFO - 🛒 Total Cart Adds: 32
+[2025-06-09T09:16:53.224+0000] {subprocess.py:93} INFO - ❤️ Total Wishlist Adds: 16
+[2025-06-09T09:16:53.224+0000] {subprocess.py:93} INFO - 📦 Total Orders: 16
+[2025-06-09T09:16:53.224+0000] {subprocess.py:93} INFO - 💰 Total Revenue: $36239.31
+[2025-06-09T09:16:53.225+0000] {subprocess.py:93} INFO - 🕐 Last Updated: 2025-06-09T09:16:53.221378
+[2025-06-09T09:16:53.225+0000] {subprocess.py:93} INFO - 
+[2025-06-09T09:16:53.226+0000] {subprocess.py:93} INFO - 🔥 Recent Orders:
+[2025-06-09T09:16:53.226+0000] {subprocess.py:93} INFO -  • order_27ea8b83: $259.98 (1 items)
+[2025-06-09T09:16:53.226+0000] {subprocess.py:93} INFO -  • order_0cff85e4: $2199.97 (2 items)
+[2025-06-09T09:16:53.226+0000] {subprocess.py:93} INFO -  • order_f24353f3: $5439.92 (5 items)
+[2025-06-09T09:16:53.227+0000] {subprocess.py:93} INFO -  • order_1c792776: $1319.94 (4 items)
+[2025-06-09T09:16:53.227+0000] {subprocess.py:93} INFO -  • order_ba04d38b: $4699.92 (5 items)
+[2025-06-09T09:16:53.228+0000] {subprocess.py:93} INFO - ============================================================
+[2025-06-09T09:16:53.273+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2025-06-09T09:16:53.300+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=kafka_ecommerce_pipeline, task_id=run_kafka_consumer, execution_date=20250609T091000, start_date=20250609T091606, end_date=20250609T091653
+[2025-06-09T09:16:53.347+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2025-06-09T09:16:53.387+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
