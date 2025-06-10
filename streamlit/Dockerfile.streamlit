@@ -21,14 +21,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first to leverage Docker cache
-COPY kafka_scripts/requirements-streamlit.txt .
-
-# Install Python dependencies
+# Copy requirements file and install dependencies
+COPY requirements-streamlit.txt .
 RUN pip install --no-cache-dir -r requirements-streamlit.txt
 
-# Copy all Python files from kafka_scripts
-COPY kafka_scripts/*.py ./
+# Copy the Streamlit app
+COPY ecommerce_dashboard.py .
 
 # Expose the port the app runs on
 EXPOSE 8501
@@ -39,4 +37,7 @@ ENV PYTHONPATH=/app
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD pgrep -f "python -u consumer.py" || exit 1
+    CMD curl -f http://localhost:8501/_stcore/health || exit 1
+
+# Command to run the Streamlit app
+CMD ["streamlit", "run", "ecommerce_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]

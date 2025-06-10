@@ -409,7 +409,7 @@ services:
   streamlit-dashboard:
     build:
       context: .
-      dockerfile: kafka_scripts/Dockerfile.streamlit
+      dockerfile: streamlit/Dockerfile.streamlit
     container_name: ecommerce-dashboard
     ports:
       - "8501:8501"
@@ -419,15 +419,11 @@ services:
       - REDIS_DB=0
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
     volumes:
-      - ./kafka_scripts:/app
+      - ./streamlit:/app
       - ./data:/data
     depends_on:
       - redis
       - kafka
-    command: >
-      sh -c "pip install --upgrade pip && 
-             pip install -r /app/requirements-streamlit.txt && 
-             streamlit run /app/ecommerce_dashboard.py --server.port=8501 --server.address=0.0.0.0"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
