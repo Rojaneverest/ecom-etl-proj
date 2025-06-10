@@ -1,1 +1,0 @@
-[2025-06-09T10:49:30.346+0000] {scheduler_job_runner.py:781} ERROR - Executor reports task instance <TaskInstance: kafka_ecommerce_pipeline.cleanup_and_complete manual__2025-06-09T10:47:20.305214+00:00 [queued]> finished (success) although the task says it's queued. (Info: None) Was the task killed externally?
