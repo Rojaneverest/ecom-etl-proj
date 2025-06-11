@@ -67,31 +67,57 @@ if conn:
             st.plotly_chart(fig_rfm_dist, use_container_width=True)
 
         with rfm_col2:
-            st.markdown("##### Recency vs. Frequency Bubble Chart")
-            # Sample the data first to avoid overplotting
-            sample_size = min(1000, len(rfm_df))
-            sampled_rfm = rfm_df.sample(sample_size).copy()
-            sampled_rfm['Monetary_log'] = np.log10(sampled_rfm['Monetary'] + 1)  # Log scale for better viz
+            st.markdown("##### RFM Segment Overview")
+            # Create aggregated view by segment for cleaner visualization
+            segment_summary = rfm_df.groupby('Segment').agg({
+                'Recency': 'mean',
+                'Frequency': 'mean', 
+                'Monetary': 'mean',
+                'Segment': 'count'
+            }).rename(columns={'Segment': 'Customer_Count'}).reset_index()
             
-            fig_rfm_bubble = px.scatter(
-                sampled_rfm,
+            # Add segment descriptions for better understanding
+            segment_descriptions = {
+                'Loyal Customers': 'High value, frequent buyers',
+                'At Risk': 'High value but haven\'t purchased recently', 
+                'Hibernating': 'Low recent activity, low frequency',
+                'About to Sleep': 'Recent customers at risk of churning',
+                'New Customers': 'Recent first-time buyers',
+                'Potential Loyalists': 'Recent customers with good frequency',
+                'Needs Attention': 'Below average but not lost yet'
+            }
+            
+            fig_rfm_clean = px.scatter(
+                segment_summary,
                 x='Recency', 
                 y='Frequency', 
-                color='Segment', 
-                size='Monetary_log',
-                title="Customer Segments by RFM",
+                color='Segment',
+                size='Customer_Count',
+                title="Average RFM Metrics by Customer Segment",
                 labels={
-                    'Recency': 'Days Since Last Purchase', 
-                    'Frequency': 'Total Orders'
+                    'Recency': 'Avg Days Since Last Purchase', 
+                    'Frequency': 'Avg Total Orders',
+                    'Customer_Count': 'Number of Customers'
                 },
                 hover_data={
-                    'Monetary': ':.2f', 
-                    'Segment': True, 
-                    'Monetary_log': False
+                    'Monetary': ':.2f',
+                    'Customer_Count': True
                 },
-                size_max=50
+                size_max=100
             )
-            st.plotly_chart(fig_rfm_bubble, use_container_width=True)
+            fig_rfm_clean.update_layout(
+                xaxis={'title': 'Avg Days Since Last Purchase (Lower = Better)'},
+                yaxis={'title': 'Avg Total Orders (Higher = Better)'}
+            )
+            st.plotly_chart(fig_rfm_clean, use_container_width=True)
+        
+        # Move segment insights table outside the columns to center it
+        st.markdown("##### Segment Insights")
+        insight_df = segment_summary.copy()
+        insight_df['Avg_Monetary'] = insight_df['Monetary'].round(2)
+        insight_df = insight_df[['Segment', 'Customer_Count', 'Recency', 'Frequency', 'Avg_Monetary']]
+        insight_df.columns = ['Segment', 'Customers', 'Avg Recency (Days)', 'Avg Orders', 'Avg Revenue ($)']
+        st.dataframe(insight_df.round(1), use_container_width=True, hide_index=True)
     else:
         st.warning("Could not generate RFM segments.")
 
@@ -151,19 +177,16 @@ if conn:
     sat_col1, sat_col2 = st.columns(2)
 
     with sat_col1:
-        st.markdown("##### Impact of Delivery on Review Score")
-        if not sales_df.empty and 'delivery_status' in sales_df.columns:
-            satisfaction_by_delivery = sales_df.groupby('delivery_status')['review_score'].mean().reset_index()
-            fig_sat_delivery = px.bar(
-                satisfaction_by_delivery,
-                x='delivery_status', y='review_score', color='delivery_status',
-                title="Average Review Score for On-Time vs. Late Deliveries",
-                labels={'delivery_status': 'Delivery Status', 'review_score': 'Average Review Score'},
-                color_discrete_map={'On-Time': 'green', 'Late': 'red'}
+        st.markdown("##### Review Score Distribution")
+        if not sales_df.empty and 'review_score' in sales_df.columns:
+            fig_review_dist = px.histogram(
+                sales_df, x='review_score', nbins=5,
+                title='Distribution of Customer Review Scores',
+                labels={'review_score': 'Review Score (1-5)', 'count': 'Number of Reviews'}
             )
-            st.plotly_chart(fig_sat_delivery, use_container_width=True)
+            st.plotly_chart(fig_review_dist, use_container_width=True)
         else:
-            st.warning("No data to analyze satisfaction by delivery.")
+            st.warning("No review score data available.")
             
     with sat_col2:
         st.markdown("##### Top & Bottom 5 Categories by Review Score")
@@ -262,4 +285,3 @@ else:
         3. Check if your Snowflake account is accessible
         4. Verify that the required tables exist in your Snowflake database
     """)
-
