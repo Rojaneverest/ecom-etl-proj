@@ -35,7 +35,7 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 COPY streamlit/Ecommerce_Dashboard.py .
 COPY streamlit/utils.py .
 RUN mkdir -p pages
-COPY streamlit/pages/ ./pages/
+COPY pages/ ./pages/
 
 # Expose the port the app runs on               
 EXPOSE 8501
