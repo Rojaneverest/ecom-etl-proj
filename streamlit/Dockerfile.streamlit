@@ -1,5 +1,7 @@
 FROM python:3.9-slim
 
+# Set working directory
+WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -19,27 +21,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements from the build context root to the current WORKDIR (/app)
-# Since the build context is the project root, these paths are now relative to the project root.
-COPY requirements.txt .
+# Copy requirements file
 COPY requirements-streamlit.txt .
 
 # Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir -r requirements-streamlit.txt
+RUN pip install --no-cache-dir -r requirements-streamlit.txt
 
-# Copy Streamlit application files
-# The WORKDIR is already /app, so copy directly into it.
-COPY ecommerce_dashboard.py .
-COPY utils.py .
-RUN mkdir -p pages
-COPY pages/ ./pages/
+# Copy application files
+COPY . .
 
-# Expose the port the app runs on               
+# Expose the port the app runs on
 EXPOSE 8501
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
 
 # Command to run the Streamlit app
-CMD ["streamlit", "run", "ecommerce_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "Ecommerce_Dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]

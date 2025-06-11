@@ -299,13 +299,26 @@ if conn:
         if not raw_sales_df.empty and 'order_status' in raw_sales_df.columns:
             status_counts = raw_sales_df['order_status'].value_counts().reset_index() 
             status_counts.columns = ['Status', 'Count']
-            
+
+            # Exclude "unavailable"
+            status_counts = status_counts[status_counts['Status'].str.lower() != 'unavailable']
+
+            # Pull out small slices
+            pull_values = np.where(status_counts['Status'].isin(['shipped', 'canceled']), 0.1, 0)
+
             fig_status = px.pie(
                 status_counts, 
                 names='Status', 
                 values='Count', 
                 hole=0.3
             )
+
+            fig_status.update_traces(
+                textinfo='percent',
+                textposition='outside',
+                pull=pull_values
+            )
+
             st.plotly_chart(fig_status, use_container_width=True)
         else:
             st.warning("No order status data available.")
