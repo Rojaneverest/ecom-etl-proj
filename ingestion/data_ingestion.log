@@ -7413,3 +7413,335 @@ Trying to import the above resulted in these errors:
 2025-06-10 18:56:16,477 - data_ingestion - INFO - Validation complete: 32951 valid, 0 invalid
 2025-06-10 18:56:19,024 - data_ingestion - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-10/olist_products_dataset.parquet
 2025-06-10 18:56:19,746 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-11 17:23:03,029 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-11 17:23:03,032 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 17:23:03,032 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 17:23:03,033 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 17:23:03,033 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-11 17:23:03,034 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-11 17:23:03,035 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 17:23:03,037 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 17:23:03,038 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 17:23:03,039 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-11 17:23:04,981 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-11 17:23:04,985 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 17:23:05,055 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-11 17:23:05,058 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 17:23:07,049 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 17:23:07,056 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-11 17:23:07,057 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-11 17:23:07,102 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 17:23:07,107 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-11 17:23:07,109 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-11 17:23:07,171 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 17:23:07,210 - data_ingestion - ERROR - Error processing olist_sellers_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:07,214 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:07,214 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-11 17:23:07,221 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 17:23:07,222 - data_ingestion - ERROR - Error processing product_category_name_translation.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:07,223 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:07,223 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-11 17:23:07,227 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 17:23:07,363 - data_ingestion - ERROR - Error processing olist_sellers_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:07,369 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:07,371 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-11 17:23:07,378 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 17:23:07,382 - data_ingestion - ERROR - Error processing product_category_name_translation.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:07,383 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:07,384 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-11 17:23:08,972 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 17:23:08,987 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 17:23:11,806 - data_ingestion - ERROR - Error processing olist_orders_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:11,809 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:11,836 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-11 17:23:12,117 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-11 17:23:13,538 - data_ingestion - ERROR - Error processing olist_order_items_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:13,546 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:13,570 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-11 17:23:13,771 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-11 17:23:14,871 - data_ingestion - ERROR - Error processing olist_customers_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:14,874 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:14,884 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-11 17:23:24,494 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-11 17:23:38,121 - data_ingestion - ERROR - Error processing olist_geolocation_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:38,124 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:38,203 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-11 17:23:38,365 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-11 17:23:39,761 - data_ingestion - ERROR - Error processing olist_order_payments_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:39,766 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:39,782 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-11 17:23:40,304 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-11 17:23:41,934 - data_ingestion - ERROR - Error processing olist_order_reviews_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:41,936 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:41,950 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-11 17:23:42,024 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-11 17:23:42,767 - data_ingestion - ERROR - Error processing olist_products_dataset.csv: name 'validate_and_convert_data' is not defined
+2025-06-11 17:23:42,768 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 471, in process_csv_file
+    valid_df, invalid_df_schema = validate_and_convert_data(df, dataset_name)
+NameError: name 'validate_and_convert_data' is not defined
+
+2025-06-11 17:23:42,772 - data_ingestion - INFO - Data ingestion completed. Processed 0 out of 9 files successfully.
+2025-06-11 17:31:28,385 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-11 17:31:28,387 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 17:31:28,390 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 17:31:28,394 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 17:31:28,394 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-11 17:31:29,586 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-11 17:31:29,588 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 17:31:31,373 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 17:31:31,380 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-11 17:31:31,380 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-11 17:31:31,420 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 17:31:31,474 - data_ingestion - INFO - Schema validation complete: 3095 potentially valid, 0 invalid by schema
+2025-06-11 17:31:33,443 - data_ingestion - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-11/olist_sellers_dataset.parquet
+2025-06-11 17:31:34,107 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-11 17:31:34,133 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 17:31:34,150 - data_ingestion - INFO - Schema validation complete: 71 potentially valid, 0 invalid by schema
+2025-06-11 17:31:34,822 - data_ingestion - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-11/product_category_name_translation.parquet
+2025-06-11 17:31:35,579 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-11 17:31:36,798 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 17:31:39,373 - data_ingestion - INFO - Schema validation complete: 96461 potentially valid, 2980 invalid by schema
+2025-06-11 17:31:44,900 - data_ingestion - INFO - Uploaded 96461 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-11/olist_orders_dataset.parquet
+2025-06-11 17:31:45,731 - data_ingestion - INFO - Quarantined 2980 invalid records to s3://rj-ecom-etl/quarantine/olist_orders_dataset/2025-06-11/olist_orders_dataset.csv
+2025-06-11 17:31:46,513 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-11 17:31:46,888 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-11 17:31:48,997 - data_ingestion - INFO - Schema validation complete: 112650 potentially valid, 0 invalid by schema
+2025-06-11 17:31:51,648 - data_ingestion - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-11/olist_order_items_dataset.parquet
+2025-06-11 17:31:52,583 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-11 17:31:52,796 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-11 17:31:54,059 - data_ingestion - INFO - Schema validation complete: 99441 potentially valid, 0 invalid by schema
+2025-06-11 17:31:57,689 - data_ingestion - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-11/olist_customers_dataset.parquet
+2025-06-11 17:31:58,629 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-11 17:32:00,904 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-11 17:32:17,660 - data_ingestion - INFO - Schema validation complete: 1000163 potentially valid, 0 invalid by schema
+2025-06-11 17:32:24,021 - data_ingestion - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-11/olist_geolocation_dataset.parquet
+2025-06-11 17:32:25,485 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-11 17:32:25,767 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-11 17:32:27,086 - data_ingestion - INFO - Schema validation complete: 103886 potentially valid, 0 invalid by schema
+2025-06-11 17:32:29,636 - data_ingestion - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-11/olist_order_payments_dataset.parquet
+2025-06-11 17:32:30,377 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-11 17:32:30,851 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-11 17:32:32,688 - data_ingestion - INFO - Schema validation complete: 9829 potentially valid, 89395 invalid by schema
+2025-06-11 17:32:33,634 - data_ingestion - INFO - Uploaded 9829 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-11/olist_order_reviews_dataset.parquet
+2025-06-11 17:32:37,742 - data_ingestion - INFO - Quarantined 89395 invalid records to s3://rj-ecom-etl/quarantine/olist_order_reviews_dataset/2025-06-11/olist_order_reviews_dataset.csv
+2025-06-11 17:32:38,543 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-11 17:32:38,627 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-11 17:32:39,470 - data_ingestion - INFO - Schema validation complete: 32340 potentially valid, 611 invalid by schema
+2025-06-11 17:32:40,753 - data_ingestion - INFO - Uploaded 32340 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-11/olist_products_dataset.parquet
+2025-06-11 17:32:41,542 - data_ingestion - INFO - Quarantined 611 invalid records to s3://rj-ecom-etl/quarantine/olist_products_dataset/2025-06-11/olist_products_dataset.csv
+2025-06-11 17:32:42,336 - data_ingestion - INFO - Data ingestion completed. Processed 9 out of 9 files successfully.
+2025-06-11 17:38:40,310 - data_ingestion - INFO - AWS_REGION: eu-north-1
+2025-06-11 17:38:40,310 - data_ingestion - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 17:38:40,310 - data_ingestion - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 17:38:40,311 - data_ingestion - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 17:38:40,311 - data_ingestion - INFO - Using provided AWS credentials
+2025-06-11 17:38:41,521 - data_ingestion - INFO - Successfully connected to AWS S3
+2025-06-11 17:38:41,522 - data_ingestion - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 17:38:43,532 - data_ingestion - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 17:38:43,541 - data_ingestion - INFO - Found 9 CSV files to process
+2025-06-11 17:38:43,542 - data_ingestion - INFO - Processing olist_sellers_dataset.csv...
+2025-06-11 17:38:43,606 - data_ingestion - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 17:38:43,657 - data_ingestion - ERROR - Error processing olist_sellers_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:38:43,665 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    df = df.replace(r'^\s*$', pd.NA, regex=True).replace('null', pd.NA, case=False)
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:38:43,666 - data_ingestion - INFO - Processing product_category_name_translation.csv...
+2025-06-11 17:38:43,675 - data_ingestion - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 17:38:43,677 - data_ingestion - ERROR - Error processing product_category_name_translation.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:38:43,678 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    df = df.replace(r'^\s*$', pd.NA, regex=True).replace('null', pd.NA, case=False)
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:38:43,678 - data_ingestion - INFO - Processing olist_orders_dataset.csv...
+2025-06-11 17:38:45,001 - data_ingestion - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 17:38:47,979 - data_ingestion - ERROR - Error processing olist_orders_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:38:47,984 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    df = df.replace(r'^\s*$', pd.NA, regex=True).replace('null', pd.NA, case=False)
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:38:48,019 - data_ingestion - INFO - Processing olist_order_items_dataset.csv...
+2025-06-11 17:38:48,653 - data_ingestion - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-11 17:38:50,766 - data_ingestion - ERROR - Error processing olist_order_items_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:38:50,768 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    df = df.replace(r'^\s*$', pd.NA, regex=True).replace('null', pd.NA, case=False)
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:38:50,794 - data_ingestion - INFO - Processing olist_customers_dataset.csv...
+2025-06-11 17:38:51,018 - data_ingestion - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-11 17:38:51,808 - data_ingestion - ERROR - Error processing olist_customers_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:38:51,808 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    df = df.replace(r'^\s*$', pd.NA, regex=True).replace('null', pd.NA, case=False)
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:38:51,812 - data_ingestion - INFO - Processing olist_geolocation_dataset.csv...
+2025-06-11 17:38:54,719 - data_ingestion - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-11 17:39:06,876 - data_ingestion - ERROR - Error processing olist_geolocation_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:39:06,886 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    schema = SCHEMAS[dataset_name]
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:39:07,201 - data_ingestion - INFO - Processing olist_order_payments_dataset.csv...
+2025-06-11 17:39:07,543 - data_ingestion - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-11 17:39:08,719 - data_ingestion - ERROR - Error processing olist_order_payments_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:39:08,723 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    schema = SCHEMAS[dataset_name]
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:39:08,739 - data_ingestion - INFO - Processing olist_order_reviews_dataset.csv...
+2025-06-11 17:39:09,413 - data_ingestion - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-11 17:39:10,790 - data_ingestion - ERROR - Error processing olist_order_reviews_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:39:10,792 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    schema = SCHEMAS[dataset_name]
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:39:10,819 - data_ingestion - INFO - Processing olist_products_dataset.csv...
+2025-06-11 17:39:10,996 - data_ingestion - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-11 17:39:11,693 - data_ingestion - ERROR - Error processing olist_products_dataset.csv: replace() got an unexpected keyword argument 'case'
+2025-06-11 17:39:11,694 - data_ingestion - ERROR - Full traceback: Traceback (most recent call last):
+  File "ingestion_script.py", line 465, in process_csv_file
+    schema = SCHEMAS[dataset_name]
+TypeError: replace() got an unexpected keyword argument 'case'
+
+2025-06-11 17:39:11,695 - data_ingestion - INFO - Data ingestion completed. Processed 0 out of 9 files successfully.
+2025-06-11 17:43:41,363 - data_ingestion_vectorized - INFO - AWS_REGION: eu-north-1
+2025-06-11 17:43:41,364 - data_ingestion_vectorized - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 17:43:41,371 - data_ingestion_vectorized - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 17:43:41,371 - data_ingestion_vectorized - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 17:43:41,372 - data_ingestion_vectorized - INFO - Using provided AWS credentials
+2025-06-11 17:43:42,395 - data_ingestion_vectorized - INFO - Successfully connected to AWS S3
+2025-06-11 17:43:42,399 - data_ingestion_vectorized - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 17:43:44,171 - data_ingestion_vectorized - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 17:43:44,177 - data_ingestion_vectorized - INFO - Found 9 CSV files to process
+2025-06-11 17:43:44,177 - data_ingestion_vectorized - INFO - Processing olist_sellers_dataset.csv with vectorized approach...
+2025-06-11 17:43:44,204 - data_ingestion_vectorized - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 17:43:44,235 - data_ingestion_vectorized - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-11 17:43:45,971 - data_ingestion_vectorized - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-11/olist_sellers_dataset.parquet
+2025-06-11 17:43:46,608 - data_ingestion_vectorized - INFO - Processing product_category_name_translation.csv with vectorized approach...
+2025-06-11 17:43:46,617 - data_ingestion_vectorized - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 17:43:46,622 - data_ingestion_vectorized - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-11 17:43:47,274 - data_ingestion_vectorized - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-11/product_category_name_translation.parquet
+2025-06-11 17:43:48,014 - data_ingestion_vectorized - INFO - Processing olist_orders_dataset.csv with vectorized approach...
+2025-06-11 17:43:48,522 - data_ingestion_vectorized - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 17:43:49,619 - data_ingestion_vectorized - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-11 17:43:55,054 - data_ingestion_vectorized - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-11/olist_orders_dataset.parquet
+2025-06-11 17:43:56,103 - data_ingestion_vectorized - INFO - Processing olist_order_items_dataset.csv with vectorized approach...
+2025-06-11 17:43:56,466 - data_ingestion_vectorized - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-11 17:43:57,104 - data_ingestion_vectorized - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-11 17:43:59,103 - data_ingestion_vectorized - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-11/olist_order_items_dataset.parquet
+2025-06-11 17:43:59,999 - data_ingestion_vectorized - INFO - Processing olist_customers_dataset.csv with vectorized approach...
+2025-06-11 17:44:00,215 - data_ingestion_vectorized - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-11 17:44:00,333 - data_ingestion_vectorized - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-11 17:44:02,315 - data_ingestion_vectorized - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-11/olist_customers_dataset.parquet
+2025-06-11 17:44:03,130 - data_ingestion_vectorized - INFO - Processing olist_geolocation_dataset.csv with vectorized approach...
+2025-06-11 17:44:06,168 - data_ingestion_vectorized - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-11 17:44:10,348 - data_ingestion_vectorized - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-11 17:45:22,984 - data_ingestion_vectorized - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-11/olist_geolocation_dataset.parquet
+2025-06-11 17:45:24,357 - data_ingestion_vectorized - INFO - Processing olist_order_payments_dataset.csv with vectorized approach...
+2025-06-11 17:45:24,590 - data_ingestion_vectorized - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-11 17:45:24,829 - data_ingestion_vectorized - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-11 17:45:51,744 - data_ingestion_vectorized - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-11/olist_order_payments_dataset.parquet
+2025-06-11 17:45:52,500 - data_ingestion_vectorized - INFO - Processing olist_order_reviews_dataset.csv with vectorized approach...
+2025-06-11 17:45:52,874 - data_ingestion_vectorized - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-11 17:45:53,236 - data_ingestion_vectorized - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-11 17:46:40,791 - data_ingestion_vectorized - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-11/olist_order_reviews_dataset.parquet
+2025-06-11 17:46:41,630 - data_ingestion_vectorized - INFO - Processing olist_products_dataset.csv with vectorized approach...
+2025-06-11 17:46:41,725 - data_ingestion_vectorized - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-11 17:46:41,864 - data_ingestion_vectorized - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-11 17:46:49,381 - data_ingestion_vectorized - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-11/olist_products_dataset.parquet
+2025-06-11 17:46:50,073 - data_ingestion_vectorized - INFO - Data ingestion completed. Processed 9 of 9 files successfully.
+2025-06-11 19:07:05,156 - data_ingestion_vectorized - INFO - AWS_REGION: eu-north-1
+2025-06-11 19:07:05,157 - data_ingestion_vectorized - INFO - S3_BUCKET: rj-ecom-etl
+2025-06-11 19:07:05,157 - data_ingestion_vectorized - INFO - AWS_ACCESS_KEY_ID: ***
+2025-06-11 19:07:05,157 - data_ingestion_vectorized - INFO - AWS_SECRET_ACCESS_KEY: ***
+2025-06-11 19:07:05,157 - data_ingestion_vectorized - INFO - Using provided AWS credentials
+2025-06-11 19:07:06,711 - data_ingestion_vectorized - INFO - Successfully connected to AWS S3
+2025-06-11 19:07:06,715 - data_ingestion_vectorized - INFO - Available buckets: ['rj-ecom-etl']
+2025-06-11 19:07:08,744 - data_ingestion_vectorized - INFO - Bucket rj-ecom-etl already exists
+2025-06-11 19:07:08,752 - data_ingestion_vectorized - INFO - Found 9 CSV files to process
+2025-06-11 19:07:08,753 - data_ingestion_vectorized - INFO - Processing olist_sellers_dataset.csv with vectorized approach...
+2025-06-11 19:07:08,801 - data_ingestion_vectorized - INFO - Read 3095 rows from olist_sellers_dataset.csv
+2025-06-11 19:07:08,830 - data_ingestion_vectorized - INFO - Validation complete: 3095 valid, 0 invalid
+2025-06-11 19:07:10,588 - data_ingestion_vectorized - INFO - Uploaded 3095 valid records to s3://rj-ecom-etl/raw/olist_sellers_dataset/2025-06-11/olist_sellers_dataset.parquet
+2025-06-11 19:07:11,255 - data_ingestion_vectorized - INFO - Processing product_category_name_translation.csv with vectorized approach...
+2025-06-11 19:07:11,287 - data_ingestion_vectorized - INFO - Read 71 rows from product_category_name_translation.csv
+2025-06-11 19:07:11,303 - data_ingestion_vectorized - INFO - Validation complete: 71 valid, 0 invalid
+2025-06-11 19:07:11,959 - data_ingestion_vectorized - INFO - Uploaded 71 valid records to s3://rj-ecom-etl/raw/product_category_name_translation/2025-06-11/product_category_name_translation.parquet
+2025-06-11 19:07:12,602 - data_ingestion_vectorized - INFO - Processing olist_orders_dataset.csv with vectorized approach...
+2025-06-11 19:07:13,311 - data_ingestion_vectorized - INFO - Read 99441 rows from olist_orders_dataset.csv
+2025-06-11 19:07:14,154 - data_ingestion_vectorized - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-11 19:07:17,340 - data_ingestion_vectorized - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_orders_dataset/2025-06-11/olist_orders_dataset.parquet
+2025-06-11 19:07:18,178 - data_ingestion_vectorized - INFO - Processing olist_order_items_dataset.csv with vectorized approach...
+2025-06-11 19:07:18,523 - data_ingestion_vectorized - INFO - Read 112650 rows from olist_order_items_dataset.csv
+2025-06-11 19:07:18,895 - data_ingestion_vectorized - INFO - Validation complete: 112650 valid, 0 invalid
+2025-06-11 19:07:20,353 - data_ingestion_vectorized - INFO - Uploaded 112650 valid records to s3://rj-ecom-etl/raw/olist_order_items_dataset/2025-06-11/olist_order_items_dataset.parquet
+2025-06-11 19:07:21,080 - data_ingestion_vectorized - INFO - Processing olist_customers_dataset.csv with vectorized approach...
+2025-06-11 19:07:21,378 - data_ingestion_vectorized - INFO - Read 99441 rows from olist_customers_dataset.csv
+2025-06-11 19:07:21,491 - data_ingestion_vectorized - INFO - Validation complete: 99441 valid, 0 invalid
+2025-06-11 19:07:23,070 - data_ingestion_vectorized - INFO - Uploaded 99441 valid records to s3://rj-ecom-etl/raw/olist_customers_dataset/2025-06-11/olist_customers_dataset.parquet
+2025-06-11 19:07:23,741 - data_ingestion_vectorized - INFO - Processing olist_geolocation_dataset.csv with vectorized approach...
+2025-06-11 19:07:27,591 - data_ingestion_vectorized - INFO - Read 1000163 rows from olist_geolocation_dataset.csv
+2025-06-11 19:07:32,841 - data_ingestion_vectorized - INFO - Validation complete: 1000163 valid, 0 invalid
+2025-06-11 19:07:44,097 - data_ingestion_vectorized - INFO - Uploaded 1000163 valid records to s3://rj-ecom-etl/raw/olist_geolocation_dataset/2025-06-11/olist_geolocation_dataset.parquet
+2025-06-11 19:07:45,232 - data_ingestion_vectorized - INFO - Processing olist_order_payments_dataset.csv with vectorized approach...
+2025-06-11 19:07:45,459 - data_ingestion_vectorized - INFO - Read 103886 rows from olist_order_payments_dataset.csv
+2025-06-11 19:07:45,616 - data_ingestion_vectorized - INFO - Validation complete: 103886 valid, 0 invalid
+2025-06-11 19:07:47,333 - data_ingestion_vectorized - INFO - Uploaded 103886 valid records to s3://rj-ecom-etl/raw/olist_order_payments_dataset/2025-06-11/olist_order_payments_dataset.parquet
+2025-06-11 19:07:48,207 - data_ingestion_vectorized - INFO - Processing olist_order_reviews_dataset.csv with vectorized approach...
+2025-06-11 19:07:48,880 - data_ingestion_vectorized - INFO - Read 99224 rows from olist_order_reviews_dataset.csv
+2025-06-11 19:07:49,611 - data_ingestion_vectorized - INFO - Validation complete: 99224 valid, 0 invalid
+2025-06-11 19:07:52,274 - data_ingestion_vectorized - INFO - Uploaded 99224 valid records to s3://rj-ecom-etl/raw/olist_order_reviews_dataset/2025-06-11/olist_order_reviews_dataset.parquet
+2025-06-11 19:07:53,168 - data_ingestion_vectorized - INFO - Processing olist_products_dataset.csv with vectorized approach...
+2025-06-11 19:07:53,245 - data_ingestion_vectorized - INFO - Read 32951 rows from olist_products_dataset.csv
+2025-06-11 19:07:53,332 - data_ingestion_vectorized - INFO - Validation complete: 32951 valid, 0 invalid
+2025-06-11 19:07:54,209 - data_ingestion_vectorized - INFO - Uploaded 32951 valid records to s3://rj-ecom-etl/raw/olist_products_dataset/2025-06-11/olist_products_dataset.parquet
+2025-06-11 19:07:55,009 - data_ingestion_vectorized - INFO - Data ingestion completed. Processed 9 of 9 files successfully.

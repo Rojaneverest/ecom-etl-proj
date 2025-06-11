@@ -1,27 +1,23 @@
 #!/usr/bin/env python3
 """
-E-commerce Data Ingestion Script
---------------------------------
+E-commerce Data Ingestion Script (Vectorized)
+---------------------------------------------
 This script ingests CSV files containing e-commerce data from a local directory
-and uploads them to an AWS S3 bucket, performing basic validation checks.
+and uploads them to an AWS S3 bucket, performing basic validation checks using
+vectorized pandas operations for efficiency.
 """
 
 import os
 import sys
-import csv
 import logging
 import boto3
 import pandas as pd
 from datetime import datetime
 from botocore.exceptions import ClientError
-import hashlib
 import json
 from io import BytesIO
 import cProfile
 import pstats
-
-import unicodedata  # For removing accents
-
 
 # Define the path to the data directory (no need to pass as argument)
 # DATA_DIR = "/Users/rojan/Desktop/cp-project/e-commerce-analytics/data/extracted_data"
@@ -32,7 +28,7 @@ logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.StreamHandler(sys.stdout)],
 )
-logger = logging.getLogger("data_ingestion")
+logger = logging.getLogger("data_ingestion_vectorized")
 
 # Add file handler for persistent logging
 log_file_path = os.path.join(
@@ -67,11 +63,11 @@ SCHEMAS = {
             "order_id": str,
             "customer_id": str,
             "order_status": str,
-            "order_purchase_timestamp": str,  # Will be validated as datetime
-            "order_approved_at": str,
-            "order_delivered_carrier_date": str,
-            "order_delivered_customer_date": str,
-            "order_estimated_delivery_date": str,
+            "order_purchase_timestamp": "datetime",
+            "order_approved_at": "datetime",
+            "order_delivered_carrier_date": "datetime",
+            "order_delivered_customer_date": "datetime",
+            "order_estimated_delivery_date": "datetime",
         },
     },
     "olist_customers_dataset": {
@@ -101,7 +97,7 @@ SCHEMAS = {
             "order_item_id": int,
             "product_id": str,
             "seller_id": str,
-            "shipping_limit_date": str,  # Will be validated as datetime
+            "shipping_limit_date": "datetime",
             "price": float,
             "freight_value": float,
         },
@@ -138,8 +134,8 @@ SCHEMAS = {
             "review_score": int,
             "review_comment_title": str,
             "review_comment_message": str,
-            "review_creation_date": str,  # Will be validated as datetime
-            "review_answer_timestamp": str,  # Will be validated as datetime
+            "review_creation_date": "datetime",
+            "review_answer_timestamp": "datetime",
         },
     },
     "olist_sellers_dataset": {
@@ -163,30 +159,15 @@ SCHEMAS = {
     },
     "product_wishlists": {
         "required_fields": ["id", "customer_id", "product_id"],
-        "field_types": {
-            "id": int,
-            "customer_id": str,
-            "product_id": str,
-            "wishlisted_at": str,  # Will be validated as datetime
-        },
+        "field_types": {"id": int, "customer_id": str, "product_id": str, "wishlisted_at": "datetime"},
     },
     "product_views": {
         "required_fields": ["id", "customer_id", "product_id"],
-        "field_types": {
-            "id": int,
-            "customer_id": str,
-            "product_id": str,
-            "viewed_at": str,  # Will be validated as datetime
-        },
+        "field_types": {"id": int, "customer_id": str, "product_id": str, "viewed_at": "datetime"},
     },
     "add_to_carts": {
         "required_fields": ["id", "customer_id", "product_id"],
-        "field_types": {
-            "id": int,
-            "customer_id": str,
-            "product_id": str,
-            "added_at": str,  # Will be validated as datetime
-        },
+        "field_types": {"id": int, "customer_id": str, "product_id": str, "added_at": "datetime"},
     },
     "product_category_name_translation": {
         "required_fields": ["product_category_name"],
@@ -204,7 +185,6 @@ TIMESTAMP_FORMATS = ["%Y-%m-%d %H:%M:%S", "%Y-%m-%d", "%Y/%m/%d %H:%M:%S", "%Y/%
 def create_s3_client():
     """Create and return an S3 client with proper credential handling."""
     try:
-        # First, try using environment variables or hardcoded credentials
         if AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY:
             logger.info("Using provided AWS credentials")
             return boto3.client(
@@ -214,7 +194,6 @@ def create_s3_client():
                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
             )
         else:
-            # Fall back to default credential chain (AWS CLI, IAM roles, etc.)
             logger.info("Using default AWS credential chain")
             return boto3.client("s3", region_name=AWS_REGION)
     except Exception as e:
@@ -234,15 +213,11 @@ def test_s3_connection(s3_client):
     except ClientError as e:
         error_code = e.response["Error"]["Code"]
         if error_code == "AccessDenied":
-            logger.error(
-                "Access denied. Please check your AWS credentials and permissions."
-            )
+            logger.error("Access denied. Please check your AWS credentials and permissions.")
         elif error_code == "InvalidAccessKeyId":
             logger.error("Invalid access key ID. Please check your AWS credentials.")
         elif error_code == "SignatureDoesNotMatch":
-            logger.error(
-                "Invalid secret access key. Please check your AWS credentials."
-            )
+            logger.error("Invalid secret access key. Please check your AWS credentials.")
         else:
             logger.error(f"AWS S3 connection error: {e}")
         return False
@@ -251,316 +226,159 @@ def test_s3_connection(s3_client):
         return False
 
 
-def validate_timestamp(timestamp_str):
-    """
-    Validates a timestamp string and normalizes it.
-    - Returns a datetime object if the format is valid.
-    - Returns None for empty or null-like strings.
-    - Raises ValueError for invalid, non-empty formats.
-    """
-    if not timestamp_str or timestamp_str.strip().lower() in ["", "null"]:
-        return None  # Normalize empty/null strings to None
-
-    for fmt in TIMESTAMP_FORMATS:
-        try:
-            # Return the datetime object upon successful parsing
-            return datetime.strptime(timestamp_str, fmt)
-        except (ValueError, TypeError):
-            continue
-
-    raise ValueError(f"Invalid timestamp format: {timestamp_str}") 
-
-
-def normalize_string(value):
-    """Normalize a string to lowercase and remove accents."""
-    if not isinstance(value, str):
-        return value
-    value = (
-        unicodedata.normalize("NFKD", value).encode("ASCII", "ignore").decode("utf-8")
-    )
-    return value.lower().strip()
-
-
-def validate_record(record, dataset_name):
-    """
-    Validate a record against its schema definition.
-    Returns (is_valid, error_message)
-    """
-    if dataset_name not in SCHEMAS:
-        return False, f"Unknown dataset: {dataset_name}"
-
-    schema = SCHEMAS[dataset_name]
-
-    # Normalize city names
-    if "geolocation_city" in record:
-        record["geolocation_city"] = normalize_string(record["geolocation_city"])
-
-    # Check required fields
-    for field in schema["required_fields"]:
-        if field not in record or not record[field]:
-            return False, f"Missing required field: {field}"
-
-    # Check field types and format
-    for field, value in record.items():
-        if field in schema["field_types"]:
-            expected_type = schema["field_types"][field]
-
-            # Skip validation for empty fields or None values
-            if (
-                value is None
-                or value == ""
-                or (isinstance(value, str) and value.strip() == "")
-            ):
-                continue
-
-            # In the validate_record function in your ingestion script
-
-# Validate timestamps
-            if (
-                field.endswith("_timestamp")
-                or field.endswith("_date")
-                or field.endswith("_at")
-            ):
-                try:
-                    # Use the function to get a normalized value (datetime object or None)
-                    normalized_value = validate_timestamp(str(value))
-
-                    # --- THIS IS THE FIX ---
-                    # If the value is a datetime object, convert it back to an ISO 8601 string.
-                    # If it's None, it remains None, which Pandas handles correctly as a null.
-                    if isinstance(normalized_value, datetime):
-                        record[field] = normalized_value.isoformat()
-                    else:
-                        record[field] = None # Ensure empty/invalid values are explicitly None
-
-                except ValueError as e:
-                    # The function will raise an error for invalid formats
-                    return False, str(e)
-
-            # Validate other types
-            elif expected_type == int:
-                try:
-                    int(value)
-                except (ValueError, TypeError):
-                    return False, f"Field {field} should be integer, got: {value}"
-            elif expected_type == float:
-                try:
-                    float(value)
-                except (ValueError, TypeError):
-                    return False, f"Field {field} should be float, got: {value}"
-            elif expected_type == str and not isinstance(value, str):
-                return (
-                    False,
-                    f"Field {field} should be string, got: {type(value).__name__}",
-                )
-
-    return True, ""
-
-
-def check_duplicates(records, key_fields):
-    """
-    Check for duplicate records based on key fields.
-    Returns a tuple of (unique_records, duplicate_records)
-    """
-    unique_records = []
-    duplicate_records = []
-    seen_keys = set()
-
-    for record in records:
-        # Normalize fields for hashing
-        if "geolocation_city" in record:
-            record["geolocation_city"] = normalize_string(record["geolocation_city"])
-
-        # Create a hash key based on the key fields
-        key_values = [str(record.get(field, "")) for field in key_fields]
-        key = hashlib.md5("|".join(key_values).encode()).hexdigest()
-
-        if key in seen_keys:
-            duplicate_records.append(record)
-        else:
-            seen_keys.add(key)
-            unique_records.append(record)
-
-    return unique_records, duplicate_records
-
-
-def safe_convert_numeric(df, field, expected_type):
-    """Safely convert a column to numeric type with better error handling."""
-    try:
-        if field not in df.columns:
-            return
-
-        logger.debug(f"Converting field {field} to {expected_type.__name__}")
-        
-        # Make a copy to avoid modifying the original
-        original_values = df[field].copy()
-        
-        # Replace empty strings and whitespace-only strings with NaN first
-        df[field] = df[field].astype(str).replace(r"^\s*$", "", regex=True)
-        df[field] = df[field].replace("", pd.NA)
-        
-        # Additional check: if this looks like a timestamp field, skip it
-        # This is a safety net even though we filter before calling this function
-        if (field.endswith("_timestamp") or field.endswith("_date") or field.endswith("_at")):
-            logger.warning(f"Field {field} looks like a timestamp but was passed to numeric conversion. Skipping.")
-            df[field] = original_values  # Restore original values
-            return
-        
-        # Check if any values look like timestamps (contain colons or dashes in date format)
-        sample_values = df[field].dropna().astype(str).head(10)
-        for val in sample_values:
-            if ":" in val or (len(val) >= 8 and val.count("-") >= 2):
-                logger.warning(f"Field {field} contains timestamp-like values (e.g., '{val}'). Skipping numeric conversion.")
-                df[field] = original_values  # Restore original values
-                return
-
-        if expected_type == int:
-            # Convert to numeric, coercing errors to NaN
-            df[field] = pd.to_numeric(df[field], errors="coerce", downcast="integer")
-        elif expected_type == float:
-            # Convert to numeric, coercing errors to NaN
-            df[field] = pd.to_numeric(df[field], errors="coerce", downcast="float")
-            
-        logger.debug(f"Successfully converted {field} to {expected_type.__name__}")
-
-    except Exception as e:
-        logger.error(f"Error converting column {field} to {expected_type.__name__}: {e}")
-        logger.error(f"Sample values: {df[field].head(5).tolist() if field in df.columns else 'Column not found'}")
-        # Restore original values on error
-        if 'original_values' in locals():
-            df[field] = original_values
-
-
 def process_csv_file(file_path, s3_client):
     """
-    Process a CSV file:
-    1. Validate schema
-    2. Handle geolocation dataset separately
-    3. Check for duplicates for other datasets
-    4. Upload valid records to S3
-    5. Quarantine invalid records
+    Process a CSV file using vectorized Pandas operations:
+    1. Validate schema, types, and required fields.
+    2. Check for duplicates.
+    3. Upload valid records to S3 (Parquet format).
+    4. Quarantine invalid/duplicate records (CSV format).
     """
     file_name = os.path.basename(file_path)
     dataset_name = os.path.splitext(file_name)[0]
 
-    logger.info(f"Processing {file_name}...")
+    logger.info(f"Processing {file_name} with vectorized approach...")
 
     if dataset_name not in SCHEMAS:
         logger.error(f"Unknown dataset: {dataset_name}, skipping file")
         return False
 
     try:
-        # Read CSV with more explicit handling
         df = pd.read_csv(
-            file_path, 
-            low_memory=False, 
-            keep_default_na=False, 
-            na_values=[],
-            dtype=str  # Read everything as string first
+            file_path,
+            low_memory=False,
+            na_values=["", "null", "NULL"],
+            keep_default_na=False,
+            dtype=str,
         )
-        
         logger.info(f"Read {len(df)} rows from {file_name}")
-        logger.debug(f"Columns in {file_name}: {list(df.columns)}")
-        
+
         schema = SCHEMAS[dataset_name]
+        initial_record_count = len(df)
+        error_series = pd.Series(index=df.index, dtype=object)
 
-        # Apply safe_convert_numeric only to non-timestamp fields
-        for field, expected_type in schema["field_types"].items():
-            if field in df.columns and expected_type in [int, float]:
-                # Double-check: is this a timestamp field?
-                is_timestamp_field = (
-                    field.endswith("_timestamp") or 
-                    field.endswith("_date") or 
-                    field.endswith("_at")
+        # --- 1. Vectorized Validation ---
+
+        # a) Required Fields
+        for field in schema["required_fields"]:
+            if field in df.columns:
+                mask = df[field].isnull() | (df[field].str.strip() == "")
+                error_series.loc[mask] = error_series.loc[mask].fillna(
+                    f"Missing required field: {field}"
                 )
-                
-                if not is_timestamp_field:
-                    logger.debug(f"Applying numeric conversion to {field} (type: {expected_type.__name__})")
-                    safe_convert_numeric(df, field, expected_type)
-                else:
-                    logger.debug(f"Skipping numeric conversion for timestamp field: {field}")
-
-        # Convert DataFrame to records
-        records = []
-        for _, row in df.iterrows():
-            record = {}
-            for col in df.columns:
-                value = row[col]
-                if pd.isna(value) or value == "":
-                    record[col] = None
-                else:
-                    record[col] = value
-            records.append(record)
-
-        valid_records = []
-        invalid_records = []
-
-        for i, record in enumerate(records):
-            is_valid, error_message = validate_record(record, dataset_name)
-            if is_valid:
-                valid_records.append(record)
             else:
-                record["_error"] = error_message
-                invalid_records.append(record)
-                if i < 5:  # Only log first 5 invalid records to avoid spam
-                    logger.warning(f"Invalid record in {file_name}, row {i+2}: {error_message}")
+                error_series.fillna(
+                    f"Missing required column: {field}", inplace=True
+                )
+                logger.error(f"Required column '{field}' not found in {file_name}.")
+                break
 
-        logger.info(f"Validation complete: {len(valid_records)} valid, {len(invalid_records)} invalid")
+        # b) String Normalization & Type/Format Validation
+        for field, expected_type in schema["field_types"].items():
+            if field not in df.columns:
+                continue
 
-        if dataset_name == "olist_geolocation_dataset":
-            unique_records = valid_records
-            duplicate_records = []
-        else:
+            # Normalize city names (vectorized)
+            if field == "geolocation_city":
+                df[field] = (
+                    df[field]
+                    .str.normalize("NFKD")
+                    .str.encode("ASCII", "ignore")
+                    .str.decode("utf-8")
+                    .str.lower()
+                    .str.strip()
+                )
+
+            # Validate Datetimes (vectorized)
+            if expected_type == "datetime":
+                parsed_col = pd.Series(pd.NaT, index=df.index, dtype="datetime64[ns]")
+                to_parse_mask = df[field].notna()
+                for fmt in TIMESTAMP_FORMATS:
+                    if to_parse_mask.any():
+                        attempt = pd.to_datetime(
+                            df.loc[to_parse_mask, field], format=fmt, errors="coerce"
+                        )
+                        parsed_col.update(attempt.dropna())
+                        to_parse_mask = parsed_col.isna() & df[field].notna()
+
+                invalid_mask = to_parse_mask
+                error_series.loc[invalid_mask] = error_series.loc[
+                    invalid_mask
+                ].fillna(f"Invalid timestamp format for field: {field}")
+                df[field] = parsed_col.dt.strftime("%Y-%m-%d %H:%M:%S").replace(
+                    {pd.NaT: None}
+                )
+
+            # Validate Numeric Types (vectorized)
+            elif expected_type in [int, float]:
+                original_col = df[field].copy()
+                numeric_col = pd.to_numeric(df[field], errors="coerce")
+                invalid_mask = numeric_col.isna() & original_col.notna()
+                error_series.loc[invalid_mask] = error_series.loc[
+                    invalid_mask
+                ].fillna(f"Field {field} should be {expected_type.__name__}")
+                df[field] = numeric_col
+
+        # --- 2. Split DataFrame ---
+        invalid_mask = error_series.notna()
+        invalid_df = df[invalid_mask].copy()
+        invalid_df["_error"] = error_series[invalid_mask]
+        valid_df = df[~invalid_mask].copy()
+        logger.info(f"Validation complete: {len(valid_df)} valid, {len(invalid_df)} invalid")
+
+        # --- 3. Duplicate Checking (Vectorized) ---
+        duplicate_records_df = pd.DataFrame()
+        unique_df = valid_df
+        if dataset_name != "olist_geolocation_dataset" and not valid_df.empty:
             key_fields = schema["required_fields"]
-            unique_records, duplicate_records = check_duplicates(valid_records, key_fields)
+            duplicates_mask = valid_df.duplicated(subset=key_fields, keep="first")
+            if duplicates_mask.any():
+                duplicate_records_df = valid_df[duplicates_mask].copy()
+                duplicate_records_df["_error"] = "Duplicate record"
+                logger.warning(
+                    f"Found {len(duplicate_records_df)} duplicate records in {file_name}"
+                )
+                invalid_df = pd.concat([invalid_df, duplicate_records_df], ignore_index=True)
+                unique_df = valid_df[~duplicates_mask]
 
-            if duplicate_records:
-                logger.warning(f"Found {len(duplicate_records)} duplicate records in {file_name}")
-                for record in duplicate_records:
-                    record["_error"] = "Duplicate record"
-                    invalid_records.append(record)
+        if unique_df.empty:
+            logger.warning(
+                f"No valid unique records found in {file_name} after processing."
+            )
 
-        if not unique_records:
-            logger.warning(f"No valid unique records found in {file_name} after processing.")
-            return False
-
-        # Convert valid records to DataFrame before uploading
-        valid_df = pd.DataFrame(unique_records)
-
-        # Upload valid records to S3
-        if not valid_df.empty:
+        # --- 4. Upload to S3 ---
+        if not unique_df.empty:
             buffer = BytesIO()
-            valid_df.to_parquet(buffer, index=False, engine="pyarrow")
+            unique_df.to_parquet(buffer, index=False, engine="pyarrow")
             buffer.seek(0)
-
             s3_key = f"{RAW_DATA_PREFIX}{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/{file_name.replace('.csv', '.parquet')}"
-
             s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=buffer.getvalue())
-            logger.info(f"Uploaded {len(unique_records)} valid records to s3://{S3_BUCKET}/{s3_key}")
+            logger.info(
+                f"Uploaded {len(unique_df)} valid records to s3://{S3_BUCKET}/{s3_key}"
+            )
 
-        # Quarantine invalid records
-        if invalid_records:
-            invalid_df = pd.DataFrame(invalid_records)
-            csv_buffer = invalid_df.to_csv(index=False)
+        if not invalid_df.empty:
+            csv_buffer = invalid_df.to_csv(index=False).encode("utf-8")
             s3_key = f"{QUARANTINE_PREFIX}{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/{file_name}"
             s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=csv_buffer)
-            logger.info(f"Quarantined {len(invalid_records)} invalid records to s3://{S3_BUCKET}/{s3_key}")
+            logger.info(
+                f"Quarantined {len(invalid_df)} invalid records to s3://{S3_BUCKET}/{s3_key}"
+            )
 
-        # Generate and upload report
+        # --- 5. Generate and Upload Report ---
         report = {
             "file_name": file_name,
             "dataset_name": dataset_name,
-            "total_records": len(records),
-            "valid_records": len(unique_records),
-            "invalid_records": len(invalid_records),
-            "duplicate_records": (
-                len(duplicate_records) if dataset_name != "olist_geolocation_dataset" else 0
-            ),
+            "total_records": initial_record_count,
+            "valid_records": len(unique_df),
+            "invalid_records": len(invalid_df) - len(duplicate_records_df),
+            "duplicate_records": len(duplicate_records_df),
             "timestamp": datetime.now().isoformat(),
         }
-
         s3_key = f"reports/ingestion_reports/{dataset_name}/{datetime.now().strftime('%Y-%m-%d')}/report.json"
-        s3_client.put_object(Bucket=S3_BUCKET, Key=s3_key, Body=json.dumps(report, indent=2))
+        s3_client.put_object(
+            Bucket=S3_BUCKET, Key=s3_key, Body=json.dumps(report, indent=2).encode("utf-8")
+        )
 
         return True
 
@@ -569,6 +387,7 @@ def process_csv_file(file_path, s3_client):
         import traceback
         logger.error(f"Full traceback: {traceback.format_exc()}")
         return False
+
 
 def ensure_s3_bucket_exists(s3_client):
     """Ensure the S3 bucket exists, create it if it doesn't."""
@@ -581,7 +400,6 @@ def ensure_s3_bucket_exists(s3_client):
         if error_code == "404":
             try:
                 logger.info(f"Creating bucket {S3_BUCKET}")
-                # For us-east-1, don't specify LocationConstraint
                 if AWS_REGION == "us-east-1":
                     s3_client.create_bucket(Bucket=S3_BUCKET)
                 else:
@@ -596,7 +414,7 @@ def ensure_s3_bucket_exists(s3_client):
                 return False
         elif error_code == "403":
             logger.error(
-                f"Access denied to bucket {S3_BUCKET}. Please check your AWS credentials and permissions."
+                f"Access denied to bucket {S3_BUCKET}. Check AWS credentials/permissions."
             )
             return False
         else:
@@ -606,38 +424,26 @@ def ensure_s3_bucket_exists(s3_client):
 
 def main():
     """Main function to run the data ingestion process."""
-
-    # Use the predefined data directory path
     data_dir = DATA_DIR
-
     if not os.path.isdir(data_dir):
         logger.error(f"Directory does not exist: {data_dir}")
         sys.exit(1)
 
-    # Create S3 client
     s3_client = create_s3_client()
-
-    # Test S3 connection first
     if not test_s3_connection(s3_client):
-        logger.error(
-            "Failed to connect to AWS S3. Please check your credentials and try again."
-        )
+        logger.error("Failed to connect to AWS S3. Check credentials and try again.")
         sys.exit(1)
 
-    # Ensure S3 bucket exists
     if not ensure_s3_bucket_exists(s3_client):
         logger.error("Failed to ensure S3 bucket exists. Exiting.")
         sys.exit(1)
 
-    # Process all CSV files in the directory
     csv_files = [f for f in os.listdir(data_dir) if f.endswith(".csv")]
-
     if not csv_files:
         logger.warning(f"No CSV files found in {data_dir}")
         sys.exit(0)
 
     logger.info(f"Found {len(csv_files)} CSV files to process")
-
     success_count = 0
     for file_name in csv_files:
         file_path = os.path.join(data_dir, file_name)
@@ -645,7 +451,7 @@ def main():
             success_count += 1
 
     logger.info(
-        f"Data ingestion completed. Processed {success_count} out of {len(csv_files)} files successfully."
+        f"Data ingestion completed. Processed {success_count} of {len(csv_files)} files successfully."
     )
 
 
@@ -655,5 +461,4 @@ if __name__ == "__main__":
     main()
     profiler.disable()
     stats = pstats.Stats(profiler).sort_stats("cumtime")
-    stats.print_stats(20)  # Print top 20 functions by cumulative time
-    # stats.dump_stats("profiling_report.prof") # Save to a file for more detailed analysis with snakeviz
+    stats.print_stats(20)

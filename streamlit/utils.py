@@ -8,6 +8,8 @@ from datetime import datetime
 import json
 import snowflake.connector
 from dotenv import load_dotenv
+from datetime import timedelta
+
 
 # Load environment variables
 load_dotenv()
@@ -390,53 +392,65 @@ def process_delivery_and_satisfaction_data(df):
 # --- NEW: RFM Analysis Function ---
 @st.cache_data
 def calculate_rfm(df):
-    """Calculates Recency, Frequency, and Monetary (RFM) scores for each customer."""
+    """
+    Calculates Recency, Frequency, and Monetary (RFM) scores for each customer.
+    This version is robust against duplicate values that cause qcut errors.
+    """
     rfm_df = df.copy()
-    rfm_df['order_purchase_timestamp'] = pd.to_datetime(rfm_df['order_purchase_timestamp'])
-    
-    # Set snapshot date as the day after the last purchase in the dataset
-    snapshot_date = rfm_df['order_purchase_timestamp'].max() + pd.Timedelta(days=1)
+
+    # Ensure required columns are present and handle data types
+    rfm_df['order_purchase_timestamp'] = pd.to_datetime(rfm_df['order_purchase_timestamp'], errors='coerce')
+    rfm_df.dropna(subset=['order_purchase_timestamp', 'customer_unique_id', 'payment_value'], inplace=True)
+    if rfm_df.empty:
+        return pd.DataFrame()
+
+    # Determine the snapshot date for recency calculation
+    snapshot_date = rfm_df['order_purchase_timestamp'].max() + timedelta(days=1)
     
     # Calculate RFM metrics
     rfm = rfm_df.groupby('customer_unique_id').agg({
-        'order_purchase_timestamp': lambda date: (snapshot_date - date.max()).days,
+        'order_purchase_timestamp': lambda x: (snapshot_date - x.max()).days,
         'order_id': 'nunique',
         'payment_value': 'sum'
     })
+    
     rfm.rename(columns={
         'order_purchase_timestamp': 'Recency',
         'order_id': 'Frequency',
         'payment_value': 'Monetary'
     }, inplace=True)
 
-    # Create RFM segments
-    r_labels = range(4, 0, -1)
-    f_labels = range(1, 5)
-    m_labels = range(1, 5)
-    rfm['R_Score'] = pd.qcut(rfm['Recency'], q=4, labels=r_labels, duplicates='drop').astype(int)
-    rfm['F_Score'] = pd.qcut(rfm['Frequency'].rank(method='first'), q=4, labels=f_labels).astype(int)
-    rfm['M_Score'] = pd.qcut(rfm['Monetary'], q=4, labels=m_labels).astype(int)
-    
-    rfm['RFM_Segment'] = rfm.apply(lambda x: str(x['R_Score']) + str(x['F_Score']) + str(x['M_Score']), axis=1)
-    rfm['RFM_Score'] = rfm[['R_Score', 'F_Score', 'M_Score']].sum(axis=1)
+    # Define scoring labels
+    r_labels = [4, 3, 2, 1] # Higher recency (fewer days) gets a higher score
+    f_labels = [1, 2, 3, 4] # Higher frequency gets a higher score
+    m_labels = [1, 2, 3, 4] # Higher monetary value gets a higher score
 
-    # Map scores to human-readable segments
-    segment_map = {
-        r'[1-2][1-2]': 'Hibernating',
-        r'[1-2][3-4]': 'At Risk',
-        r'14': 'Cannot Lose Them',
-        r'24': 'Cannot Lose Them',
-        r'3[1-2]': 'About to Sleep',
-        r'33': 'Needs Attention',
-        r'[3-4]4': 'Loyal Customers',
-        r'4[1-2]': 'New Customers',
-        r'43': 'Potential Loyalists',
-        r'44': 'Champions'
-    }
-    rfm['Segment'] = rfm['R_Score'].astype(str) + rfm['F_Score'].astype(str)
-    rfm['Segment'] = rfm['Segment'].replace(segment_map, regex=True)
-    
-    return rfm
+    # --- FIX: Add .rank(method='first') to handle duplicate values ---
+    # This prevents the "ValueError" by ensuring each value has a unique rank before binning.
+    rfm['R_Score'] = pd.qcut(rfm['Recency'].rank(method='first'), q=4, labels=r_labels).astype(int)
+    rfm['F_Score'] = pd.qcut(rfm['Frequency'].rank(method='first'), q=4, labels=f_labels).astype(int)
+    rfm['M_Score'] = pd.qcut(rfm['Monetary'].rank(method='first'), q=4, labels=m_labels).astype(int)
+
+    # Define customer segments based on scores
+    def rfm_segment(row):
+        if row['R_Score'] >= 4 and row['F_Score'] >= 4:
+            return 'Champions'
+        if row['R_Score'] >= 3 and row['F_Score'] >= 3:
+            return 'Loyal Customers'
+        if row['R_Score'] >= 3 and row['F_Score'] < 3:
+            return 'Potential Loyalists'
+        if row['R_Score'] < 3 and row['F_Score'] >= 4:
+            return 'Cannot Lose'
+        if row['R_Score'] >= 2 and row['F_Score'] >= 2:
+            return 'At Risk'
+        if row['R_Score'] < 2 and row['F_Score'] < 2:
+            return 'Hibernating'
+        return 'Needs Attention'
+
+    rfm['Segment'] = rfm.apply(rfm_segment, axis=1)
+
+    return rfm.reset_index()
+
 
 # --- NEW: Seller Performance Function ---
 @st.cache_data

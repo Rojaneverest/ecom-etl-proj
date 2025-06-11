@@ -307,79 +307,69 @@ def get_latest_parquet_objects(s3_client, bucket, prefix):
         return {}
     return latest_objects
 
+# In ods_layer.py
+
 def get_table_specific_copy_sql(table_name, s3_key):
-    """Returns table-specific COPY INTO SQL with enhanced timestamp handling for problematic tables."""
+    """Returns table-specific COPY INTO SQL with corrected timestamp handling."""
     
-    # Tables with timestamp issues and their specific handling
+    # CORRECTED: The format string is now 'YYYY-MM-DD HH24:MI:SS' without the 'T'.
+    TIMESTAMP_FORMAT = 'YYYY-MM-DD HH24:MI:SS'
+
     timestamp_problematic_tables = {
-        'ODS_ORDER_REVIEWS': {
-            'columns': ['review_creation_date', 'review_answer_timestamp'],
-            'transformations': """
+        'ODS_ORDER_REVIEWS': f"""
             COPY INTO "ODS_ORDER_REVIEWS" 
             FROM (
                 SELECT 
-                    $1:review_id::VARCHAR as review_id,
-                    $1:order_id::VARCHAR as order_id,
-                    $1:review_score::INTEGER as review_score,
-                    $1:review_comment_title::VARCHAR as review_comment_title,
-                    $1:review_comment_message::VARCHAR as review_comment_message,
-                    TRY_TO_TIMESTAMP($1:review_creation_date::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as review_creation_date,
-                    TRY_TO_TIMESTAMP($1:review_answer_timestamp::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as review_answer_timestamp
-                FROM '@{stage_name}/{s3_key}'
+                    $1:review_id::VARCHAR,
+                    $1:order_id::VARCHAR,
+                    $1:review_score::INTEGER,
+                    $1:review_comment_title::VARCHAR,
+                    $1:review_comment_message::VARCHAR,
+                    TRY_TO_TIMESTAMP($1:review_creation_date::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    TRY_TO_TIMESTAMP($1:review_answer_timestamp::VARCHAR, '{TIMESTAMP_FORMAT}')
+                FROM '@{{stage_name}}/{{s3_key}}'
             )
-            """
-        },
-        'ODS_ORDER_ITEMS': {
-            'columns': ['shipping_limit_date'],
-            'transformations': """
+            """,
+        'ODS_ORDER_ITEMS': f"""
             COPY INTO "ODS_ORDER_ITEMS" 
             FROM (
                 SELECT 
-                    $1:order_id::VARCHAR as order_id,
-                    $1:order_item_id::INTEGER as order_item_id,
-                    $1:product_id::VARCHAR as product_id,
-                    $1:seller_id::VARCHAR as seller_id,
-                    TRY_TO_TIMESTAMP($1:shipping_limit_date::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as shipping_limit_date,
-                    $1:price::FLOAT as price,
-                    $1:freight_value::FLOAT as freight_value
-                FROM '@{stage_name}/{s3_key}'
+                    $1:order_id::VARCHAR,
+                    $1:order_item_id::INTEGER,
+                    $1:product_id::VARCHAR,
+                    $1:seller_id::VARCHAR,
+                    TRY_TO_TIMESTAMP($1:shipping_limit_date::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    $1:price::FLOAT,
+                    $1:freight_value::FLOAT
+                FROM '@{{stage_name}}/{{s3_key}}'
             )
-            """
-        },
-        'ODS_ORDERS': {
-            'columns': ['order_purchase_timestamp', 'order_approved_at', 'order_delivered_carrier_date', 
-                       'order_delivered_customer_date', 'order_estimated_delivery_date'],
-            'transformations': """
+            """,
+        'ODS_ORDERS': f"""
             COPY INTO "ODS_ORDERS" 
             FROM (
                 SELECT 
-                    $1:order_id::VARCHAR as order_id,
-                    $1:customer_id::VARCHAR as customer_id,
-                    $1:order_status::VARCHAR as order_status,
-                    TRY_TO_TIMESTAMP($1:order_purchase_timestamp::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as order_purchase_timestamp,
-                    TRY_TO_TIMESTAMP($1:order_approved_at::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as order_approved_at,
-                    TRY_TO_TIMESTAMP($1:order_delivered_carrier_date::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as order_delivered_carrier_date,
-                    TRY_TO_TIMESTAMP($1:order_delivered_customer_date::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as order_delivered_customer_date,
-                    TRY_TO_TIMESTAMP($1:order_estimated_delivery_date::VARCHAR, 'YYYY-MM-DD"T"HH24:MI:SS') as order_estimated_delivery_date
-                FROM '@{stage_name}/{s3_key}'
+                    $1:order_id::VARCHAR,
+                    $1:customer_id::VARCHAR,
+                    $1:order_status::VARCHAR,
+                    TRY_TO_TIMESTAMP($1:order_purchase_timestamp::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    TRY_TO_TIMESTAMP($1:order_approved_at::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    TRY_TO_TIMESTAMP($1:order_delivered_carrier_date::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    TRY_TO_TIMESTAMP($1:order_delivered_customer_date::VARCHAR, '{TIMESTAMP_FORMAT}'),
+                    TRY_TO_TIMESTAMP($1:order_estimated_delivery_date::VARCHAR, '{TIMESTAMP_FORMAT}')
+                FROM '@{{stage_name}}/{{s3_key}}'
             )
             """
-        }
     }
     
     # Check if this table needs special handling
     if table_name in timestamp_problematic_tables:
-        transformation_sql = timestamp_problematic_tables[table_name]['transformations']
+        transformation_sql = timestamp_problematic_tables[table_name]
         return transformation_sql.format(stage_name=STAGE_NAME, s3_key=s3_key)
     
     # Default COPY INTO for tables without timestamp issues
     return f"""
     COPY INTO "{table_name}"
     FROM '@{STAGE_NAME}/{s3_key}'
-    FILE_FORMAT = (
-        TYPE = 'PARQUET'
-        COMPRESSION = 'AUTO'
-    )
     MATCH_BY_COLUMN_NAME = CASE_INSENSITIVE
     ON_ERROR = 'CONTINUE'
     PURGE = FALSE
