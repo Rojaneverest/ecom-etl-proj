@@ -1,7 +1,5 @@
 FROM python:3.9-slim
 
-# Set working directory inside the container
-WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -24,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Copy requirements from the build context root to the current WORKDIR (/app)
 # Since the build context is the project root, these paths are now relative to the project root.
 COPY requirements.txt .
-COPY streamlit/requirements-streamlit.txt .
+COPY requirements-streamlit.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt && \
@@ -32,7 +30,7 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 # Copy Streamlit application files
 # The WORKDIR is already /app, so copy directly into it.
-COPY Ecommerce_Dashboard.py .
+COPY ecommerce_dashboard.py .
 COPY utils.py .
 RUN mkdir -p pages
 COPY pages/ ./pages/
@@ -42,7 +40,6 @@ EXPOSE 8501
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1
-ENV PYTHONPATH=/app
 
 # Command to run the Streamlit app
-CMD ["streamlit", "run", "Ecommerce_Dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "ecommerce_dashboard.py", "--server.port=8501", "--server.address=0.0.0.0"]

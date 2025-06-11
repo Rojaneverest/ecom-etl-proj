@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import plotly.express as px
+import plotly.graph_objects as go
 from utils import (
     get_snowflake_connection,
     load_sales_overview_data,
@@ -12,7 +13,10 @@ from utils import (
     calculate_seller_performance
 )
 
-# --- Page Config ---
+st.set_page_config(
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
 st.title("🏛️ Historical E-commerce Performance")
 st.markdown("Analysis of aggregated data from the E-Commerce Data Warehouse.")
 
@@ -29,24 +33,66 @@ if conn:
         rfm_df = calculate_rfm(raw_sales_df)
         seller_perf_df = calculate_seller_performance(sales_df)
 
-    # --- Main Dashboard ---
-    
-    # --- KPIs ---
+    # --- SECTION 1: KPI OVERVIEW ---
     st.markdown("---")
     st.subheader("🚀 Overall Performance Metrics")
-    # ... (KPI section remains the same)
+    
     kpi_col1, kpi_col2, kpi_col3, kpi_col4 = st.columns(4)
     total_revenue = sales_df['payment_value'].sum()
     total_orders = sales_df['order_id'].nunique()
     unique_customers = sales_df['customer_unique_id'].nunique()
     avg_review_score = sales_df['review_score'].mean()
+    
     kpi_col1.metric("💰 Total Revenue", f"${total_revenue:,.2f}")
     kpi_col2.metric("📦 Total Orders", f"{total_orders:,}")
     kpi_col3.metric("👥 Unique Customers", f"{unique_customers:,}")
     kpi_col4.metric("⭐ Average Review Score", f"{avg_review_score:.2f}")
 
+    # --- SECTION 2: HISTORICAL TRENDS ---
+    st.markdown("---")
+    st.subheader("📈 Historical Trends & Geographic Distribution")
+    
+    trend_col1, trend_col2 = st.columns(2)
+    
+    with trend_col1:
+        st.markdown("##### Daily Sales Trend")
+        if not daily_sales_df.empty:
+            fig_daily_sales = px.line(
+                daily_sales_df, 
+                x='date', 
+                y='total_sales', 
+                title="Total Revenue Over Time",
+                labels={'total_sales': 'Revenue ($)', 'date': 'Date'}
+            )
+            fig_daily_sales.update_layout(showlegend=False)
+            st.plotly_chart(fig_daily_sales, use_container_width=True)
+        else:
+            st.info("No daily sales data available.")
 
-    # --- NEW: Customer Segmentation (RFM) ---
+    with trend_col2:
+        st.markdown("##### Sales by Customer State")
+        if not geo_sales_df.empty:
+            # Normalize 'total_sales' for better map visualization
+            min_sales = geo_sales_df['total_sales'].min()
+            max_sales = geo_sales_df['total_sales'].max()
+
+            if max_sales > min_sales:
+                geo_sales_df['scaled_sales'] = (
+                    (geo_sales_df['total_sales'] - min_sales) / (max_sales - min_sales)
+                ) * 95 + 5
+            else:
+                geo_sales_df['scaled_sales'] = 5
+
+            st.map(
+                geo_sales_df, 
+                latitude='latitude', 
+                longitude='longitude', 
+                size='scaled_sales'
+            )
+        else:
+            st.info("No geographical sales data available.")
+
+    # --- SECTION 3: CUSTOMER SEGMENTATION ---
     st.markdown("---")
     st.subheader("👥 Customer Segmentation (RFM Analysis)")
     st.markdown("Segmenting customers by Recency, Frequency, and Monetary value to identify key groups.")
@@ -58,34 +104,31 @@ if conn:
             st.markdown("##### Customer Segment Distribution")
             segment_counts = rfm_df['Segment'].value_counts().reset_index()
             segment_counts.columns = ['Segment', 'Count']
+            
             fig_rfm_dist = px.bar(
-                segment_counts, x='Count', y='Segment', orientation='h',
-                title="Number of Customers per Segment",
-                labels={'Segment': 'RFM Segment', 'Count': 'Number of Customers'}
+                segment_counts, 
+                x='Count', 
+                y='Segment', 
+                orientation='h',
+                title="Customers per Segment",
+                labels={'Segment': 'RFM Segment', 'Count': 'Number of Customers'},
+                color='Count',
+                color_continuous_scale='viridis'
             )
-            fig_rfm_dist.update_layout(yaxis={'categoryorder':'total ascending'})
+            fig_rfm_dist.update_layout(
+                yaxis={'categoryorder': 'total ascending'},
+                showlegend=False
+            )
             st.plotly_chart(fig_rfm_dist, use_container_width=True)
 
         with rfm_col2:
             st.markdown("##### RFM Segment Overview")
-            # Create aggregated view by segment for cleaner visualization
             segment_summary = rfm_df.groupby('Segment').agg({
                 'Recency': 'mean',
                 'Frequency': 'mean', 
                 'Monetary': 'mean',
                 'Segment': 'count'
             }).rename(columns={'Segment': 'Customer_Count'}).reset_index()
-            
-            # Add segment descriptions for better understanding
-            segment_descriptions = {
-                'Loyal Customers': 'High value, frequent buyers',
-                'At Risk': 'High value but haven\'t purchased recently', 
-                'Hibernating': 'Low recent activity, low frequency',
-                'About to Sleep': 'Recent customers at risk of churning',
-                'New Customers': 'Recent first-time buyers',
-                'Potential Loyalists': 'Recent customers with good frequency',
-                'Needs Attention': 'Below average but not lost yet'
-            }
             
             fig_rfm_clean = px.scatter(
                 segment_summary,
@@ -103,7 +146,7 @@ if conn:
                     'Monetary': ':.2f',
                     'Customer_Count': True
                 },
-                size_max=100
+                size_max=80
             )
             fig_rfm_clean.update_layout(
                 xaxis={'title': 'Avg Days Since Last Purchase (Lower = Better)'},
@@ -111,7 +154,7 @@ if conn:
             )
             st.plotly_chart(fig_rfm_clean, use_container_width=True)
         
-        # Move segment insights table outside the columns to center it
+        # Segment insights table
         st.markdown("##### Segment Insights")
         insight_df = segment_summary.copy()
         insight_df['Avg_Monetary'] = insight_df['Monetary'].round(2)
@@ -121,13 +164,12 @@ if conn:
     else:
         st.warning("Could not generate RFM segments.")
 
-    # --- NEW: Seller Performance Scorecard ---
+    # --- SECTION 4: SELLER PERFORMANCE ---
     st.markdown("---")
     st.subheader("🏆 Seller Performance Scorecard")
     st.markdown("Evaluating sellers based on revenue, customer satisfaction, and delivery speed.")
     
     if not seller_perf_df.empty:
-        # Create sortable and filterable dataframe
         st.dataframe(
             seller_perf_df.sort_values('total_revenue', ascending=False).reset_index(drop=True),
             use_container_width=True,
@@ -143,53 +185,65 @@ if conn:
     else:
         st.warning("Could not generate Seller Performance data.")
 
-
-    # --- Existing Sections (Delivery, Satisfaction, etc.) ---
+    # --- SECTION 5: DELIVERY & SATISFACTION ---
     st.markdown("---")
-    st.subheader("🚚 Delivery & Satisfaction Insights")
-    sat_col1, sat_col2 = st.columns(2)
+    st.subheader("🚚 Delivery & Customer Satisfaction Analysis")
+    
+    # Delivery Analysis
+    delivery_col1, delivery_col2 = st.columns(2)
 
-    with sat_col1:
+    with delivery_col1:
         st.markdown("##### Impact of Delivery on Review Score")
         if not sales_df.empty and 'delivery_status' in sales_df.columns:
             satisfaction_by_delivery = sales_df.groupby('delivery_status')['review_score'].mean().reset_index()
             fig_sat_delivery = px.bar(
                 satisfaction_by_delivery,
-                x='delivery_status', y='review_score', color='delivery_status',
-                title="Average Review Score for On-Time vs. Late Deliveries",
+                x='delivery_status', 
+                y='review_score', 
+                color='delivery_status',
+                title="Avg Review Score: On-Time vs Late Deliveries",
                 labels={'delivery_status': 'Delivery Status', 'review_score': 'Average Review Score'},
-                color_discrete_map={'On-Time': 'green', 'Late': 'red'}
+                color_discrete_map={'On-Time': '#2ca02c', 'Late': '#d62728'}
             )
+            fig_sat_delivery.update_layout(showlegend=False)
             st.plotly_chart(fig_sat_delivery, use_container_width=True)
     
-    with sat_col2:
-        st.markdown("##### Delivery Timeliness Distribution (in Days)")
+    with delivery_col2:
+        st.markdown("##### Delivery Timeliness Distribution")
         if not sales_df.empty and 'delivery_delta_days' in sales_df.columns:
             fig_delivery_delta = px.histogram(
-                sales_df, x='delivery_delta_days', nbins=100,
-                title='Distribution of Delivery Difference (Actual - Estimated)',
-                labels={'delivery_delta_days': 'Days Early (< 0) or Late (> 0)'}
+                sales_df, 
+                x='delivery_delta_days', 
+                nbins=50,
+                title='Delivery Time Difference (Actual - Estimated)',
+                labels={'delivery_delta_days': 'Days Early (< 0) or Late (> 0)', 'count': 'Number of Orders'},
+                color_discrete_sequence=['#1f77b4']
             )
+            fig_delivery_delta.add_vline(x=0, line_dash="dash", line_color="red", 
+                                       annotation_text="On Time", annotation_position="top")
             st.plotly_chart(fig_delivery_delta, use_container_width=True)
 
-    st.markdown("---")
-    st.subheader("⭐ Customer Satisfaction Deep Dive")
+    # Customer Satisfaction Analysis
     sat_col1, sat_col2 = st.columns(2)
 
     with sat_col1:
         st.markdown("##### Review Score Distribution")
         if not sales_df.empty and 'review_score' in sales_df.columns:
             fig_review_dist = px.histogram(
-                sales_df, x='review_score', nbins=5,
+                sales_df, 
+                x='review_score', 
+                nbins=5,
                 title='Distribution of Customer Review Scores',
-                labels={'review_score': 'Review Score (1-5)', 'count': 'Number of Reviews'}
+                labels={'review_score': 'Review Score (1-5)', 'count': 'Number of Reviews'},
+                color_discrete_sequence=['#9467bd']
             )
+            fig_review_dist.update_layout(bargap=0.1)
             st.plotly_chart(fig_review_dist, use_container_width=True)
         else:
             st.warning("No review score data available.")
             
     with sat_col2:
-        st.markdown("##### Top & Bottom 5 Categories by Review Score")
+        st.markdown("##### Top & Bottom Categories by Reviews")
         if not sales_df.empty and 'product_category_name' in sales_df.columns:
             category_reviews = sales_df.groupby('product_category_name')['review_score'].mean().dropna().sort_values()
             
@@ -200,81 +254,100 @@ if conn:
             
             fig_cat_reviews = px.bar(
                 combined_reviews,
-                x='review_score', y='product_category_name', color='Performance',
+                x='review_score', 
+                y='product_category_name', 
+                color='Performance',
                 orientation='h',
-                title="Highest and Lowest Rated Product Categories",
+                title="Highest and Lowest Rated Categories",
                 labels={'product_category_name': 'Product Category', 'review_score': 'Average Review Score'},
                 color_discrete_map={'Top 5': '#2ca02c', 'Bottom 5': '#d62728'}
             )
-            fig_cat_reviews.update_layout(yaxis={'categoryorder':'total ascending'})
+            fig_cat_reviews.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig_cat_reviews, use_container_width=True)
         else:
             st.warning("No category review data available.")
 
-
+    # --- SECTION 6: BUSINESS INSIGHTS & LEADERBOARDS ---
     st.markdown("---")
-    st.subheader("🏆 Leaderboards & Distributions")
-    lb_col1, lb_col2, lb_col3 = st.columns(3)
+    st.subheader("📊 Business Insights & Leaderboards")
+    
+    # Top performers
+    leader_col1, leader_col2, leader_col3 = st.columns(3)
 
-    with lb_col1:
+    with leader_col1:
         st.markdown("##### Top 10 Categories by Revenue")
         if not sales_df.empty:
             category_sales = sales_df.groupby('product_category_name')['payment_value'].sum().nlargest(10).reset_index()
+            category_sales['payment_value'] = category_sales['payment_value'].round(2)
+            category_sales.columns = ['Category', 'Revenue ($)']
             st.dataframe(category_sales, use_container_width=True, hide_index=True)
         else:
             st.warning("No category sales data available.")
 
-    with lb_col2:
+    with leader_col2:
         st.markdown("##### Top 10 Seller States by Revenue")
         if not sales_df.empty and 'seller_state' in sales_df.columns:
             seller_state_sales = sales_df.groupby('seller_state')['payment_value'].sum().nlargest(10).reset_index()
+            seller_state_sales['payment_value'] = seller_state_sales['payment_value'].round(2)
+            seller_state_sales.columns = ['State', 'Revenue ($)']
             st.dataframe(seller_state_sales, use_container_width=True, hide_index=True)
         else:
             st.warning("No seller state data available.")
 
-    with lb_col3:
-        st.markdown("##### Payment Installments Distribution")
-        if not sales_df.empty and 'payment_installments' in sales_df.columns:
-            cc_payments = sales_df[sales_df['payment_type'] == 'credit_card']
-            fig_installments = px.histogram(
-                cc_payments,
-                x='payment_installments',
-                title='Credit Card Installment Counts',
-                labels={'payment_installments': 'Number of Installments'},
-                nbins=int(cc_payments['payment_installments'].max())
-            )
-            st.plotly_chart(fig_installments, use_container_width=True)
-        else:
-            st.warning("No payment installment data available.")
-
-    st.markdown("---")
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("##### Payment Method Popularity")
-        if not sales_df.empty and 'payment_type' in sales_df.columns:
-            payment_dist = sales_df['payment_type'].value_counts().reset_index()
-            payment_dist.columns = ['Payment Type', 'Transactions']
-            fig_payment = px.pie(
-                payment_dist, names='Payment Type', values='Transactions',
-                title='Popularity of Payment Methods', hole=0.3
-            )
-            st.plotly_chart(fig_payment, use_container_width=True)
-        else:
-            st.warning("No payment method data available.")
-
-    with col2:
-        st.markdown("##### Order Status Counts")
+    with leader_col3:
+        st.markdown("##### Order Status Distribution")
         if not raw_sales_df.empty and 'order_status' in raw_sales_df.columns:
             status_counts = raw_sales_df['order_status'].value_counts().reset_index() 
             status_counts.columns = ['Status', 'Count']
-            fig_status = px.bar(
-                status_counts, x='Status', y='Count', title='Number of Orders by Status', color='Status'
+            
+            fig_status = px.pie(
+                status_counts, 
+                names='Status', 
+                values='Count', 
+                hole=0.3
             )
             st.plotly_chart(fig_status, use_container_width=True)
         else:
             st.warning("No order status data available.")
 
+    # Payment Analysis
+    payment_col1, payment_col2 = st.columns(2)
+
+    with payment_col1:
+        st.markdown("##### Payment Method Popularity")
+        if not sales_df.empty and 'payment_type' in sales_df.columns:
+            payment_dist = sales_df['payment_type'].value_counts().reset_index()
+            payment_dist.columns = ['Payment Type', 'Transactions']
+            
+            fig_payment = px.pie(
+                payment_dist, 
+                names='Payment Type', 
+                values='Transactions',
+                title='Payment Methods Distribution', 
+                hole=0.3
+            )
+            st.plotly_chart(fig_payment, use_container_width=True)
+        else:
+            st.warning("No payment method data available.")
+
+    with payment_col2:
+        st.markdown("##### Credit Card Installments")
+        if not sales_df.empty and 'payment_installments' in sales_df.columns:
+            cc_payments = sales_df[sales_df['payment_type'] == 'credit_card']
+            if not cc_payments.empty:
+                fig_installments = px.histogram(
+                    cc_payments,
+                    x='payment_installments',
+                    title='Credit Card Installment Distribution',
+                    labels={'payment_installments': 'Number of Installments', 'count': 'Frequency'},
+                    nbins=int(cc_payments['payment_installments'].max()) if cc_payments['payment_installments'].max() > 0 else 10,
+                    color_discrete_sequence=['#9467bd']
+                )
+                st.plotly_chart(fig_installments, use_container_width=True)
+            else:
+                st.info("No credit card payment data available.")
+        else:
+            st.warning("No payment installment data available.")
 
 else:
     st.warning("❌ Could not establish a connection to Snowflake. Please check your credentials in the `.env` file.")
