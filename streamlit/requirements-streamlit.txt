@@ -1,9 +1,10 @@
+# Base requirements (copied from parent directory during build)
+-r requirements.txt
+
+# Streamlit and visualization
 streamlit==1.32.0
 plotly==5.18.0
-pandas==2.1.4
-redis==5.0.1
-python-dotenv==1.0.0
-confluent-kafka==2.3.0
-kafka-python==2.0.2
-python-json-logger==2.0.7
-snowflake-connector-python
+
+# Additional Streamlit deps
+snowflake-connector-python>=3.0.0
+redis>=4.3.1
