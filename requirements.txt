@@ -3,7 +3,6 @@ pandas
 boto3
 
 # Data Processing
-pyspark==3.5.1
 pyarrow
 fastparquet
 
