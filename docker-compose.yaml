@@ -408,8 +408,8 @@ services:
   
   streamlit-dashboard:
     build:
-      context: .
-      dockerfile: streamlit/Dockerfile.streamlit
+      context: ./streamlit
+      dockerfile: Dockerfile.streamlit
     container_name: ecommerce-dashboard
     ports:
       - "8501:8501"
