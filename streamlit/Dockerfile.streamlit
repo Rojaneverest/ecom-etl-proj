@@ -32,8 +32,8 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 
 # Copy Streamlit application files
 # The WORKDIR is already /app, so copy directly into it.
-COPY streamlit/Ecommerce_Dashboard.py .
-COPY streamlit/utils.py .
+COPY Ecommerce_Dashboard.py .
+COPY utils.py .
 RUN mkdir -p pages
 COPY pages/ ./pages/
 
