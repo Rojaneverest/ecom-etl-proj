@@ -13,10 +13,6 @@ from utils import (
     calculate_seller_performance
 )
 
-st.set_page_config(
-    layout="wide",
-    initial_sidebar_state="collapsed"
-)
 st.title("🏛️ Historical E-commerce Performance")
 st.markdown("Analysis of aggregated data from the E-Commerce Data Warehouse.")
 
