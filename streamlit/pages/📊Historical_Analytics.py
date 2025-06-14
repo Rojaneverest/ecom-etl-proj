@@ -10,24 +10,56 @@ from utils import (
     load_sales_by_geolocation,
     process_delivery_and_satisfaction_data,
     calculate_rfm,
-    calculate_seller_performance
+    calculate_seller_performance,
+    check_tables_exist
 )
 
 st.title("🏛️ Historical E-commerce Performance")
 st.markdown("Analysis of aggregated data from the E-Commerce Data Warehouse.")
 
-# --- Load Data ---
+# --- Define list of essential tables for the dashboard ---
+REQUIRED_TABLES = [
+    "DWH_ORDERS", "DWH_ORDER_ITEMS", "DWH_ORDER_PAYMENTS",
+    "DWH_PRODUCTS", "DWH_CUSTOMERS", "DWH_SELLERS",
+    "DWH_ORDER_REVIEWS", "DWH_GEOLOCATION"
+]
+
+# --- Main Logic with Integrated Table Check ---
 conn = get_snowflake_connection()
+
 if conn:
-    with st.spinner("Loading and processing data from Warehouse... This may take a moment. ❄️"):
-        raw_sales_df = load_sales_overview_data(conn)
-        daily_sales_df = load_daily_sales_data(conn)
-        geo_sales_df = load_sales_by_geolocation(conn)
-        
-        # --- Data Processing ---
-        sales_df = process_delivery_and_satisfaction_data(raw_sales_df)
-        rfm_df = calculate_rfm(raw_sales_df)
-        seller_perf_df = calculate_seller_performance(sales_df)
+    missing_tables = []
+    with st.spinner("Connecting to data warehouse and verifying data availability... ❄️"):
+        missing_tables = check_tables_exist(conn, REQUIRED_TABLES)
+
+    # --- LOGIC 1: CHECK IF TABLES ARE MISSING ---
+    if missing_tables:
+        st.error("Data Not Available", icon="🚨")
+        st.warning("The dashboard cannot be displayed because one or more source tables are missing in Snowflake.")
+        st.markdown("---")
+        st.info("Please ensure that your data ingestion and transformation (ETL/ELT) processes have run successfully and that the table names match the required list.")
+        st.stop() # Halt execution to prevent errors
+
+    # --- LOGIC 2: IF TABLES EXIST, PROCEED TO LOAD DATA ---
+    else:
+        with st.spinner("Loading and processing data... This may take a moment. ❄️"):
+            raw_sales_df = load_sales_overview_data(conn)
+
+        # --- LOGIC 3: CHECK IF TABLES EXIST BUT ARE EMPTY ---
+        if raw_sales_df.empty:
+            st.warning("Data Not Available", icon="⚠️")
+            st.info("The required data tables exist in Snowflake, but they appear to be empty.")
+            st.markdown("Please verify that the data ingestion process has successfully loaded records into the tables.")
+            st.stop() # Halt execution as no charts can be rendered
+
+        # --- If data exists, proceed with the full dashboard logic ---
+        else:
+            with st.spinner("Analyzing data and building visualizations... ⚙️"):
+                daily_sales_df = load_daily_sales_data(conn)
+                geo_sales_df = load_sales_by_geolocation(conn)
+                sales_df = process_delivery_and_satisfaction_data(raw_sales_df)
+                rfm_df = calculate_rfm(raw_sales_df)
+                seller_perf_df = calculate_seller_performance(sales_df)
 
     # --- SECTION 1: KPI OVERVIEW ---
     st.markdown("---")
@@ -164,10 +196,29 @@ if conn:
     st.markdown("---")
     st.subheader("🏆 Seller Performance Scorecard")
     st.markdown("Evaluating sellers based on revenue, customer satisfaction, and delivery speed.")
-    
+
     if not seller_perf_df.empty:
+        # Sort the DataFrame first
+        sorted_sellers = seller_perf_df.sort_values('total_revenue', ascending=False).reset_index(drop=True)
+        
+        # --- PAGINATION LOGIC ---
+        items_per_page = 10
+        
+        # Initialize session state for the page number
+        if 'page_number' not in st.session_state:
+            st.session_state.page_number = 0
+
+        total_items = len(sorted_sellers)
+        total_pages = (total_items // items_per_page) + (1 if total_items % items_per_page > 0 else 0)
+
+        # Get the start and end indices for the current page
+        start_idx = st.session_state.page_number * items_per_page
+        end_idx = start_idx + items_per_page
+        paginated_df = sorted_sellers.iloc[start_idx:end_idx]
+
+        # Display the DataFrame for the current page
         st.dataframe(
-            seller_perf_df.sort_values('total_revenue', ascending=False).reset_index(drop=True),
+            paginated_df,
             use_container_width=True,
             column_config={
                 "seller_id": "Seller ID",
@@ -176,8 +227,26 @@ if conn:
                 "avg_review_score": st.column_config.NumberColumn("Avg. Review (1-5)", format="⭐ %.2f"),
                 "avg_delivery_time": "Avg. Delivery (Days)"
             },
-            height=400
+            hide_index=True
         )
+
+        # --- PAGINATION CONTROLS ---
+        # Create columns for the navigation buttons and page indicator
+        nav_col1, nav_col2, nav_col3, _ = st.columns([0.15, 0.15, 0.2, 0.5])
+
+        # "Previous" button
+        if nav_col1.button("Previous", use_container_width=True, disabled=(st.session_state.page_number == 0)):
+            st.session_state.page_number -= 1
+            st.experimental_rerun()
+
+        # "Next" button
+        if nav_col2.button("Next", use_container_width=True, disabled=(st.session_state.page_number >= total_pages - 1)):
+            st.session_state.page_number += 1
+            st.experimental_rerun()
+
+        # Page indicator
+        nav_col3.markdown(f"Page **{st.session_state.page_number + 1}** of **{total_pages}**")
+
     else:
         st.warning("Could not generate Seller Performance data.")
 
@@ -199,7 +268,7 @@ if conn:
                 color='delivery_status',
                 title="Avg Review Score: On-Time vs Late Deliveries",
                 labels={'delivery_status': 'Delivery Status', 'review_score': 'Average Review Score'},
-                color_discrete_map={'On-Time': '#2ca02c', 'Late': '#d62728'}
+                color_discrete_map={'On-Time': '#2a9d8f', 'Late': '#e76f51'}
             )
             fig_sat_delivery.update_layout(showlegend=False)
             st.plotly_chart(fig_sat_delivery, use_container_width=True)
@@ -213,7 +282,7 @@ if conn:
                 nbins=50,
                 title='Delivery Time Difference (Actual - Estimated)',
                 labels={'delivery_delta_days': 'Days Early (< 0) or Late (> 0)', 'count': 'Number of Orders'},
-                color_discrete_sequence=['#1f77b4']
+                color_discrete_sequence=['#428BCA']
             )
             fig_delivery_delta.add_vline(x=0, line_dash="dash", line_color="red", 
                                        annotation_text="On Time", annotation_position="top")
@@ -231,7 +300,7 @@ if conn:
                 nbins=5,
                 title='Distribution of Customer Review Scores',
                 labels={'review_score': 'Review Score (1-5)', 'count': 'Number of Reviews'},
-                color_discrete_sequence=['#9467bd']
+                color_discrete_sequence=['#4a4e69']
             )
             fig_review_dist.update_layout(bargap=0.1)
             st.plotly_chart(fig_review_dist, use_container_width=True)
@@ -256,7 +325,7 @@ if conn:
                 orientation='h',
                 title="Highest and Lowest Rated Categories",
                 labels={'product_category_name': 'Product Category', 'review_score': 'Average Review Score'},
-                color_discrete_map={'Top 5': '#2ca02c', 'Bottom 5': '#d62728'}
+                color_discrete_map={'Top 5': '#2a9d8f', 'Bottom 5': '#e76f51'}
             )
             fig_cat_reviews.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig_cat_reviews, use_container_width=True)
@@ -306,7 +375,8 @@ if conn:
                 status_counts, 
                 names='Status', 
                 values='Count', 
-                hole=0.3
+                hole=0.3,
+                color_discrete_map={'shipped': '#5CB85C', 'canceled': '#D9534F', 'delivered': '#669bbc'}
             )
 
             fig_status.update_traces(
@@ -333,7 +403,8 @@ if conn:
                 names='Payment Type', 
                 values='Transactions',
                 title='Payment Methods Distribution', 
-                hole=0.3
+                hole=0.3,
+                color_discrete_map={'credit_card': '#5CB85C', 'canceled': '#D9534F'}
             )
             st.plotly_chart(fig_payment, use_container_width=True)
         else:

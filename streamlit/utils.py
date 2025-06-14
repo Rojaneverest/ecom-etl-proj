@@ -52,13 +52,58 @@ def get_snowflake_connection():
             account=os.getenv("SNOWFLAKE_ACCOUNT"),
             role=os.getenv("SNOWFLAKE_ROLE"),
             warehouse=os.getenv("SNOWFLAKE_WAREHOUSE"),
-            database=os.getenv("SNOWFLAKE_DATABASE"),
-            schema=os.getenv("SNOWFLAKE_SCHEMA")
+            database=os.getenv("SNOWFLAKE_DWH_DB"),
+            schema=os.getenv("SNOWFLAKE_DWH_SCHEMA")
         )
         return conn
     except Exception as e:
         st.error(f"Error connecting to Snowflake: {e}")
         return None
+# --- NEW: Utility Function to Check for Table Existence ---
+@st.cache_data(ttl=600)  # Cache for 10 mins to avoid re-checking on every script rerun
+def check_tables_exist(_conn, required_tables):
+    """
+    Checks if a list of required tables exists in the connected Snowflake schema.
+
+    Args:
+        _conn: Active Snowflake connection object.
+        required_tables (list): A list of table names to check (case-insensitive).
+
+    Returns:
+        list: A list of table names that are missing. Returns an empty list if all tables exist.
+    """
+    if not required_tables:
+        return []
+
+    try:
+        db = _conn.database
+        schema = _conn.schema
+        
+        # Snowflake stores identifiers in uppercase by default.
+        tables_to_check_str = ", ".join([f"'{table.upper()}'" for table in required_tables])
+        
+        query = f"""
+            SELECT TABLE_NAME 
+            FROM {db}.INFORMATION_SCHEMA.TABLES 
+            WHERE TABLE_SCHEMA = '{schema.upper()}'
+            AND TABLE_NAME IN ({tables_to_check_str})
+        """
+        
+        cursor = _conn.cursor()
+        cursor.execute(query)
+        
+        found_tables = {row[0].upper() for row in cursor.fetchall()}
+        cursor.close()
+        
+        required_tables_set = {table.upper() for table in required_tables}
+        missing_tables = list(required_tables_set - found_tables)
+        
+        return missing_tables
+        
+    except Exception as e:
+        st.error(f"An error occurred while verifying tables in Snowflake: {e}")
+        # If the check fails, assume tables are missing to prevent further errors.
+        return required_tables
 
 def fetch_data(redis_key, data_type='hash'):
     """Fetches data from Redis, gracefully handling connection or key errors."""
