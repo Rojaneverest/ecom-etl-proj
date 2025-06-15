@@ -392,29 +392,36 @@ def load_daily_sales_data(_conn):
 
 @st.cache_data(ttl=3600)
 def load_sales_by_geolocation(_conn):
-    """Loads sales data by geolocation from Snowflake."""
-    # This function remains unchanged
     DWH_DB = os.getenv("SNOWFLAKE_DWH_DB")
     DWH_SCHEMA = os.getenv("SNOWFLAKE_DWH_SCHEMA")
+    """Loads sales data by geolocation from Snowflake."""
     query = f"""
-        WITH SalesByCity AS (
-            SELECT c.CUSTOMER_CITY, c.CUSTOMER_STATE, SUM(op.PAYMENT_VALUE) as "Total Sales"
-            FROM {DWH_DB}.{DWH_SCHEMA}.DWH_ORDERS AS o
-            JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_CUSTOMERS AS c ON o.CUSTOMER_ID = c.CUSTOMER_ID
-            JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_ORDER_PAYMENTS AS op ON o.ORDER_ID = op.ORDER_ID
-            WHERE o.ORDER_STATUS NOT IN ('unavailable', 'canceled') GROUP BY 1, 2
-        )
-        SELECT s.CUSTOMER_STATE, SUM(s."Total Sales") as "total_sales",
-               AVG(g.GEOLOCATION_LAT) as "latitude", AVG(g.GEOLOCATION_LNG) as "longitude"
-        FROM SalesByCity s JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_GEOLOCATION g ON s.CUSTOMER_CITY = g.GEOLOCATION_CITY
-        GROUP BY 1 ORDER BY "total_sales" DESC;
+        SELECT
+            c.CUSTOMER_STATE,
+            SUM(op.PAYMENT_VALUE) AS total_sales,
+            AVG(g.GEOLOCATION_LAT) AS latitude,
+            AVG(g.GEOLOCATION_LNG) AS longitude
+        FROM {DWH_DB}.{DWH_SCHEMA}.DWH_ORDERS AS o
+        JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_CUSTOMERS AS c
+            ON o.CUSTOMER_ID = c.CUSTOMER_ID
+        JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_ORDER_PAYMENTS AS op
+            ON o.ORDER_ID = op.ORDER_ID
+        JOIN {DWH_DB}.{DWH_SCHEMA}.DWH_GEOLOCATION AS g
+            ON c.GEOLOCATION_ID = g.GEOLOCATION_ID -- Direct join using GEOLOCATION_ID
+        WHERE
+            o.ORDER_STATUS NOT IN ('unavailable', 'canceled')
+        GROUP BY
+            c.CUSTOMER_STATE
+        ORDER BY
+            total_sales DESC;
     """
     cursor = _conn.cursor()
     cursor.execute(query)
     df = cursor.fetch_pandas_all()
     cursor.close()
-    df.columns = [col.lower() for col in df.columns]
+    df.columns = [col.lower() for col in df.columns] # Ensure column names are lowercase
     return df
+
 
 @st.cache_data
 def process_delivery_and_satisfaction_data(df):

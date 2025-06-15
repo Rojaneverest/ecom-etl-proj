@@ -14,7 +14,7 @@ from utils import (
     check_tables_exist
 )
 
-st.title("🏛️ Historical E-commerce Performance")
+st.title("Historical E-commerce Performance")
 st.markdown("Analysis of aggregated data from the E-Commerce Data Warehouse.")
 
 # --- Define list of essential tables for the dashboard ---
@@ -63,7 +63,7 @@ if conn:
 
     # --- SECTION 1: KPI OVERVIEW ---
     st.markdown("---")
-    st.subheader("🚀 Overall Performance Metrics")
+    st.subheader("Overall Performance Metrics")
     
     kpi_col1, kpi_col2, kpi_col3, kpi_col4 = st.columns(4)
     total_revenue = sales_df['payment_value'].sum()
@@ -78,9 +78,9 @@ if conn:
 
     # --- SECTION 2: HISTORICAL TRENDS ---
     st.markdown("---")
-    st.subheader("📈 Historical Trends & Geographic Distribution")
+    st.subheader("Historical Trends & Geographic Distribution")
     
-    trend_col1, trend_col2 = st.columns(2)
+    trend_col1, trend_col2 = st.columns(2, gap="large")
     
     with trend_col1:
         st.markdown("##### Daily Sales Trend")
@@ -97,32 +97,49 @@ if conn:
         else:
             st.info("No daily sales data available.")
 
+# Replace the existing geographic sales visualization section with this improved version
+
     with trend_col2:
         st.markdown("##### Sales by Customer State")
         if not geo_sales_df.empty:
-            # Normalize 'total_sales' for better map visualization
-            min_sales = geo_sales_df['total_sales'].min()
-            max_sales = geo_sales_df['total_sales'].max()
-
-            if max_sales > min_sales:
-                geo_sales_df['scaled_sales'] = (
-                    (geo_sales_df['total_sales'] - min_sales) / (max_sales - min_sales)
-                ) * 95 + 5
-            else:
-                geo_sales_df['scaled_sales'] = 5
-
-            st.map(
-                geo_sales_df, 
-                latitude='latitude', 
-                longitude='longitude', 
-                size='scaled_sales'
+            # Create an interactive Plotly scatter map with hover data
+            fig_geo = px.scatter_mapbox(
+                geo_sales_df,
+                lat='latitude',
+                lon='longitude',
+                size='total_sales',
+                color='total_sales',
+                hover_name='customer_state',  # Assuming you have state names
+                hover_data={
+                    'total_sales': ':$,.2f',
+                    'latitude': ':.2f',
+                    'longitude': ':.2f'
+                },
+                color_continuous_scale='Viridis',
+                size_max=30,
+                zoom=3,
+                labels={
+                    'total_sales': 'Total Sales ($)',
+                    'customer_state': 'State'
+                }
             )
-        else:
-            st.info("No geographical sales data available.")
+            
+            # Update map layout for better appearance
+            fig_geo.update_layout(
+                mapbox_style="carto-positron",  # Free map style
+                height=400,
+                margin={"r":0,"t":30,"l":0,"b":0}
+            )
+            
+            # If you want to use a different map style, you can use:
+            # mapbox_style="carto-positron"  # Clean, minimal style
+            # mapbox_style="stamen-terrain"  # Terrain style
+            
+            st.plotly_chart(fig_geo, use_container_width=True)
 
     # --- SECTION 3: CUSTOMER SEGMENTATION ---
     st.markdown("---")
-    st.subheader("👥 Customer Segmentation (RFM Analysis)")
+    st.subheader("Customer Segmentation (RFM Analysis)")
     st.markdown("Segmenting customers by Recency, Frequency, and Monetary value to identify key groups.")
 
     if not rfm_df.empty:
@@ -194,7 +211,7 @@ if conn:
 
     # --- SECTION 4: SELLER PERFORMANCE ---
     st.markdown("---")
-    st.subheader("🏆 Seller Performance Scorecard")
+    st.subheader("Seller Performance Scorecard")
     st.markdown("Evaluating sellers based on revenue, customer satisfaction, and delivery speed.")
 
     if not seller_perf_df.empty:
@@ -252,7 +269,7 @@ if conn:
 
     # --- SECTION 5: DELIVERY & SATISFACTION ---
     st.markdown("---")
-    st.subheader("🚚 Delivery & Customer Satisfaction Analysis")
+    st.subheader("Delivery & Customer Satisfaction Analysis")
     
     # Delivery Analysis
     delivery_col1, delivery_col2 = st.columns(2)
@@ -334,7 +351,7 @@ if conn:
 
     # --- SECTION 6: BUSINESS INSIGHTS & LEADERBOARDS ---
     st.markdown("---")
-    st.subheader("📊 Business Insights & Leaderboards")
+    st.subheader("Business Insights & Leaderboards")
     
     # Top performers
     leader_col1, leader_col2, leader_col3 = st.columns(3)
